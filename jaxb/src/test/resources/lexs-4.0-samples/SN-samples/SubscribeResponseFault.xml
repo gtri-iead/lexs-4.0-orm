@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <env:Header>
+        <wsa:MessageID>http://www.cjis.fbi.gov/N-DEx/NotificationService/741</wsa:MessageID>
+        <wsa:To>http://www.cjis.fbi.gov/OneDOJ/017</wsa:To>
+        <wsa:RelatesTo>http://www.cjis.fbi.gov/OneDOJ/413</wsa:RelatesTo>
+        <wsa:Action>http://docs.oasis-open.org/wsn/fault</wsa:Action>
+    </env:Header>
+    <env:Body>
+        <env:Fault>
+            <env:Code>
+                <env:Value>env:Sender</env:Value>
+                <env:Subcode>
+                    <env:Value xmlns:ulexfaults="http://ulex.gov/faults/2.0">ulexfaults:QueryObjectNotSupportedFault</env:Value>
+                </env:Subcode>
+            </env:Code>
+            <env:Reason>
+                <env:Text xml:lang="en-US">Unsupported Query Object fault (e.g. query was on vehicle and service provider doesn't handle vehicles).</env:Text>
+            </env:Reason>
+            <env:Detail>
+                <wsnt:SubscribeCreationFailedFault xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                               xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
+                                               xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2"
+                                               xsi:schemaLocation="http://docs.oasis-open.org/wsn/b-2 ../../xsd/oasis-open.org/wsn/b-2/b-2.xsd">
+               <wsrf-bf:Timestamp>2009-12-15T12:13:13</wsrf-bf:Timestamp>
+               <wsrf-bf:ErrorCode dialect="http://ulex.gov/faults/2.0">QueryObjectNotSupportedFault</wsrf-bf:ErrorCode>
+               <wsrf-bf:Description>Unsupported Query Object fault (e.g. query was on vehicle and service provider doesn't handle vehicles).</wsrf-bf:Description>
+               <wsrf-bf:FaultCause>
+                  <ulexfaults:QueryObjectNotSupportedFault xmlns:ulex="http://ulex.gov/ulex/2.0" xmlns:ulexfaults="http://ulex.gov/faults/2.0"
+                                                           xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
+                                                           xmlns:ulexcodes="http://ulex.gov/codes/2.0"
+                                                           xmlns:ulexlib="http://ulex.gov/library/2.0"
+                                                           xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+                                                           xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+                                                           xmlns:s="http://niem.gov/niem/structures/2.0"
+                                                           xmlns:lexs="http://lexs.gov/lexs/4.0"
+                                                           xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+                                                           xsi:schemaLocation="http://ulex.gov/faults/2.0 ../../xsd/ulex.gov/ulex-faults/2.0/ulex-faults.xsd">    
+                     <wsrf-bf:Timestamp>2009-12-15T12:13:13</wsrf-bf:Timestamp>
+                     <wsrf-bf:ErrorCode dialect="http://ulex.gov/faults/2.0">QueryObjectNotSupportedFault</wsrf-bf:ErrorCode>
+                     <wsrf-bf:Description>Unsupported Query Object fault (e.g. query was on vehicle and service provider doesn't handle vehicles).</wsrf-bf:Description>
+                     <ulexsn:SNMessageMetadata>
+                        <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+                        <ulex:ULEXImplementation>
+                           <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+                           <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+                        </ulex:ULEXImplementation>
+                        <ulex:MessageDateTime>2009-12-15T12:13:13</ulex:MessageDateTime>
+                        <wsa:MessageID>http://www.cjis.fbi.gov/N-DEx/NotificationService/741</wsa:MessageID>
+                        <!--====================== Message Origin ==========================-->
+        <ulex:MessageOriginMetadata>
+                           <lexs:SystemIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                              <lexs:SystemID>SysF</lexs:SystemID>
+                           </lexs:SystemIdentifier>
+                           <lexs:SystemContact>
+                              <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                              <nc:PersonSurName>Jones</nc:PersonSurName>
+                              <nc:ContactTelephoneNumber>
+                                 <nc:FullTelephoneNumber>
+                                    <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                                 </nc:FullTelephoneNumber>
+                              </nc:ContactTelephoneNumber>
+                           </lexs:SystemContact>
+                        </ulex:MessageOriginMetadata>
+                        <!--====================== Message Destination ==========================-->
+        <lexs:MessageDestinationIdentifier>
+            <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+            <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                           <lexs:SystemID>SysE</lexs:SystemID>
+                        </lexs:MessageDestinationIdentifier>
+                     </ulexsn:SNMessageMetadata>
+                  </ulexfaults:QueryObjectNotSupportedFault>
+               </wsrf-bf:FaultCause>
+            </wsnt:SubscribeCreationFailedFault>
+            </env:Detail>
+        </env:Fault>
+    </env:Body>
+</env:Envelope>

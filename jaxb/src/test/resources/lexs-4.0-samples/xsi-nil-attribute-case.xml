@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<lexs:Digest
+        xmlns:lexs="http://lexs.gov/lexs/4.0"
+        xmlns:s="http://niem.gov/niem/structures/2.0"
+        xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  >
+    <lexsdigest:EntityPerson>
+        <lexsdigest:Person s:id="Per2" xsi:nil="true" />
+    </lexsdigest:EntityPerson>
+</lexs:Digest>

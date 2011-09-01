@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+              xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <env:Body>
+        <ulexsr:getCapabilitiesResponse xmlns:new="http://somewhere.gov/new-community"
+                                      xmlns:ulex="http://ulex.gov/ulex/2.0"
+                                      xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
+                                      xmlns:ulexcodes="http://ulex.gov/codes/2.0"
+                                      xmlns:ulexlib="http://ulex.gov/library/2.0"
+                                      xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
+                                      xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+                                      xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+                                      xmlns:s="http://niem.gov/niem/structures/2.0"
+                                      xmlns:lexs="http://lexs.gov/lexs/4.0"
+                                      xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+                                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                      xsi:schemaLocation="http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd">
+         <ulex:CapabilitiesResponseMessage>
+            <ulex:SRMessageMetadata>
+               <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+               <ulex:ULEXImplementation>
+                  <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+                  <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+               </ulex:ULEXImplementation>
+               <ulex:MessageDateTime>2006-12-17T09:30:47.0Z</ulex:MessageDateTime>
+               <wsa:MessageID>12</wsa:MessageID>
+               <wsa:RelatesTo>http://www.cjis.fbi.gov/OneDOJ/412</wsa:RelatesTo>
+               <!--=======================  Message Origin  =======================-->
+            <ulex:MessageOriginMetadata>
+                  <lexs:SystemIdentifier>
+                    <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                    <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                    <lexs:SystemID>SysE</lexs:SystemID>
+                  </lexs:SystemIdentifier>
+                  <lexs:SystemContact>
+                    <nc:PersonGivenName>Jim</nc:PersonGivenName>
+                    <nc:PersonSurName>West</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>770-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                  </lexs:SystemContact>
+               </ulex:MessageOriginMetadata>
+               <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                  <lexs:SystemID>SysF</lexs:SystemID>
+               </lexs:MessageDestinationIdentifier>
+            </ulex:SRMessageMetadata>
+            <ulex:ResponseMetadata>
+               <ulex:ResultCode>Success</ulex:ResultCode>
+            </ulex:ResponseMetadata>
+            <ulex:Capabilities>
+               <ulex:DataItemCategory>
+                  <ulex:DataItemCategoryText>Incident</ulex:DataItemCategoryText>
+                  <ulex:DataItemCategoryDescriptionText>Incident Reports</ulex:DataItemCategoryDescriptionText>
+               </ulex:DataItemCategory>
+               <ulex:DataItemCategory>
+                  <ulex:DataItemCategoryText>Arrest</ulex:DataItemCategoryText>
+                  <ulex:DataItemCategoryDescriptionText>Arrest Reports</ulex:DataItemCategoryDescriptionText>
+               </ulex:DataItemCategory>
+               <ulex:PagingIndicator>true</ulex:PagingIndicator>
+               <ulex:MaxHitsReturnedNumeric>100</ulex:MaxHitsReturnedNumeric>
+               <ulex:StructuredSearch>
+                  <ulex:MultipleValueIndicator>true</ulex:MultipleValueIndicator>
+                  <ulex:WildcardIndicator>true</ulex:WildcardIndicator>
+                  <ulex:FuzzySearchIndicator>true</ulex:FuzzySearchIndicator>
+                  <ulex:DateRangeIndicator>true</ulex:DateRangeIndicator>
+                  <ulex:NumericRangeIndicator>true</ulex:NumericRangeIndicator>
+               </ulex:StructuredSearch>
+               <ulex:TextSearch>
+                  <ulex:ExactPhraseIndicator>true</ulex:ExactPhraseIndicator>
+                  <ulex:LogicalOperatorIndicator>true</ulex:LogicalOperatorIndicator>
+                  <ulex:WildcardIndicator>true</ulex:WildcardIndicator>
+               </ulex:TextSearch>
+               <ulex:SubscribeNotify>
+                  <ulex:MatchSubscriptionIndicator>false</ulex:MatchSubscriptionIndicator>
+                  <ulex:IdenticalSearchSubscriptionIndicator>false</ulex:IdenticalSearchSubscriptionIndicator>
+                  <ulex:SimilarSearchSubscriptionIndicator>false</ulex:SimilarSearchSubscriptionIndicator>
+                  <ulex:DataItemSearchSubscriptionIndicator>false</ulex:DataItemSearchSubscriptionIndicator>
+                  <ulex:DataItemRetrievalSubscriptionIndicator>false</ulex:DataItemRetrievalSubscriptionIndicator>
+                  <wsnt:NotificationProducerRP>
+                    <wstop:TopicSet xmlns:wstop="http://docs.oasis-open.org/wsn/t-1"
+                                     xmlns:tns="http://usdoj.gov/topicSpace/alerts">
+                        <tns:USBP>
+                            <FugitivesAlert wstop:topic="true"/>
+                        </tns:USBP>
+                        <tns:DHS>
+                            <TerroristAlert wstop:topic="true"/>
+                            <NoFlyList wstop:topic="true"/>
+                        </tns:DHS>
+                        <tns:USMS wstop:topic="true">
+                        </tns:USMS>
+                    </wstop:TopicSet>
+                  </wsnt:NotificationProducerRP>
+               </ulex:SubscribeNotify>
+            </ulex:Capabilities>
+         </ulex:CapabilitiesResponseMessage>
+      </ulexsr:getCapabilitiesResponse>
+    </env:Body>
+</env:Envelope>

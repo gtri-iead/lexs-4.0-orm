@@ -1,0 +1,25 @@
+
+h2 {
+    margin: 0;
+}
+
+.header .subheader {
+    font-size: 90%;
+}
+
+.section {
+    margin-bottom: 1em;
+}
+
+.section .header {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.artifact, .gotcha {
+  font-weight: bold;
+}

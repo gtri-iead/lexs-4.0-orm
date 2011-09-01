@@ -1,0 +1,459 @@
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lexs-4.0-si-jaxb-bindings</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>gov.lexs.v4.si</groupId>
+        <artifactId>lexs-4.0-si-bindings-parent</artifactId>
+        <version>4.0.0-SNAPSHOT</version>
+    </parent>    
+
+    <name>LEXS 4.0 SI 12: JAXB Bindings</name>
+
+    <properties>
+        <jaxb.version>2.2.2</jaxb.version>
+        <schema.location>../../schemas/lexs-4.0-rc4</schema.location>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>./src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>./src/main/xsd</directory>
+                <filtering>false</filtering>
+                <targetPath>gov/lexs/v4_0/schemas</targetPath>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <!-- Performs additional file deletion on clean phase. -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main</directory>
+                            <includes>
+                                <include>xsd</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/resources/gov/lexs/v4_0</directory>
+                            <includes>
+                                <include>jaxb</include>
+                                <include>schemas</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>package</phase>
+                        <goals><goal>javadoc</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-schemas</id>
+                        <phase>validate</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <echo>Copying latest scheams from ${schema.location}...</echo>
+                                <copy todir="${project.basedir}/src/main" verbose="false">
+                                    <fileset dir="${schema.location}"/>
+                                </copy>
+
+				<property name="cp" refid="maven.plugin.classpath" />
+				<echo message="Definining AntContrib tasks from: ${cp}" />
+				<taskdef resource="net/sf/antcontrib/antlib.xml"
+                                        classpathref="maven.plugin.classpath"/>
+
+
+                                <!-- This writes the schema index file -->
+                                <echo>Writing schema index to ${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index...</echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index">
+# This file is auto-generated.  See pom.xml -> maven-antrun-plugin -> copy-schemas
+# Project Version: ${project.groupId}:${project.artifactId}:${project.version}
+# Updated ${maven.build.timestamp}
+                                    
+                                </echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+                                    
+                                </echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+
+                                </echo>
+
+
+                                <for param="file">
+                                    <path>
+                                        <fileset dir="${project.basedir}/src/main/xsd/">
+                                            <include name="**/*.xsd" />
+                                        </fileset>
+                                    </path>
+                                    <sequential>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+@{file}
+                                        </echo>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+        
+                                        </echo>
+                                    </sequential>
+                                </for>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index"
+                                         token="${project.basedir}${file.separator}src${file.separator}main${file.separator}xsd${file.separator}"
+                                         value="gov/lexs/v4_0/schemas/"/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index"
+                                         token="${file.separator}" value="/"/>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>build-jaxb.index</id>
+                        <phase>process-sources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <taskdef resource="net/sf/antcontrib/antlib.xml"
+                                        classpathref="maven.plugin.classpath"/>
+                                
+                                <!-- This writes the jaxb.index file -->
+                                <echo>Writing jaxb.index to ${project.basedir}...</echo>
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index">-->
+<!--# This file is auto-generated.  See pom.xml -> maven-antrun-plugin -> copy-schemas-->
+<!--# Project Version: ${project.groupId}:${project.artifactId}:${project.version}-->
+<!--# Updated ${maven.build.timestamp}-->
+
+                                <!--</echo>-->
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">-->
+
+                                <!--</echo>-->
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">-->
+
+                                <!--</echo>-->
+
+
+                                <for param="file">
+                                    <path>
+                                        <fileset dir="${project.basedir}/target/generated-sources/xjc/gov/lexs/v4_0/jaxb">
+                                            <include name="**/ObjectFactory.java" />
+                                        </fileset>
+                                    </path>
+                                    <sequential>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">
+@{file}
+                                        </echo>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">
+
+                                        </echo>
+                                    </sequential>
+                                </for>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token="${project.basedir}${file.separator}target${file.separator}generated-sources${file.separator}xjc${file.separator}gov${file.separator}lexs${file.separator}v4_0${file.separator}jaxb${file.separator}"
+                                         value=""/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token=".java" value=""/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token="${file.separator}" value="."/>
+                                
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>ant</groupId>
+                                <artifactId>ant</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Compiles the LEXS schemas using the JAXB xjc command. -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>src/main/xsd</schemaDirectory>
+                            <schemaIncludes>
+                                <schemaInclude>**/*.xsd</schemaInclude>
+                            </schemaIncludes>
+                            <bindingDirectory>src/main/jaxb</bindingDirectory>
+                            <bindingIncludes>
+                                <bindingInclude>*.jxb</bindingInclude>
+                            </bindingIncludes>
+                            <extension>true</extension>
+                            <strict>true</strict>
+                            <verbose>true</verbose>
+                            <readOnly>true</readOnly>
+                            <forceRegenerate>true</forceRegenerate>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>${jaxb.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
+                    <!--
+            <plugin>
+                <groupId>org.apache.geronimo.genesis.plugins</groupId>
+                <artifactId>script-maven-plugin</artifactId>
+                <version>1.1</version>
+                <executions>
+                    <execution>
+                        <id>construct-classes-list</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>groovy</goal></goals>
+                        <configuration>
+                            <source>
+                                <body><![CDATA[
+                                    log.info("Building list of classes...");
+                                    def ant = new AntBuilder()
+                                    def scanner = ant.fileScanner {
+                                        fileset(dir:"${project.basedir}/target/generated-sources/xjc/") {
+                                            include(name:"**/*.java")
+                                        }
+                                    }
+                                    def classNames = [];
+                                    for( f in scanner ){
+                                        def absPath = f.getCanonicalPath();
+                                        absPath = absPath.replace("${project.basedir}/target/generated-sources/xjc/", "");
+                                        absPath = absPath.replace(".java", "");
+                                        absPath = absPath.replace("/", ".");
+                                        log.debug("Found generated class: "+absPath);
+                                        classNames.add( absPath );
+                                    }
+
+                                    def outputFile = new File("${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/classlist.properties");
+                                    outputFile.getParentFile().mkdirs();
+                                    outputFile.delete();
+                                    outputFile << "# This file is auto-generated.  See pom.xml -> construct-classes-list";
+                                    outputFile << "\n";
+                                    outputFile << "class.count="+classNames.size()+"\n";
+                                    def index = 0;
+                                    classNames.each { className ->
+                                        index++;
+                                        outputFile << "class."+index+"="+className+"\n";
+                                    }
+                                    log.info("Successfully wrote list of "+index+" classes");
+                                ]]></body>
+                            </source>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>construct-jaxb-index</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>groovy</goal></goals>
+                        <configuration>
+                            <source>
+                                <body><![CDATA[
+                                    log.info("Building list of ObjectFactory classes...");
+                                    def ant = new AntBuilder()
+                                    def scanner = ant.fileScanner {
+                                        fileset(dir:"${basedir}/target/generated-sources/xjc/gov/lexs/v4_0/jaxb") {
+                                            include(name:"**/ObjectFactory.java")
+                                        }
+                                    }
+                                    def classNames = [];
+                                    for( f in scanner ){
+                                        def absPath = f.getCanonicalPath();
+                                        absPath = absPath.replace("${basedir}/target/generated-sources/xjc/gov/lexs/v4_0/jaxb/", "");
+                                        absPath = absPath.replace(".java", "");
+                                        absPath = absPath.replace("/", ".");
+                                        log.debug("Found generated class: "+absPath);
+                                        classNames.add( absPath );
+                                    }
+                                    def outputFile = new File("${basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index");
+                                    outputFile.getParentFile().mkdirs();
+                                    outputFile.delete();
+                                    def index = 0;
+                                    classNames.each { className ->
+                                        index++;
+                                        outputFile << className+"\n";
+                                    }
+                                    log.info("Successfully wrote list of "+index+" ObjectFactory classes");
+                                ]]></body>
+                            </source>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>construct-schema-list</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>groovy</goal></goals>
+                        <configuration>
+                            <source>
+                                <body><![CDATA[
+                                    log.info("Building list of LEXS 4.0 Schemas...");
+                                    def ant = new AntBuilder()
+                                    def scanner = ant.fileScanner {
+                                        // NOTE: In windows, this expansion contains a single backslash, which fails to compile.
+                                        fileset(dir:"${project.basedir}/src/main/xsd/") {
+                                            include(name:"**/*.xsd")
+                                        }
+                                    }
+                                    def xsdNames = [];
+                                    for( f in scanner ){
+                                        def absPath = f.getCanonicalPath();
+                                        absPath = absPath.replace("${project.basedir}/src/main/xsd/", "gov/lexs/v4_0/schemas/");
+                                        log.debug("Found generated class: "+absPath);
+                                        xsdNames.add( absPath );
+                                    }
+                                    def outputFile = new File("${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index");
+                                    outputFile.getParentFile().mkdirs();
+                                    outputFile.delete();
+                                    def index = 0;
+                                    outputFile << "# This file is auto-generated.  See pom.xml -> construct-schema-list\n";
+                                    outputFile << "# schema count is "+xsdNames.size()+"\n";
+                                    outputFile << "\n";
+                                    xsdNames.each { schemaFile ->
+                                        index++;
+                                        outputFile << schemaFile+"\n";
+                                    }
+                                    log.info("Successfully wrote list of "+index+" schema files.");
+                                ]]></body>
+                            </source>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+
+
+            <!-- Creates javadoc assembly for deployment  -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/distribution.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-executable</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+
+        <!-- =============================================================== -->
+        <!-- Test Dependencies -->
+        <!-- =============================================================== -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>lexs-4.0-si-test-dependencies</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.javaparser</groupId>
+            <artifactId>javaparser</artifactId>
+            <version>1.0.8</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>javaparser</id>
+            <name>JavaParser Repository</name>
+            <url>http://javaparser.googlecode.com/svn/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

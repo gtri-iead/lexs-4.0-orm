@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: getDomainRequest-gfipm.xml 417 2010-05-13 06:45:43Z ys34 $
+    Original : 9/10/2009
+    LEXS version  : 4.0
+    ULEX version : 2.0
+    Description   : 
+        Sample XML instance for the domain request message.
+-->
+<ulexde:domainRequest
+
+    xmlns:ulex="http://ulex.gov/ulex/2.0" 
+    xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"    
+    xmlns:ulexde="http://ulex.gov/domainexchange/2.0"
+    xmlns:ulexcodes="http://ulex.gov/codes/2.0"    
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+    
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.1" 
+    xmlns:im="http://niem.gov/niem/domains/immigration/2.1" 
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.1"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:lexs="http://lexs.gov/lexs/4.0" 
+    xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+    
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+        http://ulex.gov/domainexchange/2.0 ../../xsd/ulex.gov/ulex-domain-exchange/2.0/ulex-domain-exchange.xsd 
+">
+	<ulex:DomainRequestMessage>
+        <ulex:DEMessageMetadata>
+			<ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+			<ulex:ULEXImplementation>
+				<ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+				<ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+			</ulex:ULEXImplementation>
+			<ulex:MessageDateTime>2006-12-17T09:30:47.0Z</ulex:MessageDateTime>
+			<wsa:MessageID>21</wsa:MessageID>
+			<lexs:DataSensitivityText>SBU</lexs:DataSensitivityText>
+            <!--====================== Message Origin ==========================-->
+            <ulex:MessageOriginMetadata>
+                <lexs:SystemIdentifier>
+                    <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                    <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                    <lexs:SystemID>SysF</lexs:SystemID>				
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                    <nc:PersonSurName>Jones</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </ulex:MessageOriginMetadata>
+            <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- ORI and OriginatingAgencyID are optional here and were not include in sample  -->
+                <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                <lexs:SystemID>SysE</lexs:SystemID>
+            </lexs:MessageDestinationIdentifier>
+        </ulex:DEMessageMetadata>
+		<ulex:UserAssertionSAML>
+			<saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+				ID="_5d2d4835eb069818ee291d4a0e11dff2"
+				IssueInstant="2010-01-28T18:51:03.548Z" Version="2.0">
+				<saml:Issuer
+					Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">
+					https://idp.ref.gfipm.net/idp/shibboleth
+				</saml:Issuer>
+				<!--
+				<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+				 [XML digital signature removed for brevity]
+				</ds:Signature>
+				-->
+				<saml:Subject>
+					<saml:NameID
+						Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient">
+						_a587e69b6d76f7aad403b795c8160b8a
+					</saml:NameID>
+					<saml:SubjectConfirmation
+						Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+						<saml:SubjectConfirmationData Address="10.50.14.130"
+							InResponseTo="_d6f2631f57762c11f41dd05bf6310a34"
+							NotOnOrAfter="2010-01-28T18:56:03.548Z"
+							Recipient="https://rhelsp.ref.gfipm.net/Shibboleth.sso/SAML2/POST" />
+					</saml:SubjectConfirmation>
+				</saml:Subject>
+				<saml:Conditions NotBefore="2010-01-28T18:51:03.548Z"
+					NotOnOrAfter="2010-01-28T18:56:03.548Z">
+					<saml:AudienceRestriction>
+						<saml:Audience>
+							https://rhelsp.ref.gfipm.net/shibboleth
+						</saml:Audience>
+					</saml:AudienceRestriction>
+				</saml:Conditions>
+				<saml:AuthnStatement AuthnInstant="2010-01-28T18:51:03.452Z"
+					SessionIndex="ad5e97f7afbe0a0372890b3a744f0d8a16dd8ae6621d30cf89a9409c62dbcd0c">
+					<saml:SubjectLocality Address="10.50.14.130" />
+					<saml:AuthnContext>
+						<saml:AuthnContextDeclRef>
+							urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+						</saml:AuthnContextDeclRef>
+					</saml:AuthnContext>
+				</saml:AuthnStatement>
+				<saml:AttributeStatement>
+					<saml:Attribute Name="gfipm:2.0:user:GivenName"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							Michael
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:SurName"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							Scott
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:FederationId"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							GFIPM:IDP:ExampleIDP:USER:ms01
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:TelephoneNumber"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							404-555-9876
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:EmailAddressText"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							ms01@gfipm.net
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:EmployerName"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							Dunder Mifflin
+						</saml:AttributeValue>
+					</saml:Attribute>
+					<saml:Attribute Name="gfipm:2.0:user:IdentityProviderId"
+						NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+						<saml:AttributeValue
+							xmlns:xs="http://www.w3.org/2001/XMLSchema"
+							xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+							xsi:type="xs:string">
+							GFIPM:IDP:ExampleIDP
+						</saml:AttributeValue>
+					</saml:Attribute>
+				</saml:AttributeStatement>
+			</saml:Assertion>
+		</ulex:UserAssertionSAML>
+        <ulex:DomainAttribute>
+             <ulex:DomainName>FBI EBTS</ulex:DomainName>
+             <lexs:DataItemPackage 
+                xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+                xmlns:s="http://niem.gov/niem/structures/2.0" 
+                xmlns:j="http://niem.gov/niem/domains/jxdm/4.0" 
+                xmlns:lexs="http://usdoj.gov/leisp/lexs/3.1" 
+                xmlns:lexssr="http://usdoj.gov/leisp/lexs/searchretrieve/3.1" 
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                xmlns:lexslib="http://usdoj.gov/leisp/lexs/library/3.1" 
+                xmlns:lexsdigest="http://usdoj.gov/leisp/lexs/digest/3.1" 
+                xmlns:ansi-nist="http://niem.gov/niem/ansi-nist/2.0" 
+                xmlns:ebts="http://cjis.fbi.gov/ebts/1.0.4" 
+                xmlns:fbiebts="http://cjis.fbi.gov/fbi_ebts/1.0.4" 
+                xmlns:fbiebtsbio="http://cjis.fbi.gov/fbi_ebts_bio/1.0.4" 
+                xmlns:itl="http://biometrics.nist.gov/standard/2-2008">
+                <lexs:PackageMetadata>
+                   <lexs:DataItemID/>
+                   <lexs:DataItemContact>
+                      <nc:PersonSurName/>
+                   </lexs:DataItemContact>
+                   <lexs:DataItemDate>2007-01-01</lexs:DataItemDate>
+                   <lexs:DataItemReferenceID/>
+                   <lexs:DataItemStatus/>
+                   <lexs:DataOwnerMetadata>
+                      <!--CRI 2.073-->
+                      <lexs:DataOwnerIdentifier>
+                         <lexs:ORI>NY123456P</lexs:ORI>
+                         <nc:OrganizationName/>
+                         <lexs:SystemID/>
+                      </lexs:DataOwnerIdentifier>
+                      <lexs:DataOwnerContact>
+                         <nc:PersonSurName/>
+                      </lexs:DataOwnerContact>
+                   </lexs:DataOwnerMetadata>
+                   <lexs:DisseminationCriteria>white</lexs:DisseminationCriteria>
+                </lexs:PackageMetadata>
+                <!--=======================  Digest  =======================-->
+                <lexs:Digest>
+                   <!--=======================  Entities  =======================-->
+                   <lexsdigest:EntityPerson>
+                      <lexsdigest:Person s:id="Per1">
+                         <j:PersonAugmentation>
+                            <!-- FBI 2.014-->
+                            <j:PersonFBIIdentification>
+                               <nc:IdentificationID>62760NY12</nc:IdentificationID>
+                            </j:PersonFBIIdentification>
+                         </j:PersonAugmentation>
+                      </lexsdigest:Person>
+                   </lexsdigest:EntityPerson>
+                   <lexsdigest:EntityActivity>
+                      <lexsdigest:Activity s:id="Arrest1">
+                         <nc:ActivityCategoryText>Arrest</nc:ActivityCategoryText>
+                         <!-- DOA 2.045 -->
+                         <nc:ActivityDate>
+                            <nc:Date>1995-03-24</nc:Date>
+                         </nc:ActivityDate>
+                      </lexsdigest:Activity>
+                   </lexsdigest:EntityActivity>
+                   <!--=======================  Associations  =======================-->
+                   <lexsdigest:Associations>
+                      <!-- DOA 2.045 -->
+                      <lexsdigest:ArrestSubjectAssociation>
+                         <nc:ActivityReference s:ref="Arrest1"/>
+                         <nc:PersonReference s:ref="Per1"/>
+                      </lexsdigest:ArrestSubjectAssociation>
+                   </lexsdigest:Associations>
+                </lexs:Digest>
+                <!--======================= Biographic Payload ======================-->
+                <lexs:StructuredPayload>
+                   <lexs:StructuredPayloadMetadata>
+                      <lexs:CommunityURI>http://cjis.fbi.gov/fbi_ebts_bio/1.0.4</lexs:CommunityURI>
+                      <lexs:CommunityDescription>FBI EBTS Biographic</lexs:CommunityDescription>
+                      <lexs:CommunityVersion>8.1</lexs:CommunityVersion>
+                   </lexs:StructuredPayloadMetadata>
+                   <fbiebtsbio:DescriptiveRecord>
+                      <fbiebtsbio:Activity>
+                         <fbiebtsbio:ActivityAugmentation>
+                            <lexslib:SameAsDigestReference lexslib:ref="Arrest1"/>
+                            <!-- DOS 2.046 -->
+                            <fbiebtsbio:ArrestDateSuffixText>L</fbiebtsbio:ArrestDateSuffixText>
+                         </fbiebtsbio:ActivityAugmentation>
+                      </fbiebtsbio:Activity>
+                   </fbiebtsbio:DescriptiveRecord>
+                </lexs:StructuredPayload>
+                <!--======================= ITL Payload ======================-->
+                <lexs:StructuredPayload>
+                   <lexs:StructuredPayloadMetadata>
+                      <lexs:CommunityURI>http://biometrics.nist.gov/standard/2-2008</lexs:CommunityURI>
+                      <lexs:CommunityDescription>ANSI/NIST-ITL</lexs:CommunityDescription>
+                      <lexs:CommunityVersion>2-2008</lexs:CommunityVersion>
+                   </lexs:StructuredPayloadMetadata>
+                   <itl:NISTBiometricInformationExchangePackage>
+                      <!--Type-1 Record (Header Record)-->
+                      <itl:PackageInformationRecord>
+                         <!--RCC-->
+                         <ansi-nist:RecordCategoryCode>01</ansi-nist:RecordCategoryCode>
+                         <ansi-nist:Transaction>
+                            <!--DAT 1.005-->
+                            <ansi-nist:TransactionDate>
+                               <nc:Date>2007-01-01</nc:Date>
+                            </ansi-nist:TransactionDate>
+                            <ansi-nist:TransactionDestinationOrganization>
+                               <nc:OrganizationIdentification>
+                                  <!--DAI 1.007-->
+                                  <nc:IdentificationID>WVFBI0000</nc:IdentificationID>
+                               </nc:OrganizationIdentification>
+                            </ansi-nist:TransactionDestinationOrganization>
+                            <ansi-nist:TransactionOriginatingOrganization>
+                               <nc:OrganizationIdentification>
+                                  <!--ORI 1.008-->
+                                  <nc:IdentificationID>WI013415Y</nc:IdentificationID>
+                               </nc:OrganizationIdentification>
+                            </ansi-nist:TransactionOriginatingOrganization>
+                            <!--GMT 1.014-->
+                            <ansi-nist:TransactionUTCDate>
+                               <nc:DateTime>2007-01-01T00:00:01.0Z</nc:DateTime>
+                            </ansi-nist:TransactionUTCDate>
+                            <!--TCN 1.009-->
+                            <ansi-nist:TransactionControlIdentification>
+                               <nc:IdentificationID>56839</nc:IdentificationID>
+                            </ansi-nist:TransactionControlIdentification>
+                            <!--DOM 1.013-->
+                            <ansi-nist:TransactionDomain>
+                               <ansi-nist:DomainVersionNumberIdentification>
+                                  <nc:IdentificationID>002</nc:IdentificationID>
+                               </ansi-nist:DomainVersionNumberIdentification>
+                               <ansi-nist:OrganizationName>NORAM</ansi-nist:OrganizationName>
+                            </ansi-nist:TransactionDomain>
+                            <ansi-nist:TransactionImageResolutionDetails>
+                               <!--NSR 1.011-->
+                               <ansi-nist:NativeScanningResolutionValue>00.00</ansi-nist:NativeScanningResolutionValue>
+                               <!--NTR 1.012-->
+                               <ansi-nist:NominalTransmittingResolutionValue>00.00</ansi-nist:NominalTransmittingResolutionValue>
+                            </ansi-nist:TransactionImageResolutionDetails>
+                            <!--VER 1.002-->
+                            <ansi-nist:TransactionMajorVersionValue>03</ansi-nist:TransactionMajorVersionValue>
+                            <ansi-nist:TransactionMinorVersionValue>00</ansi-nist:TransactionMinorVersionValue>
+                            <!--PRY 1.006-->
+                            <ansi-nist:TransactionPriorityValue>1</ansi-nist:TransactionPriorityValue>
+                            <!--TOT 1.004-->
+                            <ansi-nist:TransactionCategoryCode>CPR</ansi-nist:TransactionCategoryCode>
+                            <!--CNT 1.003 -->
+                            <ansi-nist:TransactionContentSummary>
+                               <ansi-nist:ContentFirstRecordCategoryCode>01</ansi-nist:ContentFirstRecordCategoryCode>
+                               <ansi-nist:ContentRecordCount>1</ansi-nist:ContentRecordCount>
+                               <ansi-nist:ContentRecordSummary>
+                                  <ansi-nist:ImageReferenceIdentification>
+                                     <nc:IdentificationID>01</nc:IdentificationID>
+                                  </ansi-nist:ImageReferenceIdentification>
+                                  <ansi-nist:RecordCategoryCode>02</ansi-nist:RecordCategoryCode>
+                               </ansi-nist:ContentRecordSummary>
+                            </ansi-nist:TransactionContentSummary>
+                            <!--DCS 1.015-->
+                            <ansi-nist:TransactionCharacterSetDirectory>
+                               <ansi-nist:CharacterSetCommonNameCode>ASCII 7-bit English</ansi-nist:CharacterSetCommonNameCode>
+                               <ansi-nist:CharacterSetIndexCode>0</ansi-nist:CharacterSetIndexCode>
+                               <ansi-nist:CharacterSetVersionIdentification>
+                                  <nc:IdentificationID>000</nc:IdentificationID>
+                               </ansi-nist:CharacterSetVersionIdentification>
+                            </ansi-nist:TransactionCharacterSetDirectory>
+                         </ansi-nist:Transaction>
+                      </itl:PackageInformationRecord>
+                      <!--Type-2 Record (User Defined Descriptive Text Record)-->
+                      <itl:PackageDescriptiveTextRecord>
+                         <!--RCC-->
+                         <ansi-nist:RecordCategoryCode>02</ansi-nist:RecordCategoryCode>
+                         <!-- IDC 2.002-->
+                         <ansi-nist:ImageReferenceIdentification>
+                            <nc:IdentificationID>01</nc:IdentificationID>
+                         </ansi-nist:ImageReferenceIdentification>
+                         <itl:UserDefinedDescriptiveText>
+                            <ebts:DomainDefinedDescriptiveRecord>
+                               <ebts:DomainDefinedDescription>
+                                  <ebts:DomainDefinedDescriptionMetadata>
+                                     <ebts:DomainURI>http://cjis.fbi.gov/fbi_ebts</ebts:DomainURI>
+                                     <ebts:DomainVersion>1.0.4</ebts:DomainVersion>
+                                  </ebts:DomainDefinedDescriptionMetadata>
+                                  <fbiebts:DomainDefinedDescription>
+                                     <!-- SCO 2.007-->
+                                     <ansi-nist:RecordForwardOrganizations>
+                                        <nc:OrganizationIdentification>
+                                           <nc:IdentificationID>WV1000000</nc:IdentificationID>
+                                        </nc:OrganizationIdentification>
+                                        <nc:OrganizationIdentification>
+                                           <nc:IdentificationID>NY030025P</nc:IdentificationID>
+                                        </nc:OrganizationIdentification>
+                                     </ansi-nist:RecordForwardOrganizations>
+                                     <!--ATN 2.006-->
+                                     <fbiebts:AttentionText>SA J Q DOE,RM 11867</fbiebts:AttentionText>
+                                  </fbiebts:DomainDefinedDescription>
+                               </ebts:DomainDefinedDescription>
+                            </ebts:DomainDefinedDescriptiveRecord>
+                         </itl:UserDefinedDescriptiveText>
+                      </itl:PackageDescriptiveTextRecord>
+                   </itl:NISTBiometricInformationExchangePackage>
+                </lexs:StructuredPayload>
+             </lexs:DataItemPackage>
+		</ulex:DomainAttribute>
+	</ulex:DomainRequestMessage>
+</ulexde:domainRequest>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+    Document: $Id: doPublish-identities-with-primary.xml 429 2010-06-11 18:32:46Z ys34 $
+    Original: 6/10/2010
+    LEXS version  : 4.0
+    ULEX version : 2.0
+    Description   : Sample XML instance for LEXS 4.0 illustrating use of multiple identities for the same person, with one indicated as the primary (real) one.
+			Total of 3 identities, one of which is known to the the "real" one.  Person was arrested and provided information indicating he was the person 
+			represented here as the second identity.  The primary and second identities are known to belong to the same person.  The third identity may
+			also be for the same person.
+-->
+<ulexpd:doPublish 
+
+    xmlns:ulex="http://ulex.gov/ulex/2.0" 
+    xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"    
+    xmlns:ulexcodes="http://ulex.gov/codes/2.0"    
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+    
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:intel="http://niem.gov/niem/domains/intelligence/2.1"
+	xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexs="http://lexs.gov/lexs/4.0" 
+    xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://ulex.gov/publishdiscover/2.0 ../../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd">
+    
+	<ulex:PublishMessageContainer>
+		<ulex:PublishMessage>
+            <ulex:PDMessageMetadata>
+                <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+                <ulex:ULEXImplementation>
+                    <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+                    <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+                </ulex:ULEXImplementation>
+                <ulex:MessageDateTime>2009-12-01T09:30:47.0Z</ulex:MessageDateTime>
+                <wsa:MessageID>9999999</wsa:MessageID>
+                <lexs:DataSensitivityText>SBU</lexs:DataSensitivityText>
+            </ulex:PDMessageMetadata>
+            <!--=======================  Data Submitter Metadata  =======================-->
+			<ulex:DataSubmitterMetadata>
+				<lexs:SystemIdentifier>
+					<nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>
+					<lexs:SystemID>SysC</lexs:SystemID>
+				</lexs:SystemIdentifier>
+				<lexs:SystemContact>
+					<nc:PersonGivenName>Michael</nc:PersonGivenName>
+					<nc:PersonSurName>Park</nc:PersonSurName>
+					<nc:ContactTelephoneNumber>
+						<nc:FullTelephoneNumber>
+							<nc:TelephoneNumberFullID>202-555-1212</nc:TelephoneNumberFullID>
+						</nc:FullTelephoneNumber>
+					</nc:ContactTelephoneNumber>
+				</lexs:SystemContact>
+			</ulex:DataSubmitterMetadata>
+            <!--==================== Package ====================-->
+			<ulex:DataItemPackage>
+                <ulex:PackageMetadata>
+                    <ulex:DataItemID>123456789</ulex:DataItemID>
+                    <ulex:DataItemDate>2008-08-13</ulex:DataItemDate>
+                    <ulex:DataItemReferenceID>123456789</ulex:DataItemReferenceID>
+                    <ulex:DataItemPublishInstructionCode>Insert</ulex:DataItemPublishInstructionCode>
+                    <lexs:DataItemStatusText>Valid</lexs:DataItemStatusText>
+                    <!--=======================  Data Owner Metadata  =======================-->
+					<ulex:DataOwnerMetadata>
+						<lexs:DataOwnerIdentifier>
+							<lexs:OriginatingAgencyID>AA1234567</lexs:OriginatingAgencyID>
+							<nc:OrganizationName>Hypothetical Agency A</nc:OrganizationName>
+							<lexs:SystemID>SysA</lexs:SystemID>
+						</lexs:DataOwnerIdentifier>
+						<lexs:DataOwnerContact>
+							<nc:PersonGivenName>Will</nc:PersonGivenName>
+							<nc:PersonSurName>Jones</nc:PersonSurName>
+							<nc:ContactTelephoneNumber>
+								<nc:FullTelephoneNumber>
+									<nc:TelephoneNumberFullID>111-222-3333</nc:TelephoneNumberFullID>
+								</nc:FullTelephoneNumber>
+							</nc:ContactTelephoneNumber>
+						</lexs:DataOwnerContact>
+					</ulex:DataOwnerMetadata>
+                </ulex:PackageMetadata>			
+				<lexs:Digest>
+					<!--=======================  Activity Arrest  =======================-->
+                    <lexsdigest:EntityActivity>
+                        <lexsdigest:Activity s:id="Arrest1">
+                            <nc:ActivityCategoryText>Arrest</nc:ActivityCategoryText>
+                            <nc:ActivityDate>
+                                <nc:Date>2008-08-13</nc:Date> 
+                            </nc:ActivityDate> 
+                        </lexsdigest:Activity>
+                    </lexsdigest:EntityActivity>
+					<!--======================= Primary Person =======================-->
+					<lexsdigest:EntityPerson>
+						<lexsdigest:Person s:id="Identity1">
+                            <nc:PersonBirthDate>
+                                <nc:YearMonth>1978-01</nc:YearMonth>
+                            </nc:PersonBirthDate>
+                            <nc:PersonEyeColorCode>BLU</nc:PersonEyeColorCode>
+                            <nc:PersonHairColorCode>BRO</nc:PersonHairColorCode>
+							<nc:PersonName>
+								<nc:PersonGivenName>Bill</nc:PersonGivenName>
+								<nc:PersonSurName>Smith</nc:PersonSurName>
+							</nc:PersonName>
+							<nc:PersonSSNIdentification>
+                                <nc:IdentificationID>111-22-3333</nc:IdentificationID>
+                            </nc:PersonSSNIdentification>
+						</lexsdigest:Person>
+					</lexsdigest:EntityPerson>
+					<!--======================= A Second Identity for the Person =======================-->
+					<!-- Identity presented at time of arrest -->
+					<lexsdigest:EntityPerson>
+						<lexsdigest:Person s:id="Identity2">
+                            <nc:PersonBirthDate>
+                                <nc:Date>1980-07-04</nc:Date>
+                            </nc:PersonBirthDate>
+                            <nc:PersonEyeColorCode>BLU</nc:PersonEyeColorCode>
+                            <nc:PersonHairColorCode>BLK</nc:PersonHairColorCode>
+							<nc:PersonName>
+								<nc:PersonGivenName>Bill</nc:PersonGivenName>
+								<nc:PersonSurName>Jones</nc:PersonSurName>
+							</nc:PersonName>
+							<nc:PersonSSNIdentification>
+                                <nc:IdentificationID>444-55-6666</nc:IdentificationID>
+                            </nc:PersonSSNIdentification>
+						</lexsdigest:Person>
+						<j:ArrestSubject>
+                            <nc:RoleOfPersonReference s:ref="Identity2"/>
+                        </j:ArrestSubject>
+					</lexsdigest:EntityPerson>
+					<!--======================= A Third, Potential, Identity for the Person =======================-->
+					<lexsdigest:EntityPerson>
+						<lexsdigest:Person s:id="Identity3">
+                            <nc:PersonBirthDate>
+                                <nc:Date>1978-01-04</nc:Date>
+                            </nc:PersonBirthDate>
+                            <nc:PersonEyeColorCode>BLU</nc:PersonEyeColorCode>
+                            <nc:PersonHairColorCode>BRO</nc:PersonHairColorCode>
+							<nc:PersonName>
+								<nc:PersonGivenName>Fred</nc:PersonGivenName>
+								<nc:PersonSurName>Jones</nc:PersonSurName>
+							</nc:PersonName>
+							<nc:PersonSSNIdentification>
+                                <nc:IdentificationID>111-22-3333</nc:IdentificationID>
+                            </nc:PersonSSNIdentification>
+						</lexsdigest:Person>
+					</lexsdigest:EntityPerson>
+					<!--======================= Associations =======================-->
+					<lexsdigest:Associations>
+						<!--   Primary (real) Identity to Another Identity Association  -->
+						<intel:IdentityAssociation>
+							<intel:AuthenticatedIdentityReference s:ref="Identity1"/>
+							<intel:IdentityReference s:ref="Identity2"/>
+						</intel:IdentityAssociation>
+						<!--  Potential  Identity Match Association  -->
+						<intel:PotentialIdentityMatchAssociation>
+							<intel:IdentityReference s:ref="Identity1"/>
+							<intel:IdentityReference s:ref="Identity3"/>
+							<intel:PotentialIdentityMatchDescriptionText>Everything except name matches.</intel:PotentialIdentityMatchDescriptionText>
+						</intel:PotentialIdentityMatchAssociation>
+						<!--    Arrestee to Arrest Association     -->
+                        <nc:ActivityInvolvedPersonAssociation>
+                            <nc:ActivityReference s:ref="Arrest1"/>
+                            <nc:PersonReference s:ref="Identity2"/>
+                        </nc:ActivityInvolvedPersonAssociation>
+                    </lexsdigest:Associations>
+				</lexs:Digest>
+			</ulex:DataItemPackage>            
+        </ulex:PublishMessage>
+    </ulex:PublishMessageContainer>
+</ulexpd:doPublish>
