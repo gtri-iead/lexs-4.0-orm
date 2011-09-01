@@ -42,7 +42,7 @@ public class TestSchemaProvider extends AbstractTest {
         Schema schema = SchemaProvider.createLexs40Schema();
         assertNotNull( schema );
 
-        File file = new File("./src/test/resources/lexs-4.0-samples/PD-samples/doPublish-all-fields.xml");
+        File file = new File("./src/test/resources/lexs-4.0-samples/xml/PD-samples/doPublish-all-fields.xml");
         assertTrue( file.exists() );
 
         logger.debug("Calling validator...");
