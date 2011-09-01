@@ -16,7 +16,7 @@
     <name>LEXS 4.0 ORXM 5: JAXB Bindings</name>
 
     <properties>
-        <jaxb.version>2.2.2</jaxb.version>
+        <jaxb.version>2.2.4</jaxb.version>
     </properties>
 
     <build>
