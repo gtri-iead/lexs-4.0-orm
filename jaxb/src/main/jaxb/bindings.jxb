@@ -354,6 +354,9 @@
                 <jxb:typeName prefix="Ulex"  />
             </jxb:nameXmlTransform>
         </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='UserAttentionToAbstract']">
+            <jxb:property name="UserAttentionTo"/>
+        </jxb:bindings>
         <jxb:bindings node=".//xsd:element[@name='SNMessageMetadataExtensionAbstract']">
             <jxb:property name="SNMessageMetadataExtension"/>
         </jxb:bindings>
