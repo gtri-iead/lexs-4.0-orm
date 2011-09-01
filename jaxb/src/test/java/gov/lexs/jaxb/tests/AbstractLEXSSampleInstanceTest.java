@@ -43,6 +43,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import org.custommonkey.xmlunit.XMLUnit;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import static org.junit.Assert.*;
 
@@ -228,9 +229,29 @@ public abstract class AbstractLEXSSampleInstanceTest extends AbstractTest {
             keep = false;
         }else if( difference.toString().contains("xsi:type") ){
             keep = false;
+        }else if( difference.toString().contains("Expected attribute name 'nil' but was 'null'") ){
+            keep = false;
+        }else if( difference.toString().contains("Expected number of element attributes") ){
+            keep = !oneHasXSINilAndOtherDoesNot(
+                    difference.getControlNodeDetail().getNode(),
+                    difference.getTestNodeDetail().getNode());
+        }else if( difference.toString().contains("Expected text value '.5' but was '0.5'")){
+            keep = false;
         }
         return keep;
     }//end isValidDifference
+
+    protected boolean oneHasXSINilAndOtherDoesNot( Node node1, Node node2 ){
+        if( hasXSINil(node1) ){
+            return !hasXSINil(node2);
+        }else {
+            return hasXSINil(node2);
+        }
+    }
+
+    protected boolean hasXSINil( Node node ){
+        return node.getAttributes().getNamedItemNS("http://www.w3.org/2001/XMLSchema-instance", "nil") != null;
+    }
 
     
 }/* end class TestJAXBUtils */
