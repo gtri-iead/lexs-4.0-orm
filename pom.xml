@@ -13,12 +13,6 @@
       Java objects.
     </description>
 
-    <parent>
-        <groupId>org.gtri</groupId>
-        <artifactId>super-pom</artifactId>
-        <version>1.6</version>
-    </parent>
-
     <modules>
         <module>jaxb</module>
         <module>xmlbeans</module>
