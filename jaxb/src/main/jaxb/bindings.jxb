@@ -17,7 +17,7 @@
    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
    xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
    jxb:extensionBindingPrefixes="xjc inheritence"
-   xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb bindingschema_2_0.xsd">
+   xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb   bindingschema_2_0.xsd">
 
     <jxb:globalBindings
         fixedAttributeAsConstantProperty="false"
@@ -354,6 +354,12 @@
                 <jxb:typeName prefix="Ulex"  />
             </jxb:nameXmlTransform>
         </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='SNMessageMetadataExtensionAbstract']">
+            <jxb:property name="SNMessageMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SubscriptionQueryAbstract']">
+            <jxb:property name="SubscriptionQuery"/>
+        </jxb:bindings>
         <jxb:bindings node=".//xsd:element[@name='UserAssertionAbstract']">
             <jxb:property name="UserAssertion"/>
         </jxb:bindings>
@@ -527,12 +533,6 @@
         </jxb:schemaBindings>
         <jxb:bindings node=".//xsd:element[@name='SubscriptionAbstract']">
             <jxb:property name="Subscription"/>
-        </jxb:bindings>
-        <jxb:bindings node=".//xsd:element[@name='SubscriptionQueryAbstract']">
-            <jxb:property name="SubscriptionQuery"/>
-        </jxb:bindings>
-        <jxb:bindings node=".//xsd:element[@name='SNMessageMetadataExtensionAbstract']">
-            <jxb:property name="SNMessageMetadataExtension"/>
         </jxb:bindings>
     </jxb:bindings>
 
