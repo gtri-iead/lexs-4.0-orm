@@ -103,7 +103,7 @@ public class SchemaProvider {
             if( schemaFile == null )
                 continue;
             if( schemaFile.length() > 0 && !schemaFile.startsWith("#") ){
-                if( schemaFile.contains("IC-ISM-v2.xsd") ){
+                if( schemaFile.contains("ic-ism-v2.xsd") ){
                     String uri = "urn:us:gov:ic:ism:v2";
                     debug("Storing schema file ["+uri+"] -> "+schemaFile);
                     SCHEMA_FILE_CACHE.put(uri, schemaFile);
