@@ -27,7 +27,7 @@ import org.junit.Test;
  * @date Dec 2, 2010
  */
 public class TestLEXSSRSampleInstances extends AbstractLEXSSampleInstanceTest {
-    public static final String BASE_DIR = "./src/test/resources/lexs-4.0-samples/SR-samples";
+    public static final String BASE_DIR = "./src/test/resources/lexs-4.0-samples/xml/SR-samples";
     //==========================================================================
     //  Tests
     //==========================================================================
