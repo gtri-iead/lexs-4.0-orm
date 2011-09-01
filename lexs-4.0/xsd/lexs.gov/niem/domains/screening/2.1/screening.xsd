@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://niem.gov/niem/domains/screening/2.1" version="1" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0" xmlns:i2="http://niem.gov/niem/appinfo/2.1" xmlns:scr="http://niem.gov/niem/domains/screening/2.1" xmlns:i="http://niem.gov/niem/appinfo/2.0">
+  <xsd:annotation>
+    <xsd:documentation>The People Screening domain provides harmonized information sharing content within the Screening Portfolio of DHS.  The Screening namespace is initially being populated with person screening information for immigrant and non-immigrant person types who have been encountered and identified by the Screening Portfolio Components.  Screening expands on encounter-related NIEM elements currently included in the Immigration and Intelligence domains.</xsd:documentation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:import schemaLocation="../../../structures/2.0/structures.xsd" namespace="http://niem.gov/niem/structures/2.0"/>
+  <xsd:import schemaLocation="../../../appinfo/2.0/appinfo.xsd" namespace="http://niem.gov/niem/appinfo/2.0"/>
+  <xsd:import schemaLocation="../../../appinfo/2.1/appinfo.xsd" namespace="http://niem.gov/niem/appinfo/2.1"/>
+  <xsd:import schemaLocation="../../../niem-core/2.0/niem-core.xsd" namespace="http://niem.gov/niem/niem-core/2.0"/>
+  <xsd:complexType name="AdoptedChildAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a relationship describing an unmarried Child under 18 years of age taken voluntarily as a dependent by a person other than his/her biological parents.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="ImmediateFamilyAssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:ImmediateFamilyAssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:AdoptionEffectiveDate" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DocumentAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a relationship between documents.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:PrimaryDocumentReference" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="scr:SecondaryDocumentReference" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DocumentOrganizationAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type of a relationship between an ORGANIZATION and a DOCUMENT.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="nc:OrganizationReference" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element ref="nc:DocumentReference" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ElectronicAddressType">
+    <xsd:annotation>
+      <xsd:documentation>A data type providing details for an email account or a specific site on the internet or another network.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:ComplexObjectType">
+        <xsd:sequence>
+          <xsd:element ref="scr:ElectronicAddressText" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FamilyAssociationAugmentationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for additional information about a family association.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="AugmentationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="s:AugmentationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:FamilyAssociationCategoryCode" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="scr:FamilyAssociationCategoryDescriptionText" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="FamilyAssociationCategoryCodeSimpleType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a kind of family association.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:token">
+      <xsd:enumeration value="S4">
+        <xsd:annotation>
+          <xsd:documentation>Stepdaughter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B4">
+        <xsd:annotation>
+          <xsd:documentation>Daughter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="C4">
+        <xsd:annotation>
+          <xsd:documentation>Custodian Daughter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B2">
+        <xsd:annotation>
+          <xsd:documentation>Father</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="G2">
+        <xsd:annotation>
+          <xsd:documentation>Grandfather</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="G4">
+        <xsd:annotation>
+          <xsd:documentation>Granddaughter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZC">
+        <xsd:annotation>
+          <xsd:documentation>Fiance</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B6">
+        <xsd:annotation>
+          <xsd:documentation>Brother</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="02">
+        <xsd:annotation>
+          <xsd:documentation>Child</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="S3">
+        <xsd:annotation>
+          <xsd:documentation>Stepson</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="S1">
+        <xsd:annotation>
+          <xsd:documentation>Stepmother</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="G3">
+        <xsd:annotation>
+          <xsd:documentation>Grandson</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZB">
+        <xsd:annotation>
+          <xsd:documentation>Wife</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="A4">
+        <xsd:annotation>
+          <xsd:documentation>Adopted Daughter</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="A2">
+        <xsd:annotation>
+          <xsd:documentation>Adoptive Father</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Z2">
+        <xsd:annotation>
+          <xsd:documentation>Parents</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Z1">
+        <xsd:annotation>
+          <xsd:documentation>Spouse</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B5">
+        <xsd:annotation>
+          <xsd:documentation>Sister</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B3">
+        <xsd:annotation>
+          <xsd:documentation>Son</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="S2">
+        <xsd:annotation>
+          <xsd:documentation>Stepfather</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="G1">
+        <xsd:annotation>
+          <xsd:documentation>Grandmother</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="01">
+        <xsd:annotation>
+          <xsd:documentation>Spouse</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="B1">
+        <xsd:annotation>
+          <xsd:documentation>Mother</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="C3">
+        <xsd:annotation>
+          <xsd:documentation>Custodian Son</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="ZA">
+        <xsd:annotation>
+          <xsd:documentation>Husband</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="Z3">
+        <xsd:annotation>
+          <xsd:documentation>Child</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="A3">
+        <xsd:annotation>
+          <xsd:documentation>Adopted Son</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+      <xsd:enumeration value="A1">
+        <xsd:annotation>
+          <xsd:documentation>Adoptive Mother</xsd:documentation>
+        </xsd:annotation>
+      </xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="FamilyAssociationCategoryCodeType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a kind of family association.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:simpleContent>
+      <xsd:extension base="scr:FamilyAssociationCategoryCodeSimpleType">
+        <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="FamilyAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for an applied augmentation for type nc:PersonAssociationType</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonAssociationType"/>
+        <i2:AugmentedTypeIndicator>true</i2:AugmentedTypeIndicator>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:PersonAssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:FamilyAssociationAugmentation" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LocationAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a relationship between one LOCATION and another LOCATION.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="scr:PrimaryLocationReference" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="scr:SecondaryLocationReference" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OrganizationPhoneAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a relationship between a unit ORGANIZATION which conducts some sort of business or operations and it's PHONE.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="nc:OrganizationReference" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element ref="nc:TelephoneNumberReference" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PersonPhoneAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>A data type for a relationship between a PERSON and a PHONE.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="nc:PersonReference" minOccurs="1" maxOccurs="unbounded"/>
+          <xsd:element ref="nc:TelephoneNumberReference" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AdoptedChildAssociation" type="scr:AdoptedChildAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An unmarried CHILD under 18 years of age taken voluntarily as a dependent by a person other than his/her biological parents.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="AdoptionEffectiveDate" type="nc:DateType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>The date on which the adoption of the ADOPTED CHILD took place.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="DocumentAssociation" type="scr:DocumentAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between documents.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="DocumentOrganizationAssociation" type="scr:DocumentOrganizationAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between an ORGANIZATION and a DOCUMENT.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="ElectronicAddressText" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>The text that describes the ELECTRONIC ADDRESS.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element substitutionGroup="nc:PersonAssociation" name="FamilyAssociation" type="scr:FamilyAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>Applied augmentation for type nc:PersonAssociationType</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonAssociation"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="FamilyAssociationAugmentation" type="scr:FamilyAssociationAugmentationType" substitutionGroup="s:Augmentation">
+    <xsd:annotation>
+      <xsd:documentation>Additional information about a family association.</xsd:documentation>
+      <xsd:appinfo>
+        <i:AppliesTo i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonAssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="FamilyAssociationCategoryCode" type="scr:FamilyAssociationCategoryCodeType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>A kind of family association.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="FamilyAssociationCategoryDescriptionText" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>A kind of family association.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="LocationAssociation" type="scr:LocationAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between one LOCATION and another LOCATION.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="OrganizationPhoneAssociation" type="scr:OrganizationPhoneAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between PERSON and PHONE.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="PersonPhoneAssociation" type="scr:PersonPhoneAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between a PERSON and a PHONE.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="PrimaryDocumentReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>The relationship details about the primary document in an association between two documents</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="DocumentType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="PrimaryLocationReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An identifier that represents a LOCATION. </xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="SecondaryDocumentReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>The relationship details about the secondary document in an association between two documents</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="DocumentType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="SecondaryLocationReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An identifier that represents a LOCATION. </xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="LocationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

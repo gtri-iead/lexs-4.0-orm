@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: ulex-domain-exchange.xsd 21244 2011-05-13 21:08:52Z ys34 $
+    Namespace     : xmlns:ulexde="http://ulex.gov/domainexchange/2.0"
+    Description   : ULEX Domain Exchange Message Format Schema
+-->
+<xsd:schema 
+    xmlns:ulex="http://ulex.gov/ulex/2.0"
+    xmlns:ulexde="http://ulex.gov/domainexchange/2.0"
+    xmlns:lexs="http://lexs.gov/lexs/4.0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://ulex.gov/domainexchange/2.0"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="TBD">
+
+    <xsd:import
+        namespace="http://ulex.gov/ulex/2.0"
+        schemaLocation="../../ulex/2.0/ulex.xsd"/>
+
+    <xsd:import
+        namespace="http://lexs.gov/lexs/4.0"
+        schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
+        
+    <xsd:annotation>
+        <xsd:documentation>ULEX Domain Exchange Message Format Schema</xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="domainAction" type="ulexde:domainActionType">
+        <xsd:annotation>
+            <xsd:documentation>A ULEX domain publish method.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="domainActionType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a ULEX domain action method.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="ulex:DomainActionMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="domainRequest" type="ulexde:domainRequestType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A ULEX domain specific request.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="domainRequestType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a ULEX domain specific request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="ulex:DomainRequestMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="domainResponse" type="ulexde:domainResponseType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A ULEX response to the domain specific request.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="domainResponseType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a ULEX response to the domain specific request.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="ulex:DomainResponseMessage"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

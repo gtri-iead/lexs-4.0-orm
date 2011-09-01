@@ -1,0 +1,1547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document      : $Id: lexs-codes.xsd 27484 2011-07-27 06:39:27Z ys34 $
+    Namespace     : xmlns:lexs="http://lexs.gov/codes/4.0"
+    Description   : LEXS Codes
+-->
+<xsd:schema xmlns:i="http://niem.gov/niem/appinfo/2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:lexscodes="http://lexs.gov/codes/4.0" targetNamespace="http://lexs.gov/codes/4.0" version="TBD">
+    <xsd:annotation>
+        <xsd:documentation>LEXS code lists.</xsd:documentation>
+        <xsd:appinfo>
+            <i:ConformantIndicator>true</i:ConformantIndicator>
+        </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:import namespace="http://niem.gov/niem/structures/2.0" schemaLocation="../../niem/structures/2.0/structures.xsd"/>
+    <xsd:import namespace="http://niem.gov/niem/appinfo/2.0" schemaLocation="../../niem/appinfo/2.0/appinfo.xsd"/>
+	<!-- LEXS Data Extension Schema Codes -->
+    <xsd:simpleType name="ActivityCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of NIEM activity not explicitly included in LEXS.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="AgencyCase">
+                <xsd:annotation>
+                    <xsd:documentation>Agency case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlarmDispatchActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Alarm dispatch activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlarmEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Alarm event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienArrestEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Alien arrest encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienDetentionEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Alien detention encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Alien encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienEnforcementEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Alien enforcement encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienExchangeVisitorProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Alien exchange visitor program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienStudentDisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Alien student disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AlienStudentProgramExtensionRequest">
+                <xsd:annotation>
+                    <xsd:documentation>Alien student program extension request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AmendedSentence">
+                <xsd:annotation>
+                    <xsd:documentation>Amended sentence</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AppellateCase">
+                <xsd:annotation>
+                    <xsd:documentation>Appellate case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AppellateCaseOriginalCase">
+                <xsd:annotation>
+                    <xsd:documentation>Appellate case original case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AppellateCaseRelatedCase">
+                <xsd:annotation>
+                    <xsd:documentation>Appellate case related case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AppellateCaseSanction">
+                <xsd:annotation>
+                    <xsd:documentation>Appellate case sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ArrestApprehensionDetentionOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Arrest apprehension detention order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ArrestRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Arrest release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ArrestSubjectCustodyTransfer">
+                <xsd:annotation>
+                    <xsd:documentation>Arrest subject custody transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ArrestWarrant">
+                <xsd:annotation>
+                    <xsd:documentation>Arrest warrant</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Arrival">
+                <xsd:annotation>
+                    <xsd:documentation>Arrival</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Assessment">
+                <xsd:annotation>
+                    <xsd:documentation>Assessment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AssessmentProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Assessment program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="AssessmentReferral">
+                <xsd:annotation>
+                    <xsd:documentation>Assessment referral</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Bail">
+                <xsd:annotation>
+                    <xsd:documentation>Bail</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BailPostedBond">
+                <xsd:annotation>
+                    <xsd:documentation>Bail posted bond</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BenefitApplicationEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Benefit application encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Bond">
+                <xsd:annotation>
+                    <xsd:documentation>Bond</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BookingRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Booking release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="BookingSubjectCustodyTransfer">
+                <xsd:annotation>
+                    <xsd:documentation>Booking subject custody transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CBRNECase">
+                <xsd:annotation>
+                    <xsd:documentation>CBRNE case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CaseCourtEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Case court event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CaseHearing">
+                <xsd:annotation>
+                    <xsd:documentation>Case hearing</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CaseLineageCase">
+                <xsd:annotation>
+                    <xsd:documentation>Case lineage case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CasePendingCourtEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Case pending court event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CaseTrial">
+                <xsd:annotation>
+                    <xsd:documentation>Case trial</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeDispositionCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Charge disposition condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeDispositionSanction">
+                <xsd:annotation>
+                    <xsd:documentation>Charge disposition sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeEnhancingPriorConviction">
+                <xsd:annotation>
+                    <xsd:documentation>Charge enhancing prior conviction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargePlea">
+                <xsd:annotation>
+                    <xsd:documentation>Charge plea</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeSanction">
+                <xsd:annotation>
+                    <xsd:documentation>Charge sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeSentence">
+                <xsd:annotation>
+                    <xsd:documentation>Charge sentence</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChargeVerdict">
+                <xsd:annotation>
+                    <xsd:documentation>Charge verdict</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ChildSupportEnforcementCase">
+                <xsd:annotation>
+                    <xsd:documentation>Child support enforcement case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CitationViolation">
+                <xsd:annotation>
+                    <xsd:documentation>Citation violation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CommunityService">
+                <xsd:annotation>
+                    <xsd:documentation>Community service</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Condition">
+                <xsd:annotation>
+                    <xsd:documentation>Condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConditionDisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Condition disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConditionGroup">
+                <xsd:annotation>
+                    <xsd:documentation>Condition group</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConditionalRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Conditional release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConditionalReleaseCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Conditional release condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Consignment">
+                <xsd:annotation>
+                    <xsd:documentation>Consignment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Conviction">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConvictionOffense">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction offense</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConvictionPlea">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction plea</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConvictionSanction">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConvictionSentence">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction sentence</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ConvictionVerdict">
+                <xsd:annotation>
+                    <xsd:documentation>Conviction verdict</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Counseling">
+                <xsd:annotation>
+                    <xsd:documentation>Counseling</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Court activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtActivityCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Court activity condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtActivityCourtOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Court activity court order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtAppearanceCase">
+                <xsd:annotation>
+                    <xsd:documentation>Court appearance case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtCase">
+                <xsd:annotation>
+                    <xsd:documentation>Court case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Court event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtEventAction">
+                <xsd:annotation>
+                    <xsd:documentation>Court event action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtEventCase">
+                <xsd:annotation>
+                    <xsd:documentation>Court event case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtEventMotion">
+                <xsd:annotation>
+                    <xsd:documentation>Court event motion</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Court order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtOrderCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Court order condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Crash">
+                <xsd:annotation>
+                    <xsd:documentation>Crash</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CrashServiceCall">
+                <xsd:annotation>
+                    <xsd:documentation>Crash service call</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CriminalTraitAction">
+                <xsd:annotation>
+                    <xsd:documentation>Criminal trait action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CustodyTransfer">
+                <xsd:annotation>
+                    <xsd:documentation>Custody transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CustomsProcedure">
+                <xsd:annotation>
+                    <xsd:documentation>Customs procedure</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Departure">
+                <xsd:annotation>
+                    <xsd:documentation>Departure</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DetectionEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Detection event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DisciplinaryActionCommunityService">
+                <xsd:annotation>
+                    <xsd:documentation>Disciplinary action community service</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DisciplinaryActionCounseling">
+                <xsd:annotation>
+                    <xsd:documentation>Disciplinary action counseling</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DisciplinaryActionProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Disciplinary action program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DisciplinaryActionSanction">
+                <xsd:annotation>
+                    <xsd:documentation>Disciplinary action sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DiversionProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Diversion program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DriverConviction">
+                <xsd:annotation>
+                    <xsd:documentation>Driver conviction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DriverConvictionCitation">
+                <xsd:annotation>
+                    <xsd:documentation>Driver conviction citation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DriverLicenseConviction">
+                <xsd:annotation>
+                    <xsd:documentation>Driver license conviction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DriverLicenseWithdrawal">
+                <xsd:annotation>
+                    <xsd:documentation>Driver license withdrawal</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="DrivingIncident">
+                <xsd:annotation>
+                    <xsd:documentation>Driving incident</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EmergencyMedicalServiceCall">
+                <xsd:annotation>
+                    <xsd:documentation>Emergency medical service call</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EnforcementEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Enforcement encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Evaluation">
+                <xsd:annotation>
+                    <xsd:documentation>Evaluation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EvidenceCustodyTransfer">
+                <xsd:annotation>
+                    <xsd:documentation>Evidence custody transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Felony">
+                <xsd:annotation>
+                    <xsd:documentation>Felony</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="FinalPlea">
+                <xsd:annotation>
+                    <xsd:documentation>Final plea</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Force">
+                <xsd:annotation>
+                    <xsd:documentation>Force</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GoalObjective">
+                <xsd:annotation>
+                    <xsd:documentation>Goal objective</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GoodsShipment">
+                <xsd:annotation>
+                    <xsd:documentation>Goods shipment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ImmigrationArrest">
+                <xsd:annotation>
+                    <xsd:documentation>Immigration arrest</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentArrest">
+                <xsd:annotation>
+                    <xsd:documentation>Incident arrest</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentEntryPoint">
+                <xsd:annotation>
+                    <xsd:documentation>Incident entry point</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Incident event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentExitPoint">
+                <xsd:annotation>
+                    <xsd:documentation>Incident exit point</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentForce">
+                <xsd:annotation>
+                    <xsd:documentation>Incident force</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IncidentServiceCall">
+                <xsd:annotation>
+                    <xsd:documentation>Incident service call</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Infraction">
+                <xsd:annotation>
+                    <xsd:documentation>Infraction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InjuryCauserForce">
+                <xsd:annotation>
+                    <xsd:documentation>Injury causer force</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InterviewEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Interview encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IntoxicationRelatedActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Intoxication related activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ItemTransaction">
+                <xsd:annotation>
+                    <xsd:documentation>Item transaction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Misdemeanor">
+                <xsd:annotation>
+                    <xsd:documentation>Misdemeanor</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NextCourtEvent">
+                <xsd:annotation>
+                    <xsd:documentation>Next court event</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OffenseEntryPoint">
+                <xsd:annotation>
+                    <xsd:documentation>Offense entry point</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OffenseExitPoint">
+                <xsd:annotation>
+                    <xsd:documentation>Offense exit point</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OffenseForce">
+                <xsd:annotation>
+                    <xsd:documentation>Offense force</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OfferedPlea">
+                <xsd:annotation>
+                    <xsd:documentation>Offered plea</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PassagePoint">
+                <xsd:annotation>
+                    <xsd:documentation>Passage point</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PermanencyAchievementDate">
+                <xsd:annotation>
+                    <xsd:documentation>Permanency achievement date</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PersonCrossingEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Person crossing encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PersonDrivingIncident">
+                <xsd:annotation>
+                    <xsd:documentation>Person driving incident</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PersonEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Person encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PersonSubjectEncounter">
+                <xsd:annotation>
+                    <xsd:documentation>Person subject encounter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Placement">
+                <xsd:annotation>
+                    <xsd:documentation>Placement</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Plea">
+                <xsd:annotation>
+                    <xsd:documentation>Plea</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PreviousSentence">
+                <xsd:annotation>
+                    <xsd:documentation>Previous sentence</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProgramAction">
+                <xsd:annotation>
+                    <xsd:documentation>Program action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProgramCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Program condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProgramExtensionRequest">
+                <xsd:annotation>
+                    <xsd:documentation>Program extension request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProgramReferral">
+                <xsd:annotation>
+                    <xsd:documentation>Program referral</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProgramRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Program release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Progress">
+                <xsd:annotation>
+                    <xsd:documentation>Progress</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PropertyHolding">
+                <xsd:annotation>
+                    <xsd:documentation>Property holding</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PropertySeizure">
+                <xsd:annotation>
+                    <xsd:documentation>Property seizure</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PropertySeizureWarrant">
+                <xsd:annotation>
+                    <xsd:documentation>Property seizure warrant</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProtectionOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Protection order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Referral">
+                <xsd:annotation>
+                    <xsd:documentation>Referral</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ReferralActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Referral activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ReferralCourtOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Referral court order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RegisteredOffenderConviction">
+                <xsd:annotation>
+                    <xsd:documentation>Registered offender conviction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RegisteredOffenderCourtOrder">
+                <xsd:annotation>
+                    <xsd:documentation>Registered offender court order</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RehabilitationProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Rehabilitation program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RelatedCase">
+                <xsd:annotation>
+                    <xsd:documentation>Related case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Release">
+                <xsd:annotation>
+                    <xsd:documentation>Release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Request">
+                <xsd:annotation>
+                    <xsd:documentation>Request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RiskReductionProgram">
+                <xsd:annotation>
+                    <xsd:documentation>Risk reduction program</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Sanction">
+                <xsd:annotation>
+                    <xsd:documentation>Sanction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SanctionDisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Sanction disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SanctionProgress">
+                <xsd:annotation>
+                    <xsd:documentation>Sanction progress</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ScreeningProcess">
+                <xsd:annotation>
+                    <xsd:documentation>Screening process</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SearchWarrant">
+                <xsd:annotation>
+                    <xsd:documentation>Search warrant</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Sentence">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceDeferredTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence deferred term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceModification">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence modification</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceModificationDismissalRemainingCase">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence modification dismissal remaining case</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceModificationOriginalTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence modification original term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceModificationParoleTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence modification parole term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceSuspendedTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence suspended term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SentenceTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Sentence term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Service">
+                <xsd:annotation>
+                    <xsd:documentation>Service</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ServicePlanGoal">
+                <xsd:annotation>
+                    <xsd:documentation>Service plan goal</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SubjectDisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Subject disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Summons">
+                <xsd:annotation>
+                    <xsd:documentation>Summons</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionAssessment">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision assessment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionAssignedTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision assigned term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionCondition">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision condition</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionConditionalRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision conditional release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionCustodyTransfer">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision custody transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionDisciplinaryAction">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision disciplinary action</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionHearing">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision hearing</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionIncident">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision incident</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionModifiedTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision modified term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionPersonEvaluation">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision person evaluation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionRelease">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision release</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionRestriction">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision restriction</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionServedTerm">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision served term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SupervisionVisitation">
+                <xsd:annotation>
+                    <xsd:documentation>Supervision visitation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Task">
+                <xsd:annotation>
+                    <xsd:documentation>Task</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Term">
+                <xsd:annotation>
+                    <xsd:documentation>Term</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TimeframeDescription">
+                <xsd:annotation>
+                    <xsd:documentation>Timeframe description</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Transfer">
+                <xsd:annotation>
+                    <xsd:documentation>Transfer</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TransportMeansArrival">
+                <xsd:annotation>
+                    <xsd:documentation>Transport means arrival</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TransportMeansDeparture">
+                <xsd:annotation>
+                    <xsd:documentation>Transport means departure</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TransportMeansFirstArrival">
+                <xsd:annotation>
+                    <xsd:documentation>Transport means first arrival</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Traversal">
+                <xsd:annotation>
+                    <xsd:documentation>Traversal</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Treatment">
+                <xsd:annotation>
+                    <xsd:documentation>Treatment</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VehicleEmissionInspection">
+                <xsd:annotation>
+                    <xsd:documentation>Vehicle emission inspection</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VehicleInspection">
+                <xsd:annotation>
+                    <xsd:documentation>Vehicle inspection</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VehicleSafetyInspection">
+                <xsd:annotation>
+                    <xsd:documentation>Vehicle safety inspection</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Verdict">
+                <xsd:annotation>
+                    <xsd:documentation>Verdict</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VesselActualActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Vessel actual activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VesselBoardingActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Vessel boarding activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VesselIntendedActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Vessel intended activity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Violation">
+                <xsd:annotation>
+                    <xsd:documentation>Violation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Visitation">
+                <xsd:annotation>
+                    <xsd:documentation>Visitation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WarrantAppearanceBail">
+                <xsd:annotation>
+                    <xsd:documentation>Warrant appearance bail</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="ActivityCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of NIEM activity not explicitly included in LEXS.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:ActivityCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+	<!-- LEXS Organizational Schema Codes -->
+    <xsd:simpleType name="DataCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that identifies a kind of data the requester wants back in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="All">
+                <xsd:annotation>
+                    <xsd:documentation>Return all available entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Activity">
+                <xsd:annotation>
+                    <xsd:documentation>Return activity entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Aircraft">
+                <xsd:annotation>
+                    <xsd:documentation>Return aircraft entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Arrest">
+                <xsd:annotation>
+                    <xsd:documentation>Return arrest entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Booking">
+                <xsd:annotation>
+                    <xsd:documentation>Return booking entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Case">
+                <xsd:annotation>
+                    <xsd:documentation>Return case entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Citation">
+                <xsd:annotation>
+                    <xsd:documentation>Return citation entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CourtActivity">
+                <xsd:annotation>
+                    <xsd:documentation>Return court activity entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CreditCard">
+                <xsd:annotation>
+                    <xsd:documentation>Return credit card entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Document">
+                <xsd:annotation>
+                    <xsd:documentation>Return document entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Drug">
+                <xsd:annotation>
+                    <xsd:documentation>Return drug entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Email">
+                <xsd:annotation>
+                    <xsd:documentation>Return email entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Explosive">
+                <xsd:annotation>
+                    <xsd:documentation>Return explosive entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Firearm">
+                <xsd:annotation>
+                    <xsd:documentation>Return firearm entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Hash">
+                <xsd:annotation>
+                    <xsd:documentation>Return hash entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Incident">
+                <xsd:annotation>
+                    <xsd:documentation>Return incident entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="IntangibleItem">
+                <xsd:annotation>
+                    <xsd:documentation>Return intangible item entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="InstantMessenger">
+                <xsd:annotation>
+                    <xsd:documentation>Return instant messenger entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="NetworkAddress">
+                <xsd:annotation>
+                    <xsd:documentation>Return network address entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Notification">
+                <xsd:annotation>
+                    <xsd:documentation>Return notification entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Location">
+                <xsd:annotation>
+                    <xsd:documentation>Return location entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Offense">
+                <xsd:annotation>
+                    <xsd:documentation>Return offense entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Organization">
+                <xsd:annotation>
+                    <xsd:documentation>Return organization entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Other">
+                <xsd:annotation>
+                    <xsd:documentation>Return other entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Person">
+                <xsd:annotation>
+                    <xsd:documentation>Return person entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Program">
+                <xsd:annotation>
+                    <xsd:documentation>Return program entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Prosecution">
+                <xsd:annotation>
+                    <xsd:documentation>Return prosecution entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Snippet">
+                <xsd:annotation>
+                    <xsd:documentation>Return snippets</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Substance">
+                <xsd:annotation>
+                    <xsd:documentation>Return substance entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Sentence">
+                <xsd:annotation>
+                    <xsd:documentation>Return sentence entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ServiceCall">
+                <xsd:annotation>
+                    <xsd:documentation>Return service call entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Supervision">
+                <xsd:annotation>
+                    <xsd:documentation>Return supervision entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TangibleItem">
+                <xsd:annotation>
+                    <xsd:documentation>Return tangible item entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="TelephoneNumber">
+                <xsd:annotation>
+                    <xsd:documentation>Return telephone number entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Vehicle">
+                <xsd:annotation>
+                    <xsd:documentation>Return vehicle entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Vessel">
+                <xsd:annotation>
+                    <xsd:documentation>Return vessel entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Warrant">
+                <xsd:annotation>
+                    <xsd:documentation>Return warrant entities</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="DataCategoryCodeType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that identifies a kind of data the requester wants back in a response.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:DataCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="OrganizationCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Business">
+                <xsd:annotation>
+                    <xsd:documentation>Business (for profit)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Charity">
+                <xsd:annotation>
+                    <xsd:documentation>Charity</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CommunitySocial">
+                <xsd:annotation>
+                    <xsd:documentation>Community or Social  (includes Users' Group, Internet clubs, common interest clubs, e.g. chess club, game club, boat club, book club, sports clubs, professional clubs,  and groups based on common social interest)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CriminalJustice">
+                <xsd:annotation>
+                    <xsd:documentation>Criminal Justice</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CriminalJusticeEnforcementUnit">
+                <xsd:annotation>
+                    <xsd:documentation>A unit of an agency responsible for enforcing the law and maintaining peace</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CriminalJusticeSupervisoryOrganization">
+                <xsd:annotation>
+                    <xsd:documentation>An agency which exercises control over a subject prior to or as a result of adjudication</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="CriminalJusticeTaskForce">
+                <xsd:annotation>
+                    <xsd:documentation>A special criminal justice organization institutionalizing teamwork among multiple local, state, tribal, and/or federal agencies formed expressly for the purpose of addressing a particular problem or set of problems through synchronization of investment and strategy</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Education">
+                <xsd:annotation>
+                    <xsd:documentation>Education</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Foundation">
+                <xsd:annotation>
+                    <xsd:documentation>Foundation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Gang">
+                <xsd:annotation>
+                    <xsd:documentation>Gang</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GangJuvenile">
+                <xsd:annotation>
+                    <xsd:documentation>Juvenile Gang</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GangMotorcycle">
+                <xsd:annotation>
+                    <xsd:documentation>Motorcycle Gang</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="GangPrison">
+                <xsd:annotation>
+                    <xsd:documentation>Prison Gang</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Government">
+                <xsd:annotation>
+                    <xsd:documentation>Government</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OrganizedCrime">
+                <xsd:annotation>
+                    <xsd:documentation>Organized Crime</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PoliticalGroup">
+                <xsd:annotation>
+                    <xsd:documentation>Political Group</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ProfessionalAssociation">
+                <xsd:annotation>
+                    <xsd:documentation>Professional Association</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Religious">
+                <xsd:annotation>
+                    <xsd:documentation>Religious</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ServiceClub">
+                <xsd:annotation>
+                    <xsd:documentation>Service Club (voluntary organization where members meet regularly for social outings and to perform charitable works either by direct hands-on efforts or by raising money for other organizations.)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Society">
+                <xsd:annotation>
+                    <xsd:documentation>Society (for primary use in depicting cases where society is victim)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SportsRecreation">
+                <xsd:annotation>
+                    <xsd:documentation>Sports or Recreation</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Terrorist">
+                <xsd:annotation>
+                    <xsd:documentation>Terrorist</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ThreatGroup">
+                <xsd:annotation>
+                    <xsd:documentation>Threat Group</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="OrganizationCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of organization.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:OrganizationCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="RoleTypeCodeSimpleType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that identifies a role type defined and used in the LEXS data schema. Includes all roles used in the LEXS Digest.  Queries can specify that structured searches should only match certain roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="CriminalOrganizationType">
+                <xsd:annotation>
+                    <xsd:documentation>Criminal Organization role type, applies to Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="EnforcementOfficialType">
+                <xsd:annotation>
+                    <xsd:documentation>Enforcement Official role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JudicialOfficialType">
+                <xsd:annotation>
+                    <xsd:documentation>Judicial role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="JurorType">
+                <xsd:annotation>
+                    <xsd:documentation>Juror role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="MissingPersonType">
+                <xsd:annotation>
+                    <xsd:documentation>Missing Person role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="OtherInvolvedPersonType">
+                <xsd:annotation>
+                    <xsd:documentation>Other Involved Person role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PropertyType">
+                <xsd:annotation>
+                    <xsd:documentation>Property role type, applies to Aircraft, Drug, Explosive, Firearm, Tangible Item, Vehicle, and Vessel</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="RegisteredOffenderType">
+                <xsd:annotation>
+                    <xsd:documentation>Registered Offender role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="ResourceType">
+                <xsd:annotation>
+                    <xsd:documentation>Resource role type, applies to Person and Tangible Item</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="SubjectType">
+                <xsd:annotation>
+                    <xsd:documentation>Subject role type, applies to Person and Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VehicleBranderType">
+                <xsd:annotation>
+                    <xsd:documentation>Vehicle Brander role type, applies to Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VictimType">
+                <xsd:annotation>
+                    <xsd:documentation>Victim role type, applies to Person and Organization</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WeaponType">
+                <xsd:annotation>
+                    <xsd:documentation>Weapon role type, applies to Aircraft, Drug, Explosive, Firearm, Tangible Item, Vehicle, and Vessel</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="WitnessType">
+                <xsd:annotation>
+                    <xsd:documentation>Witness role type, applies to Person</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="RoleTypeCodeType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that identifies a role type defined and used in the LEXS data schema. Includes all roles used in the LEXS Digest.  Queries can specify that structured searches should only match certain roles.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:RoleTypeCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="SortOrderCodeSimpleType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that specifies whether the most recent or most relevant hits should be returned first.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Date">
+                <xsd:annotation>
+                    <xsd:documentation>Return most recent data first.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Relevance">
+                <xsd:annotation>
+                    <xsd:documentation>Return most relevant data first.</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="SortOrderCodeType">
+        <xsd:annotation>
+            <xsd:appinfo>SRONLY</xsd:appinfo>
+            <xsd:documentation>A data type for a code that specifies whether the most recent or most relevant hits should be returned first.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:SortOrderCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="TelephoneNumberCategoryCodeSimpleType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of a telephone number.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="Facsimile">
+                <xsd:annotation>
+                    <xsd:documentation>Fax telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Mobile">
+                <xsd:annotation>
+                    <xsd:documentation>Mobile telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Pager">
+                <xsd:annotation>
+                    <xsd:documentation>Pager telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="PBX">
+                <xsd:annotation>
+                    <xsd:documentation>Private Branch Exchange</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="VoIP">
+                <xsd:annotation>
+                    <xsd:documentation>VoIP telephone number ( such as Skype, Vonage )</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="LandLine">
+                <xsd:annotation>
+                    <xsd:documentation>Landline telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+            <xsd:enumeration value="Other">
+                <xsd:annotation>
+                    <xsd:documentation>Other telephone number</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="TelephoneNumberCategoryCodeType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a code that identifies a kind of a telephone number.</xsd:documentation>
+            <xsd:appinfo>
+                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="lexscodes:TelephoneNumberCategoryCodeSimpleType">
+                <xsd:attributeGroup ref="s:SimpleObjectAttributeGroup"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

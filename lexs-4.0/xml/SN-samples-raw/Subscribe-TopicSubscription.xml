@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: Subscribe-TopicSubscription.xml 21145 2010-08-27 22:48:55Z ys34 $
+    Original : 12/15/2007
+    LEXS version  : 4.0
+    ULEX version : 2.0
+    Description   :
+        Sample SOAP message for the Topic subscription.
+-->
+<env:Envelope 
+    xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <env:Header>
+        <wsa:MessageID>http://www.cjis.fbi.gov/OneDOJ/413</wsa:MessageID>
+        <wsa:To>http://www.cjis.fbi.gov/N-DEx/NotificationService</wsa:To>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.cjis.fbi.gov/OneDOJ/017</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:Action>http://docs.oasis-open.org/wsn/bw-2/NotificationProducer/SubscribeRequest</wsa:Action>
+    </env:Header>
+    <env:Body>
+        <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Subscribe-TopicSubscription-xinclude.xml"/>
+    </env:Body>
+</env:Envelope>

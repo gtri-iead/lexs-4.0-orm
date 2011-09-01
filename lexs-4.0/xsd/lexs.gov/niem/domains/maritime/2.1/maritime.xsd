@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://niem.gov/niem/domains/maritime/2.1" version="1" xmlns:s="http://niem.gov/niem/structures/2.0" xmlns:m="http://niem.gov/niem/domains/maritime/2.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0" xmlns:i="http://niem.gov/niem/appinfo/2.0">
+  <xsd:annotation>
+    <xsd:documentation>Maritime</xsd:documentation>
+    <xsd:appinfo>
+      <i:ConformantIndicator>true</i:ConformantIndicator>
+    </xsd:appinfo>
+  </xsd:annotation>
+  <xsd:import schemaLocation="../../../structures/2.0/structures.xsd" namespace="http://niem.gov/niem/structures/2.0"/>
+  <xsd:import schemaLocation="../../../appinfo/2.0/appinfo.xsd" namespace="http://niem.gov/niem/appinfo/2.0"/>
+  <xsd:import schemaLocation="../../../niem-core/2.0/niem-core.xsd" namespace="http://niem.gov/niem/niem-core/2.0"/>
+  <xsd:complexType name="WatchListAssociationType">
+    <xsd:annotation>
+      <xsd:documentation>An association between an organization and an entity (vessel, aircraft, person, etc.) that the organization declares to be of interest and has placed on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:Base i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AssociationType"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="nc:AssociationType">
+        <xsd:sequence>
+          <xsd:element ref="nc:OrganizationReference" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="m:WatchListEntity" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="m:WatchListEntryReasonOfInterest" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="m:WatchListEntryTitle" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element substitutionGroup="m:WatchListEntity" name="WatchListAircraftReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An aircraft on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="AircraftType"/>
+        <i:Base i:name="WatchListEntity"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="WatchListAssociation" type="m:WatchListAssociationType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>An association between an organization and an entity (vessel, aircraft, person, etc.) that the organization declares to be of interest and has placed on a watch list.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="WatchListEntity" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>A data concept for a physical entity (e.g., vessel, aircraft, person) on a watch list.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="WatchListEntryReasonOfInterest" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>A reason why a watch list entry is of interest.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="WatchListEntryTitle" type="nc:TextType" nillable="true">
+    <xsd:annotation>
+      <xsd:documentation>The title of a watchlist entry.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element substitutionGroup="m:WatchListEntity" name="WatchListOrganizationReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>An organization on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="OrganizationType"/>
+        <i:Base i:name="WatchListEntity"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element substitutionGroup="m:WatchListEntity" name="WatchListPersonReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>A person on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="PersonType"/>
+        <i:Base i:name="WatchListEntity"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element substitutionGroup="m:WatchListEntity" name="WatchListVehicleReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>A vehicle on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="VehicleType"/>
+        <i:Base i:name="WatchListEntity"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element substitutionGroup="m:WatchListEntity" name="WatchListVesselReference" type="s:ReferenceType">
+    <xsd:annotation>
+      <xsd:documentation>A vessel on a watch list.</xsd:documentation>
+      <xsd:appinfo>
+        <i:ReferenceTarget i:namespace="http://niem.gov/niem/niem-core/2.0" i:name="VesselType"/>
+        <i:Base i:name="WatchListEntity"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:element>
+</xsd:schema>

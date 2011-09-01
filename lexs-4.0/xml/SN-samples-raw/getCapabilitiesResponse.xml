@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: getCapabilitiesResponse.xml 21145 2010-08-27 22:48:55Z ys34 $
+    Original : 12/15/2007
+    LEXS version  : 4.0
+    ULEX version : 2.0
+    Description   :
+        Sample SOAP message for the getCapabilityResponse.
+-->
+<env:Envelope
+    xmlns:env="http://www.w3.org/2003/05/soap-envelope"
+    xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <env:Body>
+        <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="getCapabilitiesResponse-xinclude.xml"/>
+    </env:Body>
+</env:Envelope>
