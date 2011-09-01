@@ -24,11 +24,19 @@ import org.custommonkey.xmlunit.Difference;
 import gov.lexs.v4_0.JAXBUtils;
 import java.io.File;
 import java.io.FileFilter;
+import java.rmi.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBElement;
+import javax.xml.namespace.QName;
+import javax.xml.stream.XMLEventReader;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.events.StartElement;
+import javax.xml.stream.events.XMLEvent;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -116,14 +124,57 @@ public abstract class AbstractLEXSSampleInstanceTest extends AbstractTest {
         }
     }//end validateAllXml()
 
+
+    private QName getRootElement( File xmlFile ) throws Exception {
+        XMLInputFactory inputFactory = XMLInputFactory.newFactory();
+        XMLEventReader reader = inputFactory.createXMLEventReader(new FileReader(xmlFile));
+        StartElement firstElement = null;
+        while( reader.hasNext() ){
+            XMLEvent nextTag = reader.nextTag();
+            if( nextTag.isStartElement() ){
+                firstElement = (StartElement) nextTag;
+                break;
+            }
+        }
+        reader.close();
+        if( firstElement == null ){
+            throw new RuntimeException("Invalid XML File: "+xmlFile);
+        }
+        return firstElement.getName();
+    }//end getRootElement()
+
+    private String timestamp() {
+        try{Thread.sleep(1);}catch(Throwable t){}
+        return Calendar.getInstance().getTimeInMillis() + "";
+    }
+
     protected void validateXmlFile( File xmlFile ) throws Exception {
         logger.info("Testing file {}...", xmlFile);
+
+        QName rootElement = getRootElement(xmlFile);
+        if( rootElement.getNamespaceURI() != null &&
+                rootElement.getNamespaceURI().equals("http://www.w3.org/2003/05/soap-envelope") ){
+            logger.warn("Cannot run test on SOAP envelope!");
+            return;
+        }
+
         Object object = JAXBUtils.unmarshal(xmlFile);
-        assertNotNull(object);
-        assertTrue( object instanceof JAXBElement );
+        if( object == null )
+            fail("Unmarshalled to NULL object.");
+
+        if( !object.getClass().getName().startsWith("gov.lexs.v4_0.jaxb") ){
+            if( !(object instanceof JAXBElement) ){
+                fail("Expecting unmarshal to JAXBElement, but was: "+object.getClass().getName());
+            }else{
+                logger.debug("Successfully marshalled directly to JAXBElement");
+            }
+        }else{
+            logger.debug("Successfully marshalled directly to JAXB Class: "+object.getClass().getName());
+        }
+
         File tempDir = new File("./target/jaxb-marshalling-results");
         tempDir.mkdirs();
-        File tempFile = File.createTempFile(xmlFile.getName(), ".xml", tempDir);
+        File tempFile = File.createTempFile(xmlFile.getName(), "."+timestamp()+".xml", tempDir);
         JAXBUtils.marshall(object, tempFile);
         try{
             validateAgainstLEXS40Schemas( tempFile );
@@ -152,11 +203,13 @@ public abstract class AbstractLEXSSampleInstanceTest extends AbstractTest {
                     differences.add(difference);
             }
             if( differences.size() > 0 ){
-                logger.warn("Differences after jaxb transform of file {}: ", xmlFile1);
+                StringBuffer differenceText = new StringBuffer();
+                differenceText.append("Differences after jaxb transform of file "+ xmlFile1+": \n");
                 for( Difference difference : differences ){
-                    logger.warn("   "+difference.toString());
+                    differenceText.append("   "+difference.toString()+"\n");
                 }
-                fail("JAXB did not output identical file for: "+xmlFile1);
+                logger.warn(differenceText.toString());
+                fail("JAXB did not output identical file for: "+xmlFile1+": \n"+differenceText.toString());
             }
         }
         logger.info("File {} round-trips successfully!", xmlFile1);
