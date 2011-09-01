@@ -65,7 +65,7 @@
                 </executions>
             </plugin>
 
-            <!-- Some house keeping scripting -->
+            <!-- Some house-keeping scripts -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>1.6</version>
@@ -203,6 +203,27 @@
                         </exclusions>
                     </dependency>
                 </dependencies>
+            </plugin>
+
+            <!-- Appends generated test sources -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-test-sources/xmltests</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- Compiles the LEXS schemas using the JAXB xjc command. -->
