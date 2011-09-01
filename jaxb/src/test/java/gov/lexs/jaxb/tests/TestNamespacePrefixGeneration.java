@@ -33,7 +33,7 @@ public class TestNamespacePrefixGeneration extends AbstractTest {
     //==========================================================================
     //  Test Contstants
     //==========================================================================
-    public static final String TEST_FILE = "./src/test/resources/lexs-4.0-samples/PD-samples/doPublish-all-fields.xml";
+    public static final String TEST_FILE = "./src/test/resources/lexs-4.0-samples/xml/PD-samples/doPublish-all-fields.xml";
     //==========================================================================
     //  Test Helper Methods
     //==========================================================================
