@@ -333,8 +333,8 @@
     <xsd:complexContent>
       <xsd:extension base="s:ComplexObjectType">
         <xsd:sequence>
-          <xsd:element ref="nc:StartDate" minOccurs="0" maxOccurs="unbounded"/>
-          <xsd:element ref="nc:EndDate" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="nc:StartDate" minOccurs="0" maxOccurs="1"/>
+          <xsd:element ref="nc:EndDate" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
