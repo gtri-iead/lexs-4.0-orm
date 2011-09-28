@@ -10,7 +10,7 @@
     <parent>
         <groupId>gov.lexs.v4</groupId>
         <artifactId>lexs-4.0-orxm-parent</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>4.0.0</version>
     </parent>    
 
     <name>LEXS 4.0 ORXM 5: JAXB Bindings</name>

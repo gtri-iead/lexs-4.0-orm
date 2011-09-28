@@ -9,7 +9,7 @@
     <parent>
         <groupId>gov.lexs.v4</groupId>
         <artifactId>lexs-4.0-orxm-parent</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>4.0.0</version>
     </parent>    
 
     <name>LEXS 4.0 SI 15: XMLBeans Bindings</name>
@@ -79,6 +79,19 @@
                     <xmlConfigs>
                         <xmlConfig implementation="java.io.File">src/main/xsdconfig/lexs.xsdconfig.xml</xmlConfig>
                     </xmlConfigs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- NOTE: We don't need a groupId specification because the group is
+                     org.apache.maven.plugins ...which is assumed by default.
+                 -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                  <descriptorRefs>
+                    <descriptorRef>src</descriptorRef>
+                  </descriptorRefs>
                 </configuration>
             </plugin>
 		</plugins>

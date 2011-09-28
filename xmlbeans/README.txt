@@ -21,6 +21,9 @@ Prerequisites:
 To generate LEXS 4.0 XMLBeans databinding library run:
 "mvn install" 
 
+To generate a zip file of the project source, run:
+"mvn assembly:assembly -DdescriptorId=src"
+
 Test Cases:
 - TestPublishDiscover.java defines test cases that test the marshalling and 
   unmarshalling of the generated publish discover XMLBeans.
