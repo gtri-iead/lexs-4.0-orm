@@ -4,429 +4,435 @@
     Namespace     : xmlns:lexs="http://lexs.gov/lexs/4.0"
     Description   : LEXS Messages Format Schema
 -->
-<xsd:schema
-    targetNamespace="http://lexs.gov/lexs/4.0"
-    version="TBD"
-    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
-    xmlns:i="http://niem.gov/niem/appinfo/2.0"
-    xmlns:icism-metadata="http://niem.gov/niem/icism/2.0"
-    xmlns:lexs="http://lexs.gov/lexs/4.0"
-    xmlns:ulex="http://ulex.gov/ulex/2.0"
-    xmlns:lexscodes="http://lexs.gov/codes/4.0"
-    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
-    xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0"
-    xmlns:s="http://niem.gov/niem/structures/2.0"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
-
-    <xsd:annotation>
-        <xsd:documentation>LEXS Message Format Schema</xsd:documentation>
-        <xsd:appinfo>
-            <i:ConformantIndicator>true</i:ConformantIndicator>
-        </xsd:appinfo>
-    </xsd:annotation>
-
-    <xsd:import
-        namespace="http://niem.gov/niem/appinfo/2.0"
-        schemaLocation="../../niem/appinfo/2.0/appinfo.xsd"/>
-    <xsd:import
-        namespace="http://niem.gov/niem/niem-core/2.0"
-        schemaLocation="../../niem/niem-core/2.0/niem-core.xsd"/>
-    <xsd:import
-        namespace="http://niem.gov/niem/proxy/xsd/2.0"
-        schemaLocation="../../niem/proxy/xsd/2.0/xsd.xsd"/>
-    <xsd:import
-        namespace="http://niem.gov/niem/structures/2.0"
-        schemaLocation="../../niem/structures/2.0/structures.xsd"/>
-    <xsd:import
-        namespace="http://lexs.gov/digest/4.0"
-        schemaLocation="../../lexs-digest/4.0/lexs-digest.xsd"/>
-    <xsd:import
-        namespace="http://lexs.gov/codes/4.0"
-        schemaLocation="../../lexs-codes/4.0/lexs-codes.xsd"/>
-        
-    <xsd:import
-        namespace="http://niem.gov/niem/icism/2.0"
-        schemaLocation="../../niem/icism/2.0/icism-metadata.xsd">
-        <xsd:annotation>
-            <xsd:documentation>Schema provides a method for using the Intelligence Community Information Security Marking (IC-ISM) standard, Version 2.0, dated 30 April 2004, in NIEM 2.0.  This schema defines a NIEM metadata element derived from s:MetadataType that contains the optional IC-ISM attributes.  Within an instance, an element links through its s:metadata attribute to the appropriate s:id attribute of the IC-ISM metadata container. This schema cannot and does not use attributeGroups in IC-ISM.</xsd:documentation>
-            <xsd:appinfo>
-                <i:ConformantIndicator>false</i:ConformantIndicator>
-            </xsd:appinfo>            
-        </xsd:annotation>
-    </xsd:import>
-
-    <xsd:import
-        namespace="http://ulex.gov/ulex/2.0"
-        schemaLocation="../../../ulex.gov/ulex/2.0/ulex.xsd">
-        <xsd:annotation>
-            <xsd:documentation>ULEX Messages Structure Format Schema.</xsd:documentation>
-            <xsd:appinfo>
-                <i:ConformantIndicator>false</i:ConformantIndicator>
-            </xsd:appinfo>
-        </xsd:annotation>
-    </xsd:import>
-    <xsd:complexType name="DataContactType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a set of LEXS contact information elements for a data owner, a system, or a Data Item.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="nc:PersonGivenName" minOccurs="0"/>
-                    <xsd:element ref="nc:PersonMiddleName" minOccurs="0"/>
-                    <xsd:element ref="nc:PersonSurName" minOccurs="0"/>
-                    <xsd:element ref="nc:PersonFullName" minOccurs="0"/>
-                    <xsd:element ref="nc:ContactMeans" minOccurs="0" maxOccurs="unbounded"/>
-                    <xsd:element ref="nc:OrganizationName" minOccurs="0"/>
-                    <xsd:element ref="lexs:DataContactDomainAttribute" minOccurs="0" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="DataOwnerIdentifierType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a unique data owner identifier for an organization and a system in an organization that owns data.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:OriginatingAgencyID"/>
-                    <xsd:element ref="nc:OrganizationName"/>
-                    <xsd:element ref="lexs:SystemID"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="DigestQueryFieldType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a single Digest query field. Data type wraps a single LEXS Entity, where the Entity includes a single element with a single value where allowed by schema.</xsd:documentation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexsdigest:Entity"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="DigestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a LEXS Digest. Digest structure contains LEXS Entities and associations between Entities. While LEXS Entities are children of the Digest element and don't follow any particular order, all LEXS Associations are wrapped in an element "Associations" and follow a strict sequence.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexsdigest:Entity" maxOccurs="unbounded"/>
-                    <xsd:element ref="lexsdigest:Associations" minOccurs="0"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="DisseminationCriteriaType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a set of information provided by the data owner to indicate who is allowed to see the information.   LEXS dissemination criteria structure contains a dissemination criteria domain and a dissemination criteria value valid within the domain.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:DisseminationCriteriaDomainName"/>
-                    <xsd:element ref="lexs:DisseminationCriteriaText"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="DomainAttributeType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a placeholder for various domain attributes. For Name/Value pair attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-                <i:ExternalAdapterTypeIndicator>true</i:ExternalAdapterTypeIndicator>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="ulex:AttributeName" minOccurs="0">
-                        <xsd:annotation>
-                            <xsd:documentation>A name of a domain attribute. For example, RegionInfo.</xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element ref="ulex:AttributeValueText" minOccurs="0">
-                        <xsd:annotation>
-                            <xsd:documentation>A domain attribute value.</xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:element ref="ulex:DomainName">
-                        <xsd:annotation>
-                            <xsd:documentation>A name of the domain to which this block applies, for example, OneDOJ.</xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:element>
-                    <xsd:any processContents="lax" minOccurs="0">
-                        <xsd:annotation>
-                            <xsd:documentation>A placeholder for hierarchical data.</xsd:documentation>
-                        </xsd:annotation>
-                    </xsd:any>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="RoleListType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a wrapper of requested role types and an indicator as to whether the supplied role types should be included or excluded from the response.</xsd:documentation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:RoleInclusiveIndicator"/>
-                    <xsd:element ref="lexs:RoleTypeCode" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="StructuredQueryExtensionType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a LEXS extension to ULEX that adds additional LEXS-specific query parameters to a structured query.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:RoleList" minOccurs="0"/>
-                    <xsd:element ref="lexs:AssociationQName" minOccurs="0" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="SystemIdentifierType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a unique data owner identifier for an organization and a system in an organization where data originated, was submitted from, or is being sent.</xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:OriginatingAgencyID" minOccurs="0"/>
-                    <xsd:element ref="nc:OrganizationName"/>
-                    <xsd:element ref="lexs:SystemID" minOccurs="0"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:complexType name="UserAssertionType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a user assertion. User assertion is required for submitting any "search" or "get" operation that is done by a user, or on behalf of a user by an application.  Note that requests that come from applications, such as getCapabilities, getDataOwners, and getAvailability do not include a UserAssertion. </xsd:documentation>
-            <xsd:appinfo>
-                <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
-            </xsd:appinfo>
-        </xsd:annotation>
-        <xsd:complexContent>
-            <xsd:extension base="s:ComplexObjectType">
-                <xsd:sequence>
-                    <xsd:element ref="lexs:UserID"/>
-                    <xsd:element ref="nc:PersonGivenName" minOccurs="0"/>
-                    <xsd:element ref="nc:PersonSurName" minOccurs="0"/>
-                    <xsd:element ref="nc:ContactMeans" minOccurs="0" maxOccurs="unbounded"/>
-                    <xsd:element ref="nc:OrganizationName"/>
-                    <xsd:element ref="lexs:OriginatingAgencyID" minOccurs="0"/>
-                    <xsd:element ref="lexs:UserAssertionDomainAttribute" minOccurs="0" maxOccurs="unbounded"/>
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
-    <xsd:element name="AssociationQName" type="xsd:QName" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:appinfo>BUSINESS_RULE value should be equal to one of the Associations located within lexsdigest:EntityAssociationsType</xsd:appinfo>
-            <xsd:documentation>A name of an association defined in the LEXS Digest.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="AttachmentContentBinary" type="nc:BinaryType" substitutionGroup="ulex:AttachmentContentAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A binary attachment content.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="AttachmentHashValue" type="lexsdigest:HashValueType" substitutionGroup="ulex:AttachmentHashValueAbstract" nillable="true">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A value that represents the results of a hash function applied to an attachment binary.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataContactDomainAttribute" type="lexs:DomainAttributeType">
-        <xsd:annotation>
-            <xsd:documentation>A placeholder for a DataContact domain attribute. For Value/Pair attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemContact" type="lexs:DataContactType" substitutionGroup="ulex:DataItemContactAbstract" nillable="true">
-        <xsd:annotation>
-            <xsd:documentation>A set of contact information for a Data Item. Includes a person and organization to contact and their phone number and email address.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemICISMMetadata" type="icism-metadata:ICISMMetadataType" substitutionGroup="ulex:PackageMetadataExtensionAbstract" nillable="true">
-        <xsd:annotation>
-            <xsd:documentation>Metadata about information security for a Data Item utilizing the Intelligence Community Information Security Marking (IC-ISM) standard.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemStatusText" type="niem-xsd:string" substitutionGroup="ulex:DataItemStatusAbstract" nillable="true">
-        <xsd:annotation>
-            <xsd:documentation>A status of the Data Item, such as Valid/Invalid, etc.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataOwnerContact" type="lexs:DataContactType" substitutionGroup="ulex:DataOwnerContactAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A set of contact information for a data owner.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataOwnerIdentifier" type="lexs:DataOwnerIdentifierType" substitutionGroup="ulex:DataOwnerIdentifierAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A unique identifier for an organization and a system in an organization that owns data. This identifier is used in DataOwnerMetadata that is part of PackageMetadata, and in DataOwnerInformation that is part of DataOwnersResponseMessage.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataSensitivityText" type="niem-xsd:string" substitutionGroup="ulex:DataSensitivityAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>An information security classification level (e.g., SBU = Sensitive but Unclassified).  Note that this is different from dissemination criteria, which is included at the Data Item level.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="Digest" type="lexs:DigestType" substitutionGroup="ulex:DigestAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A LEXS Digest containing LEXS Entities and associations between Entities. While LEXS Entities are children of the Digest element and don't follow any particular order, all LEXS Associations are wrapped in an element "Associations" and follow a strict sequence.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DigestQueryField" type="lexs:DigestQueryFieldType" substitutionGroup="ulex:DigestQueryFieldAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A single Digest query field that wraps a single LEXS Entity, where the Entity includes a single element with a single value where allowed by schema.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DisseminationCriteria" type="lexs:DisseminationCriteriaType" substitutionGroup="ulex:DisseminationCriteriaAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A set of information provided by the data owner to indicate who is allowed to see the information.   LEXS dissemination criteria structure contains a dissemination criteria domain and a dissemination criteria value valid within the domain.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they know the criteria for this information.  Note that this is different from the data sensitivity included at the message level.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DisseminationCriteriaDomainName" type="niem-xsd:string" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A name of the domain, provided by the data owner, that defined the dissemination criteria.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DisseminationCriteriaText" type="niem-xsd:string" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A text field, provided by the data owner, that indicates who is allowed to see the information.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they are aware of the criteria for this information.  Note that this is different from the data sensitivity included at the message level.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="MessageDestinationIdentifier" type="lexs:SystemIdentifierType" substitutionGroup="ulex:MessageDestinationIdentifierAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>An identifier that specifies the organization and system to which an SR message is being sent.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="NarrativeText" type="niem-xsd:string" substitutionGroup="ulex:NarrativeAbstract" nillable="true">
-        <xsd:annotation>
-            <xsd:documentation>A narrative free text field.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="OriginatingAgencyID" type="niem-xsd:string" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>An identifier for an agency such as an NCIC Originating Agency Identifier Number or ORI code.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="RequestedDataCategoryCode" type="lexscodes:DataCategoryCodeType" substitutionGroup="ulex:RequestedDataAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A kind of requested Data Category.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="RoleInclusiveIndicator" type="niem-xsd:boolean" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>True if included list of roles (see RoleList element for details) should be included in the roles return in the response; false otherwise.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="RoleList" type="lexs:RoleListType" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A list of requested role types and an indicator for whether the supplied role types should be included or excluded from the response.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="RoleTypeCode" type="lexscodes:RoleTypeCodeType" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A role type code used in the LEXS Digest.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SortOrderCode" type="lexscodes:SortOrderCodeType" substitutionGroup="ulex:SortOrderAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A sort order code that indicates to the service provider what set of hits, most recent or most relevant, should be returned if there are more hits than can be returned in a single response.  The responding system determines what is most relevant.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="StructuredQueryExtension" type="lexs:StructuredQueryExtensionType" substitutionGroup="ulex:StructuredQueryExtensionAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:appinfo>BUSINESS_RULE there should be only one lexs:StructureQueryExtension per ulex:StructuredQuery</xsd:appinfo>
-            <xsd:documentation>A LEXS extension to ULEX that adds additional LEXS-specific query parameters to a structured query.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SystemContact" type="lexs:DataContactType" substitutionGroup="ulex:SystemContactAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A set of contact information for the system owner that includes a person and organization to contact and their phone number and email address.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SystemID" type="niem-xsd:string" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>An identifier for the system within the service provider.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SystemIdentifier" type="lexs:SystemIdentifierType" substitutionGroup="ulex:SystemIdentifierAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:documentation>A unique identifier for an organization and a system where data was originated, was submitted from, or is being sent.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="UserAssertion" type="lexs:UserAssertionType" substitutionGroup="ulex:UserAssertionAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>An assertion about the user submitting a request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="UserAssertionDomainAttribute" type="lexs:DomainAttributeType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A placeholder for UserAssertion domain attribute. For Name/Value attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="UserAttentionTo" type="lexs:UserAssertionType" substitutionGroup="ulex:UserAttentionToAbstract" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>An assertion indicating the user to whose attention a response should be sent.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="UserID" type="niem-xsd:string" nillable="false">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>An identifier for the user on the originating system, such as username or userID.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
+<xsd:schema xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+            xmlns:i="http://niem.gov/niem/appinfo/2.0"
+            xmlns:icism-metadata="http://niem.gov/niem/icism/2.0"
+            xmlns:lexs="http://lexs.gov/lexs/4.0"
+            xmlns:ulex="http://ulex.gov/ulex/2.0"
+            xmlns:lexscodes="http://lexs.gov/codes/4.0"
+            xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+            xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0"
+            xmlns:s="http://niem.gov/niem/structures/2.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://lexs.gov/lexs/4.0"
+            version="4.0.PDSRDE."
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+   <xsd:annotation>
+      <xsd:documentation>LEXS Message Format Schema</xsd:documentation>
+      <xsd:appinfo>
+         <i:ConformantIndicator>true</i:ConformantIndicator>
+      </xsd:appinfo>
+   </xsd:annotation>
+   <xsd:import namespace="http://niem.gov/niem/appinfo/2.0"
+               schemaLocation="../../niem/appinfo/2.0/appinfo.xsd"/>
+   <xsd:import namespace="http://niem.gov/niem/niem-core/2.0"
+               schemaLocation="../../niem/niem-core/2.0/niem-core.xsd"/>
+   <xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0"
+               schemaLocation="../../niem/proxy/xsd/2.0/xsd.xsd"/>
+   <xsd:import namespace="http://niem.gov/niem/structures/2.0"
+               schemaLocation="../../niem/structures/2.0/structures.xsd"/>
+   <xsd:import namespace="http://lexs.gov/digest/4.0"
+               schemaLocation="../../lexs-digest/4.0/lexs-digest.xsd"/>
+   <xsd:import namespace="http://lexs.gov/codes/4.0"
+               schemaLocation="../../lexs-codes/4.0/lexs-codes.xsd"/>
+   <xsd:import namespace="http://niem.gov/niem/icism/2.0"
+               schemaLocation="../../niem/icism/2.0/icism-metadata.xsd">
+      <xsd:annotation>
+         <xsd:documentation>Schema provides a method for using the Intelligence Community Information Security Marking (IC-ISM) standard, Version 2.0, dated 30 April 2004, in NIEM 2.0.  This schema defines a NIEM metadata element derived from s:MetadataType that contains the optional IC-ISM attributes.  Within an instance, an element links through its s:metadata attribute to the appropriate s:id attribute of the IC-ISM metadata container. This schema cannot and does not use attributeGroups in IC-ISM.</xsd:documentation>
+         <xsd:appinfo>
+            <i:ConformantIndicator>false</i:ConformantIndicator>
+         </xsd:appinfo>
+      </xsd:annotation>
+   </xsd:import>
+   <xsd:import namespace="http://ulex.gov/ulex/2.0"
+               schemaLocation="../../../ulex.gov/ulex/2.0/ulex.xsd">
+      <xsd:annotation>
+         <xsd:documentation>ULEX Messages Structure Format Schema.</xsd:documentation>
+         <xsd:appinfo>
+            <i:ConformantIndicator>false</i:ConformantIndicator>
+         </xsd:appinfo>
+      </xsd:annotation>
+   </xsd:import>
+   <xsd:complexType name="DataContactType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a set of LEXS contact information elements for a data owner, a system, or a Data Item.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="nc:PersonGivenName" minOccurs="0"/>
+               <xsd:element ref="nc:PersonMiddleName" minOccurs="0"/>
+               <xsd:element ref="nc:PersonSurName" minOccurs="0"/>
+               <xsd:element ref="nc:PersonFullName" minOccurs="0"/>
+               <xsd:element ref="nc:ContactMeans" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element ref="nc:OrganizationName" minOccurs="0"/>
+               <xsd:element ref="lexs:DataContactDomainAttribute" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DataOwnerIdentifierType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a unique data owner identifier for an organization and a system in an organization that owns data.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:OriginatingAgencyID"/>
+               <xsd:element ref="nc:OrganizationName"/>
+               <xsd:element ref="lexs:SystemID"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DigestQueryFieldType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a single Digest query field. Data type wraps a single LEXS Entity, where the Entity includes a single element with a single value where allowed by schema.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexsdigest:Entity"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DigestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a LEXS Digest. Digest structure contains LEXS Entities and associations between Entities. While LEXS Entities are children of the Digest element and don't follow any particular order, all LEXS Associations are wrapped in an element "Associations" and follow a strict sequence.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexsdigest:Entity" maxOccurs="unbounded"/>
+               <xsd:element ref="lexsdigest:Associations" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DisseminationCriteriaType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a set of information provided by the data owner to indicate who is allowed to see the information.   LEXS dissemination criteria structure contains a dissemination criteria domain and a dissemination criteria value valid within the domain.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:DisseminationCriteriaDomainName"/>
+               <xsd:element ref="lexs:DisseminationCriteriaText"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="DomainAttributeType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a placeholder for various domain attributes. For Name/Value pair attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+            <i:ExternalAdapterTypeIndicator>true</i:ExternalAdapterTypeIndicator>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="ulex:AttributeName" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>A name of a domain attribute. For example, RegionInfo.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element ref="ulex:AttributeValueText" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>A domain attribute value.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:element ref="ulex:DomainName">
+                  <xsd:annotation>
+                     <xsd:documentation>A name of the domain to which this block applies, for example, OneDOJ.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:element>
+               <xsd:any processContents="lax" minOccurs="0">
+                  <xsd:annotation>
+                     <xsd:documentation>A placeholder for hierarchical data.</xsd:documentation>
+                  </xsd:annotation>
+               </xsd:any>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="RoleListType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a wrapper of requested role types and an indicator as to whether the supplied role types should be included or excluded from the response.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:RoleInclusiveIndicator"/>
+               <xsd:element ref="lexs:RoleTypeCode" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="StructuredQueryExtensionType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a LEXS extension to ULEX that adds additional LEXS-specific query parameters to a structured query.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:RoleList" minOccurs="0"/>
+               <xsd:element ref="lexs:AssociationQName" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="SystemIdentifierType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a unique data owner identifier for an organization and a system in an organization where data originated, was submitted from, or is being sent.</xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:OriginatingAgencyID" minOccurs="0"/>
+               <xsd:element ref="nc:OrganizationName"/>
+               <xsd:element ref="lexs:SystemID" minOccurs="0"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:complexType name="UserAssertionType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a user assertion. User assertion is required for submitting any "search" or "get" operation that is done by a user, or on behalf of a user by an application.  Note that requests that come from applications, such as getCapabilities, getDataOwners, and getAvailability do not include a UserAssertion. </xsd:documentation>
+         <xsd:appinfo>
+            <i:Base i:namespace="http://niem.gov/niem/structures/2.0" i:name="Object"/>
+         </xsd:appinfo>
+      </xsd:annotation>
+      <xsd:complexContent>
+         <xsd:extension base="s:ComplexObjectType">
+            <xsd:sequence>
+               <xsd:element ref="lexs:UserID"/>
+               <xsd:element ref="nc:PersonGivenName" minOccurs="0"/>
+               <xsd:element ref="nc:PersonSurName" minOccurs="0"/>
+               <xsd:element ref="nc:ContactMeans" minOccurs="0" maxOccurs="unbounded"/>
+               <xsd:element ref="nc:OrganizationName"/>
+               <xsd:element ref="lexs:OriginatingAgencyID" minOccurs="0"/>
+               <xsd:element ref="lexs:UserAssertionDomainAttribute" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+         </xsd:extension>
+      </xsd:complexContent>
+   </xsd:complexType>
+   <xsd:element name="AssociationQName" type="xsd:QName" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A name of an association defined in the LEXS Digest.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="AttachmentContentBinary" type="nc:BinaryType"
+                substitutionGroup="ulex:AttachmentContentAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A binary attachment content.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="AttachmentHashValue" type="lexsdigest:HashValueType"
+                substitutionGroup="ulex:AttachmentHashValueAbstract"
+                nillable="true">
+      <xsd:annotation>
+         <xsd:documentation>A value that represents the results of a hash function applied to an attachment binary.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataContactDomainAttribute" type="lexs:DomainAttributeType">
+      <xsd:annotation>
+         <xsd:documentation>A placeholder for a DataContact domain attribute. For Value/Pair attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemContact" type="lexs:DataContactType"
+                substitutionGroup="ulex:DataItemContactAbstract"
+                nillable="true">
+      <xsd:annotation>
+         <xsd:documentation>A set of contact information for a Data Item. Includes a person and organization to contact and their phone number and email address.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemICISMMetadata" type="icism-metadata:ICISMMetadataType"
+                substitutionGroup="ulex:PackageMetadataExtensionAbstract"
+                nillable="true">
+      <xsd:annotation>
+         <xsd:documentation>Metadata about information security for a Data Item utilizing the Intelligence Community Information Security Marking (IC-ISM) standard.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemStatusText" type="niem-xsd:string"
+                substitutionGroup="ulex:DataItemStatusAbstract"
+                nillable="true">
+      <xsd:annotation>
+         <xsd:documentation>A status of the Data Item, such as Valid/Invalid, etc.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataOwnerContact" type="lexs:DataContactType"
+                substitutionGroup="ulex:DataOwnerContactAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A set of contact information for a data owner.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataOwnerIdentifier" type="lexs:DataOwnerIdentifierType"
+                substitutionGroup="ulex:DataOwnerIdentifierAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A unique identifier for an organization and a system in an organization that owns data. This identifier is used in DataOwnerMetadata that is part of PackageMetadata, and in DataOwnerInformation that is part of DataOwnersResponseMessage.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataSensitivityText" type="niem-xsd:string"
+                substitutionGroup="ulex:DataSensitivityAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An information security classification level (e.g., SBU = Sensitive but Unclassified).  Note that this is different from dissemination criteria, which is included at the Data Item level.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="Digest" type="lexs:DigestType" substitutionGroup="ulex:DigestAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A LEXS Digest containing LEXS Entities and associations between Entities. While LEXS Entities are children of the Digest element and don't follow any particular order, all LEXS Associations are wrapped in an element "Associations" and follow a strict sequence.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DigestQueryField" type="lexs:DigestQueryFieldType"
+                substitutionGroup="ulex:DigestQueryFieldAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A single Digest query field that wraps a single LEXS Entity, where the Entity includes a single element with a single value where allowed by schema.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DisseminationCriteria" type="lexs:DisseminationCriteriaType"
+                substitutionGroup="ulex:DisseminationCriteriaAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A set of information provided by the data owner to indicate who is allowed to see the information.   LEXS dissemination criteria structure contains a dissemination criteria domain and a dissemination criteria value valid within the domain.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they know the criteria for this information.  Note that this is different from the data sensitivity included at the message level.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DisseminationCriteriaDomainName" type="niem-xsd:string" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A name of the domain, provided by the data owner, that defined the dissemination criteria.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DisseminationCriteriaText" type="niem-xsd:string" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A text field, provided by the data owner, that indicates who is allowed to see the information.  For publish it provides information to the service provider about what can be returned as the result of a search. For search or get results, it provides information to the user so they are aware of the criteria for this information.  Note that this is different from the data sensitivity included at the message level.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="MessageDestinationIdentifier" type="lexs:SystemIdentifierType"
+                substitutionGroup="ulex:MessageDestinationIdentifierAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An identifier that specifies the organization and system to which an SR message is being sent.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="NarrativeText" type="niem-xsd:string"
+                substitutionGroup="ulex:NarrativeAbstract"
+                nillable="true">
+      <xsd:annotation>
+         <xsd:documentation>A narrative free text field.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="OriginatingAgencyID" type="niem-xsd:string" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An identifier for an agency such as an NCIC Originating Agency Identifier Number or ORI code.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="RequestedDataCategoryCode" type="lexscodes:DataCategoryCodeType"
+                substitutionGroup="ulex:RequestedDataAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A kind of requested Data Category.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="RoleInclusiveIndicator" type="niem-xsd:boolean" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>True if included list of roles (see RoleList element for details) should be included in the roles return in the response; false otherwise.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="RoleList" type="lexs:RoleListType" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A list of requested role types and an indicator for whether the supplied role types should be included or excluded from the response.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="RoleTypeCode" type="lexscodes:RoleTypeCodeType" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A role type code used in the LEXS Digest.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SortOrderCode" type="lexscodes:SortOrderCodeType"
+                substitutionGroup="ulex:SortOrderAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A sort order code that indicates to the service provider what set of hits, most recent or most relevant, should be returned if there are more hits than can be returned in a single response.  The responding system determines what is most relevant.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="StructuredQueryExtension" type="lexs:StructuredQueryExtensionType"
+                substitutionGroup="ulex:StructuredQueryExtensionAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A LEXS extension to ULEX that adds additional LEXS-specific query parameters to a structured query.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SystemContact" type="lexs:DataContactType"
+                substitutionGroup="ulex:SystemContactAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A set of contact information for the system owner that includes a person and organization to contact and their phone number and email address.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SystemID" type="niem-xsd:string" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An identifier for the system within the service provider.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SystemIdentifier" type="lexs:SystemIdentifierType"
+                substitutionGroup="ulex:SystemIdentifierAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>A unique identifier for an organization and a system where data was originated, was submitted from, or is being sent.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="UserAssertion" type="lexs:UserAssertionType"
+                substitutionGroup="ulex:UserAssertionAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An assertion about the user submitting a request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="UserAssertionDomainAttribute" type="lexs:DomainAttributeType">
+      <xsd:annotation>
+         <xsd:documentation>A placeholder for UserAssertion domain attribute. For Name/Value attributes use ulex:AttributeName and ulex:AttributeValueText elements. For hierarchical data xsd:any structure should be used.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="UserAttentionTo" type="lexs:UserAssertionType"
+                substitutionGroup="ulex:UserAttentionToAbstract"
+                nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An assertion indicating the user to whose attention a response should be sent.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="UserID" type="niem-xsd:string" nillable="false">
+      <xsd:annotation>
+         <xsd:documentation>An identifier for the user on the originating system, such as username or userID.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
 </xsd:schema>

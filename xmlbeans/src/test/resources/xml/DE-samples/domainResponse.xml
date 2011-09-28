@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Document: $Id: doStructuredSearchResponse-no-hits.xml 28466 2011-09-28 15:05:10Z ys34 $
-    Original : 11/5/2009
+    Document: $Id: domainResponse.xml 28450 2011-09-28 06:13:47Z ys34 $
+    Original : 9/10/2009
     LEXS version  : 4.0
     ULEX version : 2.0
     Description   : 
-        Sample XML instance for the structured search response message with no hits.
+        Sample XML instance for the domain response message.
 -->
-<ulexsr:doSearchResponse
+<ulexde:domainResponse
 
     xmlns:ulex="http://ulex.gov/ulex/2.0" 
     xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"    
+    xmlns:ulexde="http://ulex.gov/domainexchange/2.0"
     xmlns:ulexcodes="http://ulex.gov/codes/2.0"    
     xmlns:ulexlib="http://ulex.gov/library/2.0"
     
     xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
     xmlns:nc="http://niem.gov/niem/niem-core/2.0"
-    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.0" 
-    xmlns:im="http://niem.gov/niem/domains/immigration/2.0" 
-    xmlns:scr="http://niem.gov/niem/domains/screening/2.0"
+    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.1" 
+    xmlns:im="http://niem.gov/niem/domains/immigration/2.1" 
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.1"
     xmlns:s="http://niem.gov/niem/structures/2.0"
     xmlns:lexs="http://lexs.gov/lexs/4.0" 
     xmlns:wsa="http://www.w3.org/2005/08/addressing"
     xmlns:lexsdigest="http://lexs.gov/digest/4.0"
     
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd">
-    <ulex:SearchResponseMessage>
-        <ulex:SRMessageMetadata>
+    xsi:schemaLocation="http://ulex.gov/domainexchange/2.0 ../../xsd/ulex.gov/ulex-domain-exchange/2.0/ulex-domain-exchange.xsd">
+        
+    <ulex:DomainResponseMessage>
+        <ulex:DEMessageMetadata>
             <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
             <ulex:ULEXImplementation>
                 <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
@@ -35,7 +37,8 @@
             </ulex:ULEXImplementation>
             <ulex:MessageDateTime>2006-12-17T09:30:47.0Z</ulex:MessageDateTime>
             <wsa:MessageID>uuid:d03bff59-7323-4f60-b080-fc2b1d873f0c</wsa:MessageID>
-            <wsa:RelatesTo>uuid:ab19b2f2-d64c-44c6-ab18-61dde2f25e6d</wsa:RelatesTo>
+            <wsa:RelatesTo>uuid:ab19b2f2-d64c-44c6-ab18-61dde2f25e61</wsa:RelatesTo>
+            <lexs:DataSensitivityText>SBU</lexs:DataSensitivityText>
             <!--=======================  Message Origin  =======================-->
             <ulex:MessageOriginMetadata>
                 <lexs:SystemIdentifier>
@@ -59,16 +62,23 @@
                 <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
                 <lexs:SystemID>SysF</lexs:SystemID>
             </lexs:MessageDestinationIdentifier>
-        </ulex:SRMessageMetadata>
-        <!--=======================  Response Metadata  =======================-->
+        </ulex:DEMessageMetadata>
         <ulex:ResponseMetadata>
             <ulex:ResultCode>Success</ulex:ResultCode>
         </ulex:ResponseMetadata>
-        <!--=======================  Search Response Metadata  =======================-->
-        <ulex:SearchResponseMetadata>
-            <ulex:MaxItemMatchesRequestedNumeric>10</ulex:MaxItemMatchesRequestedNumeric>
-            <ulex:NumberItemMatchesText>0</ulex:NumberItemMatchesText>
-            <ulex:ServerLimitIndicator>false</ulex:ServerLimitIndicator>
-        </ulex:SearchResponseMetadata>
-    </ulex:SearchResponseMessage>
-</ulexsr:doSearchResponse>
+        <ulex:DomainAttribute>
+            <ulex:DomainName>http://www.w3.org/TR/xmlschema-0/</ulex:DomainName>
+            <apo:purchaseOrder xmlns:apo="http://www.example.com/PO1" orderDate="1999-10-20">
+                <apo:shipTo country="US">
+                    <apo:name>Alice Smith</apo:name>
+                    <apo:street>123 Maple Street</apo:street>
+                </apo:shipTo>
+                <apo:billTo country="US">
+                    <apo:name>Robert Smith</apo:name>
+                    <apo:street>8 Oak Avenue</apo:street>
+                </apo:billTo>
+                <apo:comment>Hurry, my lawn is going wild</apo:comment>
+            </apo:purchaseOrder>
+        </ulex:DomainAttribute>
+    </ulex:DomainResponseMessage>
+</ulexde:domainResponse>

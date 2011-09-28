@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Document: $Id: doStructuredSearchRequest-multiple-entities.xml 27476 2011-07-27 06:17:11Z ys34 $
+    Document: $Id: doStructuredSearchRequest-multiple-entities.xml 28466 2011-09-28 15:05:10Z ys34 $
     Original : 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
     Description   : 
-        Sample XML instance for the structured search request message.
+        Sample XML instance for the structured search request message with multiple entities and multiple values for the same field.
 -->
 <ulexsr:doStructuredSearchRequest
 
@@ -25,9 +25,7 @@
     xmlns:lexsdigest="http://lexs.gov/digest/4.0"
     
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="
-        http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd 
-">
+    xsi:schemaLocation="http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd">
     <ulex:StructuredSearchRequestMessage>
         <ulex:SRMessageMetadata>
             <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
@@ -92,9 +90,6 @@
                         </lexsdigest:Person>
                     </lexsdigest:EntityPerson>
                 </lexs:DigestQueryField>
-                <ulex:QueryMatchCode>exact</ulex:QueryMatchCode>
-            </ulex:DigestQueryStatement>
-            <ulex:DigestQueryStatement>
                 <lexs:DigestQueryField>
                     <lexsdigest:EntityPerson>
                         <lexsdigest:Person>

@@ -4,245 +4,238 @@
     Namespace     : xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
     Description   : ULEX Search and Retrieve Message Format Schema
 -->
-<xsd:schema 
-    xmlns:ulex="http://ulex.gov/ulex/2.0"
-    xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
-    xmlns:lexs="http://lexs.gov/lexs/4.0"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://ulex.gov/searchretrieve/2.0"
-    elementFormDefault="qualified"
-    attributeFormDefault="unqualified"
-    version="TBD">
-
-    <xsd:import
-        namespace="http://ulex.gov/ulex/2.0"
-        schemaLocation="../../ulex/2.0/ulex.xsd"/>
-
-    <xsd:import
-        namespace="http://lexs.gov/lexs/4.0"
-        schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
-        
-    <xsd:annotation>
-        <xsd:documentation>ULEX Search Retrieve Message Format Schema</xsd:documentation>
-    </xsd:annotation>
-    <xsd:element name="doStructuredSearchRequest" type="ulexsr:doStructuredSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX structured search request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doStructuredSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX structured search request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:StructuredSearchRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="doTextSearchRequest" type="ulexsr:doTextSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX text search request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doTextSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX text search request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:TextSearchRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="doDataItemMetadataSearchRequest" type="ulexsr:doDataItemMetadataSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX Data Item metadata search request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doDataItemMetadataSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX Data Item metadata search request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:DataItemMetadataSearchRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="doAttachmentSearchRequest" type="ulexsr:doAttachmentSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX Data Item metadata search request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doAttachmentSearchRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX Attachment search request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:AttachmentSearchRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="doSearchResponse" type="ulexsr:doSearchResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to a structured, text, or metadata search request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doSearchResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to a structured, text, or metadata search request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SearchResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-	<!-- DataItem/Attachment retrieval messaging -->
-    <xsd:element name="getDataItemRequest" type="ulexsr:getDataItemRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for a Data Item.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="getDataItemWithAttachmentsRequest" type="ulexsr:getDataItemRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for a Data Item with all attachments included.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getDataItemRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX request for a Data Item.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:DataItemRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getDataItemResponse" type="ulexsr:getDataItemResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to a request for a Data Item.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getDataItemResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to a request for a Data Item.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:DataItemResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getDataItemWithAttachmentsResponse" type="ulexsr:getDataItemWithAttachmentsResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to a request for a Data Item with all attachments included.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getDataItemWithAttachmentsResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to a request for a Data Item with all attachments included.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:DataItemWithAttachmentsResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getRenderedDataItemRequest" type="ulexsr:getDataItemRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for rendered Data Items.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="getAttachmentRequest" type="ulexsr:getAttachmentRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for attachments.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getAttachmentRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX request for attachments.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:AttachmentRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getAttachmentResponse" type="ulexsr:getAttachmentResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to request for attachments.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getAttachmentResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to request for attachments.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:AttachmentResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-	<!-- Metadata retrieval messaging -->
-    <xsd:element name="getCapabilitiesRequest" type="ulexsr:getCapabilitiesRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for capabilities from service provider.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getCapabilitiesRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX request for capabilities from service provider.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getCapabilitiesResponse" type="ulexsr:getCapabilitiesResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to a request for service provider capabilities.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getCapabilitiesResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to a request for service provider capabilities.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:CapabilitiesResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getDataOwnersRequest" type="ulexsr:getDataOwnersRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX request for data owners available through a service provider.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getDataOwnersRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX request for data owners available through a service provider.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getDataOwnersResponse" type="ulexsr:getDataOwnersResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to request for data owners available through a service provider.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getDataOwnersResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to request for a data owners available through a service provider.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:DataOwnersResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getAvailabilityRequest" type="ulexsr:getAvailabilityRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX availability request.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getAvailabilityRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX availability request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="getAvailabilityResponse" type="ulexsr:getAvailabilityResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response to availability request</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="getAvailabilityResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response to availability request.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:AvailabilityResponseMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
+<xsd:schema xmlns:ulex="http://ulex.gov/ulex/2.0"
+            xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
+            xmlns:lexs="http://lexs.gov/lexs/4.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://ulex.gov/searchretrieve/2.0"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="2.0.PDSRDE.">
+   <xsd:import namespace="http://ulex.gov/ulex/2.0" schemaLocation="../../ulex/2.0/ulex.xsd"/>
+   <xsd:import namespace="http://lexs.gov/lexs/4.0"
+               schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
+   <xsd:annotation>
+      <xsd:documentation>ULEX Search Retrieve Message Format Schema</xsd:documentation>
+   </xsd:annotation>
+   <xsd:complexType name="doAttachmentSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX Attachment search request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:AttachmentSearchRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doDataItemMetadataSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX Data Item metadata search request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:DataItemMetadataSearchRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doSearchResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to a structured, text, or metadata search request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SearchResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doStructuredSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX structured search request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:StructuredSearchRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doTextSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX text search request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:TextSearchRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getAttachmentRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX request for attachments.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:AttachmentRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getAttachmentResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to request for attachments.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:AttachmentResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getAvailabilityRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX availability request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getAvailabilityResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to availability request.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:AvailabilityResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getCapabilitiesRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX request for capabilities from service provider.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getCapabilitiesResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to a request for service provider capabilities.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:CapabilitiesResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getDataItemRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX request for a Data Item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:DataItemRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getDataItemResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to a request for a Data Item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:DataItemResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getDataItemWithAttachmentsResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to a request for a Data Item with all attachments included.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:DataItemWithAttachmentsResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getDataOwnersRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX request for data owners available through a service provider.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:ServiceProviderRequestMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="getDataOwnersResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response to request for a data owners available through a service provider.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:DataOwnersResponseMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="doAttachmentSearchRequest" type="ulexsr:doAttachmentSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX Data Item metadata search request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doDataItemMetadataSearchRequest"
+                type="ulexsr:doDataItemMetadataSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX Data Item metadata search request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doSearchResponse" type="ulexsr:doSearchResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to a structured, text, or metadata search request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doStructuredSearchRequest" type="ulexsr:doStructuredSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX structured search request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doTextSearchRequest" type="ulexsr:doTextSearchRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX text search request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getAttachmentRequest" type="ulexsr:getAttachmentRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for attachments.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getAttachmentResponse" type="ulexsr:getAttachmentResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to request for attachments.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getAvailabilityRequest" type="ulexsr:getAvailabilityRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX availability request.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getAvailabilityResponse" type="ulexsr:getAvailabilityResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to availability request</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getCapabilitiesRequest" type="ulexsr:getCapabilitiesRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for capabilities from service provider.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getCapabilitiesResponse" type="ulexsr:getCapabilitiesResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to a request for service provider capabilities.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataItemRequest" type="ulexsr:getDataItemRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for a Data Item.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataItemResponse" type="ulexsr:getDataItemResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to a request for a Data Item.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataItemWithAttachmentsRequest" type="ulexsr:getDataItemRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for a Data Item with all attachments included.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataItemWithAttachmentsResponse"
+                type="ulexsr:getDataItemWithAttachmentsResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to a request for a Data Item with all attachments included.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataOwnersRequest" type="ulexsr:getDataOwnersRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for data owners available through a service provider.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getDataOwnersResponse" type="ulexsr:getDataOwnersResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response to request for data owners available through a service provider.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="getRenderedDataItemRequest" type="ulexsr:getDataItemRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX request for rendered Data Items.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
 </xsd:schema>

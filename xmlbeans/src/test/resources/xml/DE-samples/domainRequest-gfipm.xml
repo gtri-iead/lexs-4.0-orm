@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: domainRequest-gfipm.xml 28450 2011-09-28 06:13:47Z ys34 $
+    Original : 9/10/2009
+    LEXS version  : 4.0
+    ULEX version : 2.0
+    Description   : 
+        Sample XML instance for the domain request message.
+-->
+<ulexde:domainRequest
+
+    xmlns:ulex="http://ulex.gov/ulex/2.0" 
+    xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"    
+    xmlns:ulexde="http://ulex.gov/domainexchange/2.0"
+    xmlns:ulexcodes="http://ulex.gov/codes/2.0"    
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+    
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.1" 
+    xmlns:im="http://niem.gov/niem/domains/immigration/2.1" 
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.1"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+    xmlns:lexs="http://lexs.gov/lexs/4.0" 
+    xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://ulex.gov/domainexchange/2.0 ../../xsd/ulex.gov/ulex-domain-exchange/2.0/ulex-domain-exchange.xsd">
+    
+    <ulex:DomainRequestMessage>
+        <ulex:DEMessageMetadata>
+            <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+            <ulex:ULEXImplementation>
+                <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+                <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+            </ulex:ULEXImplementation>
+            <ulex:MessageDateTime>2006-12-17T09:30:47.0Z</ulex:MessageDateTime>
+            <wsa:MessageID>uuid:ab19b2f2-d64c-44c6-ab18-61dde2f25e61</wsa:MessageID>
+            <lexs:DataSensitivityText>SBU</lexs:DataSensitivityText>
+            <!--====================== Message Origin ==========================-->
+            <ulex:MessageOriginMetadata>
+                <lexs:SystemIdentifier>
+                    <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+                    <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                    <lexs:SystemID>SysF</lexs:SystemID>                
+                </lexs:SystemIdentifier>
+                <lexs:SystemContact>
+                    <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                    <nc:PersonSurName>Jones</nc:PersonSurName>
+                    <nc:ContactTelephoneNumber>
+                        <nc:FullTelephoneNumber>
+                            <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                        </nc:FullTelephoneNumber>
+                    </nc:ContactTelephoneNumber>
+                </lexs:SystemContact>
+            </ulex:MessageOriginMetadata>
+            <!--====================== Message Destination ==========================-->
+            <lexs:MessageDestinationIdentifier>
+                <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+                <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                <lexs:SystemID>SysE</lexs:SystemID>
+            </lexs:MessageDestinationIdentifier>
+        </ulex:DEMessageMetadata>
+        <ulex:UserAssertionSAML>
+            <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
+                ID="_5d2d4835eb069818ee291d4a0e11dff2"
+                IssueInstant="2010-01-28T18:51:03.548Z" Version="2.0">
+                <saml:Issuer
+                    Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">
+                    https://idp.ref.gfipm.net/idp/shibboleth
+                </saml:Issuer>
+                <!--
+                <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                 [XML digital signature removed for brevity]
+                </ds:Signature>
+                -->
+                <saml:Subject>
+                    <saml:NameID
+                        Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient">
+                        _a587e69b6d76f7aad403b795c8160b8a
+                    </saml:NameID>
+                    <saml:SubjectConfirmation
+                        Method="urn:oasis:names:tc:SAML:2.0:cm:bearer">
+                        <saml:SubjectConfirmationData Address="10.50.14.130"
+                            InResponseTo="_d6f2631f57762c11f41dd05bf6310a34"
+                            NotOnOrAfter="2010-01-28T18:56:03.548Z"
+                            Recipient="https://rhelsp.ref.gfipm.net/Shibboleth.sso/SAML2/POST" />
+                    </saml:SubjectConfirmation>
+                </saml:Subject>
+                <saml:Conditions NotBefore="2010-01-28T18:51:03.548Z"
+                    NotOnOrAfter="2010-01-28T18:56:03.548Z">
+                    <saml:AudienceRestriction>
+                        <saml:Audience>
+                            https://rhelsp.ref.gfipm.net/shibboleth
+                        </saml:Audience>
+                    </saml:AudienceRestriction>
+                </saml:Conditions>
+                <saml:AuthnStatement AuthnInstant="2010-01-28T18:51:03.452Z"
+                    SessionIndex="ad5e97f7afbe0a0372890b3a744f0d8a16dd8ae6621d30cf89a9409c62dbcd0c">
+                    <saml:SubjectLocality Address="10.50.14.130" />
+                    <saml:AuthnContext>
+                        <saml:AuthnContextDeclRef>
+                            urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport
+                        </saml:AuthnContextDeclRef>
+                    </saml:AuthnContext>
+                </saml:AuthnStatement>
+                <saml:AttributeStatement>
+                    <saml:Attribute Name="gfipm:2.0:user:GivenName"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            Michael
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:SurName"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            Scott
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:FederationId"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            GFIPM:IDP:ExampleIDP:USER:ms01
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:TelephoneNumber"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            404-555-9876
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:EmailAddressText"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            ms01@gfipm.net
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:EmployerName"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            Dunder Mifflin
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                    <saml:Attribute Name="gfipm:2.0:user:IdentityProviderId"
+                        NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:uri">
+                        <saml:AttributeValue
+                            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xsi:type="xs:string">
+                            GFIPM:IDP:ExampleIDP
+                        </saml:AttributeValue>
+                    </saml:Attribute>
+                </saml:AttributeStatement>
+            </saml:Assertion>
+        </ulex:UserAssertionSAML>
+        <ulex:DomainAttribute>
+            <ulex:DomainName>http://www.w3.org/TR/xmlschema-0/</ulex:DomainName>
+            <apo:purchaseOrder xmlns:apo="http://www.example.com/PO1" orderDate="1999-10-20">
+                <apo:shipTo country="US">
+                    <apo:name>Alice Smith</apo:name>
+                    <apo:street>123 Maple Street</apo:street>
+                </apo:shipTo>
+                <apo:billTo country="US">
+                    <apo:name>Robert Smith</apo:name>
+                    <apo:street>8 Oak Avenue</apo:street>
+                </apo:billTo>
+                <apo:comment>Hurry, my lawn is going wild</apo:comment>
+            </apo:purchaseOrder>
+        </ulex:DomainAttribute>
+    </ulex:DomainRequestMessage>
+</ulexde:domainRequest>

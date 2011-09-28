@@ -4,170 +4,168 @@
     Namespace     : xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
     Description   : ULEX Subscribe Notify Exchange Auxiliary Message Format Schema
 -->
-<xsd:schema 
-    xmlns:ulex="http://ulex.gov/ulex/2.0"
-    xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
-    xmlns:lexs="http://lexs.gov/lexs/4.0"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://ulex.gov/subscribenotify/2.0"
-    elementFormDefault="qualified"
-    attributeFormDefault="unqualified"
-    version="TBD">
-
-    <xsd:import
-        namespace="http://ulex.gov/ulex/2.0"
-        schemaLocation="../../ulex/2.0/ulex.xsd"/>
-
-    <xsd:import
-        namespace="http://lexs.gov/lexs/4.0"
-        schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
-
-    <xsd:annotation>
-        <xsd:documentation>ULEX Subscribe Notify Exchange Auxiliary Message Format Schema. The main schema for ULEX-SN is oasis-open.org/wsn/b-2/b-2.xsd</xsd:documentation>
-    </xsd:annotation>
-    <!-- SUBSCRIPTIONS -->
-    <xsd:element name="SubscriptionAbstract" abstract="true">
-        <xsd:annotation>
-            <xsd:documentation>A data concept for a subscription.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="MatchSubscription" type="ulexsn:SubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SimilarSearchSubscription" type="ulexsn:SubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to searches by other users that are similar to the provided search query.  The end user specifies search terms, and the notification producer delivers a notification every time another user searches on terms that are similar to those specified in the subscription request.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced when another user searches on "John Doe".  There are two types of search subscriptions: identical and similar. For an identical search subscription, the two searches must be identical in all fields and field values.  For a similar search subscription, the two searches should be similar but not necessarily identical. The definition of "similar" is open to interpretation by the notification producer.  For example, one system might compare two searches based on a fuzzy comparison of person first name and last name only.  Another system might take an exact comparison of identifying numbers into account when comparing two searches.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="IdenticalSearchSubscription" type="ulexsn:SubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to searches by other users that are identical to the provided search query.  The end user specifies search terms, and the notification producer delivers a notification every time another user searches on terms that are identical to those specified in the subscription request.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced when another user searches on "John Doe".  There are two types of search subscriptions: identical and similar. For an identical search subscription, the two searches must be identical in all fields and field values.  For a similar search subscription, the two searches should be similar but not necessarily identical. The definition of "similar" is open to interpretation by the notification producer.  For example, one system might compare two searches based on a fuzzy comparison of person first name and last name only.  Another system might take an exact comparison of identifying numbers into account when comparing two searches.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemSearchSubscription" type="ulexsn:DataItemSubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to searches by other users that result in specific Data Item IDs.  For example, if an end user specifies the Data Item ID "123456", a notification will be produced when another user searches on "John Doe", if that search includes Data Item 123456 in its results.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemRetrievalSubscription" type="ulexsn:DataItemSubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to retrievals by other users that result in specific Data Item IDs.  For example, if a subscription specifies the Data Item ID "123456", a notification will be produced when another user retrieves Data Item 123456.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="TopicSubscription" type="ulexsn:TopicSubscriptionType" substitutionGroup="ulexsn:SubscriptionAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A subscription to a topic or a topic tree described by the TopicNamespace and supported by the notification producer as described in wsnt:NotificationProducerRP.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-
-    <!-- SUBSCRIPTIONS TYPES -->
-    <xsd:complexType name="DataItemSubscriptionType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a subscription to retrievals or searches by other users that result in specific Data Item IDs.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
-            <xsd:element ref="ulex:DataItemID"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="SubscriptionType">
-        <xsd:annotation>
-            <xsd:appinfo>BUSINESS_RULE must have one child element</xsd:appinfo>
-            <xsd:documentation>A data type for a subscription.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:SearchRequestMetadata" minOccurs="0"/>
-            <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
-            <xsd:element ref="ulex:SubscriptionQueryAbstract"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="TopicSubscriptionType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a subscription to a topic or a topic tree described by the TopicNamespace and supported by notification producer as described in wsnt:NotificationProducerRP.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    
-    <!-- NOTIFICATIONS -->
-    <xsd:element name="SubscriptionNotificationAbstract" abstract="true">
-        <xsd:annotation>
-            <xsd:documentation>A data concept for a subscription notification message.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemSearchSubscriptionNotification" type="ulexsn:SearchSubscriptionNotificationType" substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A notification produced if search results contain the Data Item ID of interest.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="DataItemRetrievalSubscriptionNotification" type="ulexsn:RetrievalSubscriptionNotificationType" substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A notification produced if another user retrieves the Data Item ID of interest.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="MatchSubscriptionNotification" type="ulexsn:MatchSubscriptionNotificationType" substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A notification to a subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="SearchSubscriptionNotification" type="ulexsn:SearchSubscriptionNotificationType" substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A notification produced if another user runs similar or exact searches.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:element name="TopicSubscriptionNotification" type="ulexsn:TopicSubscriptionNotificationType" substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
-        <xsd:annotation>
-            <xsd:documentation>A notification to a topic subscription that contains a Data Item that matched to a given topic.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-
-    <!-- NOTIFICATIONS TYPES -->    
-    <xsd:complexType name="SearchSubscriptionNotificationType">
-        <xsd:annotation>
-            <xsd:appinfo>BUSINESS_RULE    do we need to have ulex:ResponseMetadata ?</xsd:appinfo>
-            <xsd:documentation>A data type for a search subscription notification message.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:SearchOriginMetadata"/>
-            <xsd:element ref="ulex:SubscriptionQueryAbstract" minOccurs="0"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="RetrievalSubscriptionNotificationType">
-        <xsd:annotation>
-            <xsd:appinfo>BUSINESS_RULE    do we need to have ulex:ResponseMetadata ?</xsd:appinfo>
-            <xsd:documentation>A data type for a retrieval subscription notification message.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:RetrievalOriginMetadata"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="MatchSubscriptionNotificationType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a notification to a subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:ResponseMetadata"/>
-            <xsd:element ref="ulex:SearchResponseMetadata"/>
-            <xsd:element ref="ulex:SearchResultPackage" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:complexType name="TopicSubscriptionNotificationType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a notification to a topic subscription that contains a Data Item that matched to a given topic.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:SNMessageMetadata"/>
-            <xsd:element ref="ulex:MessageItemAbstract" maxOccurs="unbounded"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    
+<xsd:schema xmlns:ulex="http://ulex.gov/ulex/2.0"
+            xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
+            xmlns:lexs="http://lexs.gov/lexs/4.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://ulex.gov/subscribenotify/2.0"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="2.0.PDSRDE.">
+   <xsd:import namespace="http://ulex.gov/ulex/2.0" schemaLocation="../../ulex/2.0/ulex.xsd"/>
+   <xsd:import namespace="http://lexs.gov/lexs/4.0"
+               schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
+   <xsd:annotation>
+      <xsd:documentation>ULEX Subscribe Notify Exchange Auxiliary Message Format Schema. The main schema for ULEX-SN is oasis-open.org/wsn/b-2/b-2.xsd</xsd:documentation>
+   </xsd:annotation>
+   <xsd:complexType name="DataItemSubscriptionType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a subscription to retrievals or searches by other users that result in specific Data Item IDs.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
+         <xsd:element ref="ulex:DataItemID"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="MatchSubscriptionNotificationType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a notification to a subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:ResponseMetadata"/>
+         <xsd:element ref="ulex:SearchResponseMetadata"/>
+         <xsd:element ref="ulex:SearchResultPackage" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="RetrievalSubscriptionNotificationType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a retrieval subscription notification message.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:RetrievalOriginMetadata"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SearchSubscriptionNotificationType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a search subscription notification message.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:SearchOriginMetadata"/>
+         <xsd:element ref="ulex:SubscriptionQueryAbstract" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="SubscriptionType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a subscription.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:SearchRequestMetadata" minOccurs="0"/>
+         <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
+         <xsd:element ref="ulex:SubscriptionQueryAbstract"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TopicSubscriptionNotificationType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a notification to a topic subscription that contains a Data Item that matched to a given topic.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:MessageItemAbstract" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="TopicSubscriptionType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a subscription to a topic or a topic tree described by the TopicNamespace and supported by notification producer as described in wsnt:NotificationProducerRP.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:SNMessageMetadata"/>
+         <xsd:element ref="ulex:UserAssertionAbstract" minOccurs="0"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="DataItemRetrievalSubscription" type="ulexsn:DataItemSubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to retrievals by other users that result in specific Data Item IDs.  For example, if a subscription specifies the Data Item ID "123456", a notification will be produced when another user retrieves Data Item 123456.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemRetrievalSubscriptionNotification"
+                type="ulexsn:RetrievalSubscriptionNotificationType"
+                substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A notification produced if another user retrieves the Data Item ID of interest.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemSearchSubscription" type="ulexsn:DataItemSubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to searches by other users that result in specific Data Item IDs.  For example, if an end user specifies the Data Item ID "123456", a notification will be produced when another user searches on "John Doe", if that search includes Data Item 123456 in its results.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="DataItemSearchSubscriptionNotification"
+                type="ulexsn:SearchSubscriptionNotificationType"
+                substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A notification produced if search results contain the Data Item ID of interest.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="IdenticalSearchSubscription" type="ulexsn:SubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to searches by other users that are identical to the provided search query.  The end user specifies search terms, and the notification producer delivers a notification every time another user searches on terms that are identical to those specified in the subscription request.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced when another user searches on "John Doe".  There are two types of search subscriptions: identical and similar. For an identical search subscription, the two searches must be identical in all fields and field values.  For a similar search subscription, the two searches should be similar but not necessarily identical. The definition of "similar" is open to interpretation by the notification producer.  For example, one system might compare two searches based on a fuzzy comparison of person first name and last name only.  Another system might take an exact comparison of identifying numbers into account when comparing two searches.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="MatchSubscription" type="ulexsn:SubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="MatchSubscriptionNotification"
+                type="ulexsn:MatchSubscriptionNotificationType"
+                substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A notification to a subscription to new or modified Data Items that match a search query.  The end user specifies search terms, and the notification producer delivers a notification every time one or more Data Items are created or modified that match those search terms. This can include any kind of search supported by the publisher, including a structured query, a text query, or a metadata search.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced whenever a new or modified Data Item appears that includes the first name John and the last name Doe.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SearchSubscriptionNotification"
+                type="ulexsn:SearchSubscriptionNotificationType"
+                substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A notification produced if another user runs similar or exact searches.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SimilarSearchSubscription" type="ulexsn:SubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to searches by other users that are similar to the provided search query.  The end user specifies search terms, and the notification producer delivers a notification every time another user searches on terms that are similar to those specified in the subscription request.  For example, if the end user specifies "first name is John and last name is Doe", a notification will be produced when another user searches on "John Doe".  There are two types of search subscriptions: identical and similar. For an identical search subscription, the two searches must be identical in all fields and field values.  For a similar search subscription, the two searches should be similar but not necessarily identical. The definition of "similar" is open to interpretation by the notification producer.  For example, one system might compare two searches based on a fuzzy comparison of person first name and last name only.  Another system might take an exact comparison of identifying numbers into account when comparing two searches.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SubscriptionAbstract" abstract="true">
+      <xsd:annotation>
+         <xsd:documentation>A data concept for a subscription.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="SubscriptionNotificationAbstract" abstract="true">
+      <xsd:annotation>
+         <xsd:documentation>A data concept for a subscription notification message.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="TopicSubscription" type="ulexsn:TopicSubscriptionType"
+                substitutionGroup="ulexsn:SubscriptionAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A subscription to a topic or a topic tree described by the TopicNamespace and supported by the notification producer as described in wsnt:NotificationProducerRP.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="TopicSubscriptionNotification"
+                type="ulexsn:TopicSubscriptionNotificationType"
+                substitutionGroup="ulexsn:SubscriptionNotificationAbstract">
+      <xsd:annotation>
+         <xsd:documentation>A notification to a topic subscription that contains a Data Item that matched to a given topic.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
 </xsd:schema>

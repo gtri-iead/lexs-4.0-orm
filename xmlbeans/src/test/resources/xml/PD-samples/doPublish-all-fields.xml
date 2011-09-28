@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-all-fields.xml 28109 2011-09-01 14:43:59Z ys34 $
+    Document: $Id: doPublish-all-fields.xml 28465 2011-09-28 14:58:24Z ys34 $
     Original: 3/27/2006
     LEXS version  : 4.0
     ULEX version : 2.0
@@ -1083,7 +1083,7 @@
                             <j:VictimSeeksProsecutionIndicator>true</j:VictimSeeksProsecutionIndicator>
                         </j:IncidentVictim>
                         <nc:Lessor s:id="Lessor2">
-                            <nc:RoleOfPersonReference s:ref="Org1"/>
+                            <nc:RoleOfOrganizationReference s:ref="Org1"/>
                         </nc:Lessor>
                     </lexsdigest:EntityOrganization>
 
@@ -2813,7 +2813,7 @@
                                 <nc:DateTime>1968-08-13T14:20:00.0Z</nc:DateTime>
                             </nc:AssociationEndDate>
                             <nc:ActivityReference s:ref="Arrest1"/>
-                            <nc:PersonReference s:ref="Officer1"/>
+                            <nc:PersonReference s:ref="Person3"/>
                         </j:ActivityEnforcementOfficialAssociation>
                         <j:ActivityInformationAbstracterPersonAssociation>
                             <nc:AssociationBeginDate>
@@ -2883,7 +2883,7 @@
                                 <nc:DateTime>1968-08-13T14:20:00.0Z</nc:DateTime>
                             </nc:AssociationEndDate>
                             <nc:ActivityReference s:ref="Case1"/>
-                            <nc:PersonReference s:ref="Judge1"/>
+                            <nc:PersonReference s:ref="Person5"/>
                         </j:ActivityJudicialOfficialAssociation>
                         <j:ActivityLocationAssociation>
                             <nc:AssociationBeginDate>
@@ -5528,8 +5528,6 @@
                     </lexsdigest:Associations>
                 </lexs:Digest>
                 <!--======================= Data from another community ======================-->
-                <!-- This example includes a very simple structured payload so that the SameAsDigest and SameAsPayload associations can be shown.  Normally the
-                        StructuredPayload would not have an ID, but one is shown here as part of the illustration/test of the SameAsPayloadAssociation.  -->
                 <ulex:StructuredPayload ulexlib:id="Payload1">
                     <ulex:StructuredPayloadMetadata>
                         <!-- URI is an identifier that uniquely identifies the community (or program)  that defined the schema for this structured payload.  -->
@@ -5546,8 +5544,8 @@
                                 <j:IncidentArrestMadeIndicator>true</j:IncidentArrestMadeIndicator>
                             </j:Incident>
                             <new:Person s:id="PayloadPerson1">
+                                <!-- This person has 2 SMTs. -->
                                 <new:PersonPhysicalFeature s:id="PayloadPF1">
-                                    <!-- This person has 2 SMTs.  Sample illustrates use of AttachmentLinkReference in a structured payload element to indicate which tattoo image goes with which element. -->
                                     <nc:PhysicalFeatureDescriptionText>Help Tattoo</nc:PhysicalFeatureDescriptionText>
                                 </new:PersonPhysicalFeature>
                                 <new:PersonPhysicalFeature s:id="PayloadPF2">
@@ -5598,21 +5596,9 @@
                 </ulex:AttachmentSummary>
                 <!--=======================  Link objects from the structured payload to the digest  =======================-->
                 <ulex:Linkages>
-                    <!-- This association exists for cases where there is a structured payload that is not LEXS aware, meaning that the structured payload 
-                        objects cannot point "up" to objects in the LEXS digest.  This example has a rudimentary structured payload which does point to 
-                        digest objects.   However for the purposes of testing elements and showing sequence, the SameAsPayloadAssociation is shown 
-                        below.  -->    
                     <ulexlib:SameAsConnection>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Incident1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="Payload1" ulexlib:nonValidatingObjectReference="SPIncident1"/>
-                    </ulexlib:SameAsConnection>
-                    <ulexlib:SameAsConnection>
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="PAttachment3"/>
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="Payload1" ulexlib:nonValidatingObjectReference="PayloadPF1"/>
-                    </ulexlib:SameAsConnection>
-                    <ulexlib:SameAsConnection>
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="PAttachment4"/>
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="Payload1" ulexlib:nonValidatingObjectReference="PayloadPF2"/>
                     </ulexlib:SameAsConnection>
                     <ulexlib:SameAsConnection>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
@@ -5641,16 +5627,12 @@
                     </ulexlib:AttachmentSummaryConnection>
                     <lexsdigest:CrimeSceneImageConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
+                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Location1"/>
                     </lexsdigest:CrimeSceneImageConnection>
                     <lexsdigest:PersonImageConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
                     </lexsdigest:PersonImageConnection>
-                    <lexsdigest:ItemImageConnection>
-                        <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Location1"/>
-                    </lexsdigest:ItemImageConnection>
                     <lexsdigest:ItemImageConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Item1"/>
@@ -5662,10 +5644,12 @@
                     <lexsdigest:PersonSMTImageConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment3"/>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
+                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="Payload1" ulexlib:nonValidatingObjectReference="PayloadPF1"/>
                     </lexsdigest:PersonSMTImageConnection>
                     <lexsdigest:PersonSMTImageConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment4"/>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
+                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="Payload1" ulexlib:nonValidatingObjectReference="PayloadPF2"/>
                     </lexsdigest:PersonSMTImageConnection>
                     <lexsdigest:SupportingDocumentationConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
@@ -5677,7 +5661,7 @@
                     <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/XMLViewer.xsl</ulex:AttachmentURI>
                     <ulex:AttachmentSizeValue>1</ulex:AttachmentSizeValue>
                     <ulex:RenderingMethodCode>XSLT10</ulex:RenderingMethodCode>
-                    <ulex:RenderingOutputFormatID>application/xml+xslt</ulex:RenderingOutputFormatID>
+                    <ulex:RenderingOutputFormatID>application/xslt+xml</ulex:RenderingOutputFormatID>
                     <ulex:RenderingOutputFormatStandardName>MIME</ulex:RenderingOutputFormatStandardName>
                     <ulex:RenderingParameter>
                         <ulex:RenderingParameterName>SubmissionOfficer</ulex:RenderingParameterName>
@@ -5761,7 +5745,7 @@
                 <lexs:AttachmentContentBinary>
                     <nc:BinaryBase64Object>PD94bWwgdmVyc2lvbj0iMS4wIj8+DQo8IS0tDQogICAgRG9jdW1lbnQgICA6ICRJZDoganhkbXZpZXcueHNsLHYgMS4yIDIwMDQvMDYvMTYgMjE6Mjk6NTYgc2hyb20gRXhwICQNCiAgICBEZXNjcmlwdGlvbjogR2VuZXJpYyBzdHlsZXNoZWV0IGFueSBYTUwgZGF0YSBmaWxlLiBTdHlsZXNoZWV0IGlkZWEgaXMgYmFzZWQgb24gdGhlIGFydGljbGUgYnkgQ3JhaWcgQmVycnkgaW4gWE1MSm91cm5hbCANCgkJCQkJCVVzZXMgQVNDSUkgY2hhcmFjdGVycyByYXRoZXIgdGhhbiBHSUYgaW1hZ2VzIHNvIGV4dGVybmFsIGZpbGVzIGFyZSBub3QgbmVlZGVkLCBhbmQgdG8gc3BlZWQgcHJvY2Vzc2luZw0KLS0+DQo8eHNsOnN0eWxlc2hlZXQgdmVyc2lvbj0iMS4wIg0KICB4bWxuczp4c2w9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvWFNML1RyYW5zZm9ybSI+DQoNCiAgPHhzbDpvdXRwdXQNCiAgICBtZXRob2Q9Imh0bWwiDQogICAgZW5jb2Rpbmc9IlVURi04Ig0KICAgIGluZGVudD0ieWVzIg0KICAgIHZlcnNpb249IjEuMCINCiAgICBvbWl0LXhtbC1kZWNsYXJhdGlvbj0ieWVzIg0KICAgIG1lZGlhLXR5cGU9InRleHQvaHRtbCINCiAgICBzdGFuZGFsb25lPSJ5ZXMiLz4NCg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIvY2hpbGQ6OipbMV0iPg0KICAgIDxodG1sPg0KICAgICAgPGhlYWQ+DQogICAgICAgIDx0aXRsZT5EYXRhIFZpZXc8L3RpdGxlPg0KICAgICAgICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KICAgICAgICAgIGJvZHkgeyBmb250LXNpemU6IHNtYWxsZXIgfQ0KICAgICAgICAgIGRpdiwgaW1nIHsgYm9yZGVyOiAwcHg7IG1hcmdpbjogMHB4OyBwYWRkaW5nOiAwcHggfQ0KICAgICAgICAgIGRpdi5Ob2RlICogeyB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlIH0NCiAgICAgICAgICBpLkF0dHJpYnV0ZVZhbCAgeyBjb2xvcjogcmdiKDUwLDEyNywxMjcpIH0NCiAgICAgICAgICBpLkVsZW1lbnRWYWwgIHsgY29sb3I6IHJnYig0MCwwLDI1NSkgfQ0KICAgICAgICAgIGIuQXR0cmlidXRlICAgeyBjb2xvcjogIzc3MTUxRiB9DQogICAgICAgIDwvc3R5bGU+DQogICAgICA8L2hlYWQ+DQogICAgICA8Ym9keT4NCiAgICAgICAgPGI+PHhzbDp2YWx1ZS1vZiBzZWxlY3Q9Im5hbWUoKSIvPjwvYj4NCiAgICAgICAgPHhzbDphcHBseS10ZW1wbGF0ZXMgbW9kZT0ibGluZSIvPg0KICAgICAgPC9ib2R5Pg0KICAgIDwvaHRtbD4NCiAgPC94c2w6dGVtcGxhdGU+DQoNCiAgPCEtLSBTaG93IGVhY2ggdHJlZSBsaW5lIC0tPg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIqIiBtb2RlPSJsaW5lIj4NCiAgICA8ZGl2IGNsYXNzPSJOb2RlIj4NCiAgICAgIDx4c2w6Y2FsbC10ZW1wbGF0ZSBuYW1lPSJncmFmdCIvPg0KICAgICAgPHhzbDphcHBseS10ZW1wbGF0ZXMgc2VsZWN0PSIuIiBtb2RlPSJpdGVtIi8+DQogICAgPC9kaXY+ICAgIA0KICAgIDx4c2w6YXBwbHktdGVtcGxhdGVzICBzZWxlY3Q9ImNoaWxkOjoqIiBtb2RlPSJsaW5lIi8+DQogIDwveHNsOnRlbXBsYXRlPg0KICANCiAgPHhzbDp0ZW1wbGF0ZSBtYXRjaD0iKiIgbW9kZT0iaXRlbSI+DQogICAgICA8Yj48eHNsOnZhbHVlLW9mIHNlbGVjdD0ibmFtZSgpIi8+PC9iPg0KICAgICAgPHhzbDppZiB0ZXN0PSJAKiI+DQogICAgICAgICAgPHhzbDp0ZXh0PiBbICA8L3hzbDp0ZXh0PiAgICAgIA0KICAgICAgICAgICAgPHhzbDpmb3ItZWFjaCBzZWxlY3Q9IkAqIj4NCiAgICAgICAgICAgICAgICA8YiBjbGFzcz0iQXR0cmlidXRlIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0ibmFtZSgpIi8+PC9iPg0KICAgICAgICAgICAgICAgIDx4c2w6dGV4dD4gPSAiPC94c2w6dGV4dD4NCiAgICAgICAgICAgICAgICA8aSBjbGFzcz0iQXR0cmlidXRlVmFsIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0iLiIvPjwvaT4NCiAgICAgICAgICAgICAgICA8eHNsOnRleHQ+IiA8L3hzbDp0ZXh0Pg0KICAgICAgICAgICAgPC94c2w6Zm9yLWVhY2g+DQogICAgICAgICAgPHhzbDp0ZXh0PiBdIDwveHNsOnRleHQ+DQogICAgICA8L3hzbDppZj4NCiAgICAgIDx4c2w6dGV4dD4gICAgPC94c2w6dGV4dD4NCiAgICAgIDxpIGNsYXNzPSJFbGVtZW50VmFsIj48eHNsOnZhbHVlLW9mIHNlbGVjdD0idGV4dCgpIi8+PC9pPg0KICA8L3hzbDp0ZW1wbGF0ZT4NCiAgIA0KICA8IS0tIFRlbXBsYXRlcyB1c2VkIHRvIGdlbmVyYXRlIHRoZSAic3RpY2sgc3RhY2siIG9mDQogICAgICAgdHJlZSBjb25uZWN0b3JzIC0tPg0KDQogIDx4c2w6dGVtcGxhdGUgbmFtZT0iZ3JhZnQiPg0KICAgIDwhLS0gR2VuZXJhdGUgYW5jZXN0b3IgY29ubmVjdG9ycyAtLT4NCiAgICA8eHNsOmFwcGx5LXRlbXBsYXRlcyBzZWxlY3Q9ImFuY2VzdG9yOjoqIiBtb2RlPSJ0cmVlIi8+DQoNCiAgICA8IS0tIEdlbmVyYXRlIGN1cnJlbnQtbm9kZSBjb25uZWN0b3IgLS0+DQogICAgPHhzbDpjaG9vc2U+DQogICAgICA8eHNsOndoZW4gdGVzdD0iZm9sbG93aW5nLXNpYmxpbmc6OioiPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTFjOyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6d2hlbj4NCiAgICAgIDx4c2w6b3RoZXJ3aXNlPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTE0OyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6b3RoZXJ3aXNlPg0KICAgIDwveHNsOmNob29zZT4NCiAgPC94c2w6dGVtcGxhdGU+DQoNCiAgPCEtLSBTdXBwcmVzcyBhbmNlc3RvciBjb25uZWN0b3IgZm9yIHRoZSB0b3Agbm9kZSAtLT4NCg0KICA8eHNsOnRlbXBsYXRlIG1hdGNoPSIvY2hpbGQ6OipbMV0iIG1vZGU9InRyZWUiLz4NCg0KICA8IS0tIFNob3cgYW5jZXN0b3IgY29ubmVjdG9ycyBmb3IgYWxsIG90aGVyIG5vZGUgdHlwZXMgLS0+DQoNCiAgPHhzbDp0ZW1wbGF0ZSBtYXRjaD0iKiIgbW9kZT0idHJlZSI+DQogICAgPHhzbDpjaG9vc2U+DQogICAgICA8eHNsOndoZW4gdGVzdD0iZm9sbG93aW5nLXNpYmxpbmc6OioiPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmI3gyNTAyOyZhbXA7bmJzcDs8L3hzbDp0ZXh0Pg0KICAgICAgPC94c2w6d2hlbj4NCiAgICAgIDx4c2w6b3RoZXJ3aXNlPg0KICAgICAgICA8eHNsOnRleHQgZGlzYWJsZS1vdXRwdXQtZXNjYXBpbmc9InllcyI+JmFtcDtuYnNwOyZhbXA7bmJzcDsmYW1wO25ic3A7JiN4MjIxOTsmYW1wO25ic3A7PC94c2w6dGV4dD4NCiAgICAgIDwveHNsOm90aGVyd2lzZT4NCiAgICA8L3hzbDpjaG9vc2U+DQogIDwveHNsOnRlbXBsYXRlPg0KDQo8L3hzbDpzdHlsZXNoZWV0Pg==</nc:BinaryBase64Object>
                     <nc:BinaryDescriptionText>XML Stylesheet for pretty-printing any XML content</nc:BinaryDescriptionText>
-                    <nc:BinaryFormatID>application/xml+xslt</nc:BinaryFormatID>
+                    <nc:BinaryFormatID>application/xslt+xml</nc:BinaryFormatID>
                     <nc:BinaryFormatStandardName>MIME</nc:BinaryFormatStandardName>
                     <nc:BinarySizeValue>10000</nc:BinarySizeValue>
                     <nc:BinaryCategoryText>Stylesheet</nc:BinaryCategoryText>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Document: $Id: getCapabilitiesRequest.xml 27479 2011-07-27 06:25:45Z ys34 $
+    Document: $Id: getCapabilitiesRequest.xml 28466 2011-09-28 15:05:10Z ys34 $
     Original : 11/6/2009
     LEXS version  : 4.0
     ULEX version : 2.0
@@ -17,9 +17,7 @@
     xmlns:wsa="http://www.w3.org/2005/08/addressing"
     
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="
-        http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd 
-">
+    xsi:schemaLocation="http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd">
     <ulex:ServiceProviderRequestMessage>
         <ulex:SRMessageMetadata>
             <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>

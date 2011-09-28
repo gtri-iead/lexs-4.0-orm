@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-non-digest-aware.xml 28109 2011-09-01 14:43:59Z ys34 $
+    Document: $Id: doPublish-non-digest-aware.xml 28471 2011-09-28 16:37:20Z ys34 $
     Original: 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for doPublish message containing non digest aware structured payload.
+    Description   : 
+        Sample XML instance for the publish message containing non digest aware structured payload.
 -->
 <ulexpd:doPublish 
     xmlns:new="http://somewhere.gov/new-community" 
@@ -131,15 +132,32 @@
                         <new:Report>
                             <new:Person s:id="PSPPerson1">
                                 <nc:PersonHairStyleText>pageboy</nc:PersonHairStyleText>
+                                <nc:PersonName>
+                                    <nc:PersonGivenName>John</nc:PersonGivenName>
+                                    <nc:PersonSurName>Doe</nc:PersonSurName>
+                                </nc:PersonName>                                
                             </new:Person>
+                            <new:Person s:id="PSPPerson2">
+                                <nc:PersonHairStyleText>box</nc:PersonHairStyleText>
+                                <nc:PersonName>
+                                    <nc:PersonGivenName>Bill</nc:PersonGivenName>
+                                    <nc:PersonSurName>Smith</nc:PersonSurName>
+                                </nc:PersonName>                                
+                            </new:Person>                            
                             <new:Association s:id="PSPAssoc1">
                                 <new:AssociationCircumstance>Cellmates</new:AssociationCircumstance>
+                                <nc:PersonReference s:ref="PSPPerson1"/>
+                                <nc:PersonReference s:ref="PSPPerson2"/>                                
                             </new:Association>
                         </new:Report>
                     </ulex:StructuredPayloadContent>
                 </ulex:StructuredPayload>
                 <!--=======================  Link objects from the structured payload to the digest  =======================-->
                 <ulex:Linkages>
+                    <ulexlib:SameAsConnection>
+                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
+                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="PSP1" ulexlib:nonValidatingObjectReference="PSPPerson1"/>
+                    </ulexlib:SameAsConnection>
                     <ulexlib:SameAsConnection>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Assoc1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="PSP1" ulexlib:nonValidatingObjectReference="PSPAssoc1"/>

@@ -4,66 +4,59 @@
     Namespace     : xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"
     Description   : ULEX Publish and Discover Message Format Schema
 -->
-<xsd:schema 
-    xmlns:ulex="http://ulex.gov/ulex/2.0"
-    xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"
-    xmlns:lexs="http://lexs.gov/lexs/4.0"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://ulex.gov/publishdiscover/2.0"
-    elementFormDefault="qualified"
-    attributeFormDefault="unqualified"
-    version="TBD">
-    
-    <xsd:import
-        namespace="http://ulex.gov/ulex/2.0"
-        schemaLocation="../../ulex/2.0/ulex.xsd"/>
-
-    <xsd:import
-        namespace="http://lexs.gov/lexs/4.0"
-        schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
-        
-    <xsd:annotation>
-        <xsd:documentation>ULEX Publish Discover Message Format Schema</xsd:documentation>
-    </xsd:annotation>
-	<!-- LEXS PD one-way operation -->
-    <xsd:element name="doPublish" type="ulexpd:doPublishType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX publish (submission to a data repository) method.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doPublishType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX publish (submission to a data repository) method.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:PublishMessageContainer"/>
-        </xsd:sequence>
-    </xsd:complexType>
-	<!-- LEXS PD in-out operation -->
-    <xsd:element name="doPublishAcknowledgedRequest" type="ulexpd:doPublishAcknowledgedRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX publish (submission to a data repository) method with a request for acknowledgment.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doPublishAcknowledgedRequestType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX publish (submission to a data repository) method with a request for acknowledgment.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:PublishMessage"/>
-        </xsd:sequence>
-    </xsd:complexType>
-    <xsd:element name="doPublishAcknowledgedResponse" type="ulexpd:doPublishAcknowledgedResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A ULEX response method that acknowledges receipt of a publish message.</xsd:documentation>
-        </xsd:annotation>
-    </xsd:element>
-    <xsd:complexType name="doPublishAcknowledgedResponseType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a ULEX response method that acknowledges receipt of a publish message.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element ref="ulex:PublishMessageAcknowledgment"/>
-        </xsd:sequence>
-    </xsd:complexType>
+<xsd:schema xmlns:ulex="http://ulex.gov/ulex/2.0"
+            xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"
+            xmlns:lexs="http://lexs.gov/lexs/4.0"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://ulex.gov/publishdiscover/2.0"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="2.0.PDSRDE.">
+   <xsd:import namespace="http://ulex.gov/ulex/2.0" schemaLocation="../../ulex/2.0/ulex.xsd"/>
+   <xsd:import namespace="http://lexs.gov/lexs/4.0"
+               schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
+   <xsd:annotation>
+      <xsd:documentation>ULEX Publish Discover Message Format Schema</xsd:documentation>
+   </xsd:annotation>
+   <xsd:complexType name="doPublishAcknowledgedRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX publish (submission to a data repository) method with a request for acknowledgment.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:PublishMessage"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doPublishAcknowledgedResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX response method that acknowledges receipt of a publish message.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:PublishMessageAcknowledgment"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="doPublishType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a ULEX publish (submission to a data repository) method.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:sequence>
+         <xsd:element ref="ulex:PublishMessageContainer"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element name="doPublish" type="ulexpd:doPublishType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX publish (submission to a data repository) method.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doPublishAcknowledgedRequest"
+                type="ulexpd:doPublishAcknowledgedRequestType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX publish (submission to a data repository) method with a request for acknowledgment.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
+   <xsd:element name="doPublishAcknowledgedResponse"
+                type="ulexpd:doPublishAcknowledgedResponseType">
+      <xsd:annotation>
+         <xsd:documentation>A ULEX response method that acknowledges receipt of a publish message.</xsd:documentation>
+      </xsd:annotation>
+   </xsd:element>
 </xsd:schema>
