@@ -14,4 +14,102 @@
 
     <name>LEXS 4.0 SI 15: XMLBeans Bindings</name>
 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- copy over the lexs schemas during the process-resources phase
+						that way they are present before you start compiling the XMLBeans. Also,
+						 it allows the schemas to live in one central location so they don't have to be
+						updated in multiple places each time they change.-->
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>src/main/xsd</outputDirectory>
+							<resources>          
+								<resource>
+								<directory>../lexs-4.0/xsd</directory>
+								<filtering>true</filtering>
+								</resource>
+							</resources>              
+						</configuration>            
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xmlbeans-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>xmlbeans</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <inherited>true</inherited>
+                <configuration>
+                    <schemaDirectory>${basedir}/src/main/xsd</schemaDirectory>
+                    <!--
+                    <classGenerationDirectory>${project.build.directory}/generated-classes/xmlbeans</classGenerationDirectory>
+                    <sourceGenerationDirectory>${project.build.directory}/generated-sources/xmlbeans</sourceGenerationDirectory>
+                    -->
+                    <staleFile>${project.build.directory}/generated-sources/xmlbeans/.staleFlag</staleFile>
+                    <!--
+                    <catalogLocation>${basedir}/src/main/catalog/resolver-catalog.xml</catalogLocation>
+                    <compiler>c:/Program Files/Java/jdk1.6.0_07/bin/javac.exe</compiler>
+                    -->
+                    <debug>false</debug>
+                    <!-- 
+                    <defaultXmlConfigDir>${basedir}/src/main/xsdconfig</defaultXmlConfigDir>
+                    -->
+                    <download>false</download>
+                    <!--
+                    <generatedSchemaDirectory>${basedir}/xmlbeans-xsds</generatedSchemaDirectory>
+                    -->
+<!--                    <javaSource>1.6</javaSource>-->
+					<javaSource>1.5</javaSource>
+                    <memoryInitialSize>256m</memoryInitialSize>
+                    <memoryMaximumSize>512m</memoryMaximumSize>
+                    <noAnn>false</noAnn>
+                    <noJavac>false</noJavac>
+                    <noPvr>false</noPvr>
+                    <noUpa>false</noUpa>
+                    <noVDoc>false</noVDoc>
+                    <outputJar>${project.build.directory}/lexs-4_0-xmlbeans.jar</outputJar>
+                    <quiet>false</quiet>
+                    <sourceSchemas>
+						<sourceSchema>ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd</sourceSchema>
+                        <sourceSchema>ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd</sourceSchema>
+                        <sourceSchema>ulex.gov/ulex-domain-exchange/2.0/ulex-domain-exchange.xsd</sourceSchema>
+                        <sourceSchema>ulex.gov/ulex-subscribe-notify/2.0/ulex-subscribe-notify.xsd</sourceSchema>
+                    </sourceSchemas>
+                    <verbose>false</verbose>
+                    <xmlConfigs>
+                        <xmlConfig implementation="java.io.File">src/main/xsdconfig/lexs.xsdconfig.xml</xmlConfig>
+                    </xmlConfigs>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+        <dependency>
+            <groupId>org.apache.xmlbeans</groupId>
+            <artifactId>xmlbeans</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>1.1</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document      : $Id: ulex-library.xsd 21245 2011-05-13 21:14:23Z ys34 $
+    Namespace     : xmlns:ulexlib="http://ulex.gov/library/2.0"
+    Description   : library for common ULEX elements
+-->
+<xsd:schema 
+    targetNamespace="http://ulex.gov/library/2.0"
+    version="TBD"
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:annotation>
+        <xsd:documentation>Library for common ULEX elements</xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="AttachmentSummaryConnectionAbstract" abstract="true">
+        <xsd:annotation>
+            <xsd:documentation>A data concept for a mechanism used to link an AttachmentSummary to objects in the Digest and/or Structured Payloads.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="AttachmentSummaryConnection" type="ulexlib:AttachmentSummaryConnectionType" substitutionGroup="ulexlib:AttachmentSummaryConnectionAbstract">
+        <xsd:annotation>
+            <xsd:documentation>A mechanism used to link an AttachmentSummary to objects in the Digest and/or Structured Payloads.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="AttachmentSummaryConnectionType">
+        <xsd:annotation>
+            <xsd:appinfo>BUSINESS_RULE must contain at least one DOR or POR. Multiple AttachmentSummaryReferences allow one connection element to link multiple attachments, such as multiple pictures of a person to a person element.</xsd:appinfo>
+            <xsd:documentation>A data type for a mechanism used to link an AttachmentSummary to objects in the Digest and/or Structured Payloads.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="ulexlib:AttachmentSummaryReference" maxOccurs="unbounded"/>
+            <xsd:element ref="ulexlib:DigestObjectReference" minOccurs="0"/>
+            <xsd:element ref="ulexlib:StructuredPayloadObjectReference" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AttachmentSummaryReference" type="ulexlib:ValidatingObjectReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>A summary of an attachment that can be linked to Digest or Structured Payload objects.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:element name="SameAsConnection" type="ulexlib:SameAsConnectionType">
+        <xsd:annotation>
+            <xsd:documentation>A mechanism used to indicate that an object in the Digest represents the same object as in a Structured Payload, or that an object in a Structured Payload represents the same object as in a different Structured Payload.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="SameAsConnectionType">
+        <xsd:annotation>
+            <xsd:documentation>A data type for a mechanism used to indicate that an object in the Digest represents the same object as in one or more Structured Payloads, or that an object in a Structured Payload represents the same object as in one or more different Structured Payloads.</xsd:documentation>
+            <xsd:appinfo>BUSINESS_RULE must contain at least two child elements (DOR and POR) or (POR and POR).</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element ref="ulexlib:DigestObjectReference" minOccurs="0"/>
+            <xsd:element ref="ulexlib:StructuredPayloadObjectReference" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="DigestObjectReference" type="ulexlib:ValidatingObjectReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>An object in a Digest, which can be a high level object such as a Person or a Vehicle, or a lower level object such as a PersonName.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="ValidatingObjectReferenceType" final="#all">
+        <xsd:annotation>
+            <xsd:documentation>A data type for an object reference that can be validated through standard XML schema validation, where the object being referred to is in the same scope as the referring object.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute ref="ulexlib:validatingObjectReference" use="required"/>
+    </xsd:complexType>
+    <xsd:element name="StructuredPayloadObjectReference" type="ulexlib:NonValidatingObjectReferenceType">
+        <xsd:annotation>
+            <xsd:documentation>An object in a Structured Payload.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:element>
+    <xsd:complexType name="NonValidatingObjectReferenceType" final="#all">
+        <xsd:annotation>
+            <xsd:documentation>A data type for an object reference that cannot be validated through standard XML schema validation, where the object being referred to is NOT in the same scope as the referring object.  This allows reference to an object that is located within a closed container (for example under ulex:StructuredPayload).</xsd:documentation>
+            <xsd:appinfo>BUSINESS_RULE must have either nonValidatingObjectReference or xpathObjectReference attributes present</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:attribute ref="ulexlib:structuredPayloadReference" use="required"/>
+        <xsd:attribute ref="ulexlib:nonValidatingObjectReference" use="optional"/>
+        <xsd:attribute ref="ulexlib:xpathObjectReference" use="optional"/>
+    </xsd:complexType>
+	<!-- reference to the object that is located within the scope of validation -->
+    <xsd:attribute name="validatingObjectReference" type="xsd:IDREF">
+        <xsd:annotation>
+            <xsd:documentation>An object reference that can be validated through standard XML schema validation, where the object being referred to is in the same scope as the referring object.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+	<!-- reference to the object that is located beyond the scope of validation -->
+    <xsd:attribute name="nonValidatingObjectReference" type="xsd:NCName">
+        <xsd:annotation>
+            <xsd:documentation>An object reference that cannot be validated through standard XML schema validation, where the object being referred to is NOT in the same scope as the referring object.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+	<!-- reference to the object using XPath that is located within Structured Payload and relative to the structured payload root element -->
+    <xsd:attribute name="xpathObjectReference" type="xsd:string">
+        <xsd:annotation>
+            <xsd:documentation>An XPath object reference where the object being referred to is inside StructuredPayload.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+	<!--  Reference to the Structured Payload, validating -->
+    <xsd:attribute name="structuredPayloadReference" type="xsd:IDREF">
+        <xsd:annotation>
+            <xsd:documentation>A Structured Payload.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+	<!-- XML ID  -->
+    <xsd:attribute name="id" type="xsd:ID">
+        <xsd:annotation>
+            <xsd:documentation>An attribute used to define XML IDs for ULEX objects which are used as targets of reference elements.</xsd:documentation>
+        </xsd:annotation>
+    </xsd:attribute>
+</xsd:schema>

@@ -1,0 +1,173 @@
+<!-- 
+    Copyright 2004 The Apache Software Foundation
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License. 
+-->
+<xb:config 
+    xmlns:xb="http://xml.apache.org/xmlbeans/2004/02/xbean/config"
+    xmlns:ct="http://xmlbeans.apache.org/samples/catalog">
+
+	<xb:namespace uri="http://lexs.gov/lexs/4.0">
+        <xb:package>gov.lexs.v40</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://lexs.gov/codes/4.0">
+        <xb:package>gov.lexs.codes.v40</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://lexs.gov/digest/4.0">
+        <xb:package>gov.lexs.digest.v40</xb:package>
+    </xb:namespace>
+    
+    <xb:namespace uri="http://niem.gov/niem/appinfo/2.0">
+        <xb:package>gov.niem.appinfo.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/appinfo/2.1">
+        <xb:package>gov.niem.appinfo.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/atf/2.0">
+        <xb:package>gov.niem.atf.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/census/2.0">
+        <xb:package>gov.niem.census.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/dea/2.1">
+        <xb:package>gov.niem.dea.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/emergencyManagement/2.1">
+        <xb:package>gov.niem.domains.emergencymanagement.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/familyServices/2.1">
+        <xb:package>gov.niem.domains.familyservices.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/immigration/2.1">
+        <xb:package>gov.niem.domains.immigration.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/intelligence/2.1">
+        <xb:package>gov.niem.domains.intelligence.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/jxdm/4.1">
+        <xb:package>gov.niem.domains.jxdm.v41</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/maritime/2.1">
+        <xb:package>gov.niem.domains.maritime.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/domains/screening/2.1">
+        <xb:package>gov.niem.domains.screening.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/fbi/2.0">
+        <xb:package>gov.niem.fbi.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/fips_10-4/2.0">
+        <xb:package>gov.niem.fips104.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/hazmat/2.1">
+        <xb:package>gov.niem.hazmat.v21</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/icism/2.0">
+        <xb:package>gov.niem.icism.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="urn:us:gov:ic:ism:v2">
+        <xb:package>us.gov.ic.ism.v2</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/iso_639-3/2.0">
+        <xb:package>gov.niem.iso6393.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/iso_4217/2.0">
+        <xb:package>gov.niem.iso4217.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/niem-core/2.0">
+        <xb:package>gov.niem.niemcore.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/nonauthoritative-code/2.0">
+        <xb:package>gov.niem.nonauthoritativecode.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/proxy/xsd/2.0">
+        <xb:package>gov.niem.proxy.xsd.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/structures/2.0">
+        <xb:package>gov.niem.structures.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/twpdes/2.0">
+        <xb:package>gov.niem.twpdes.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://niem.gov/niem/unece_rec20-misc/2.0">
+        <xb:package>gov.niem.unecerec20misc.v20</xb:package>
+    </xb:namespace>
+    
+    <xb:namespace uri="urn:oasis:names:tc:SAML:2.0:assertion">
+        <xb:package>oasis.names.tc.saml.v20.assertion</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="urn:oasis:names:tc:SAML:2.0:metadata">
+        <xb:package>oasis.names.tc.saml.v20.metadata</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://docs.oasis-open.org/wsn/b-2">
+        <xb:package>org.oasisopen.docs.wsn.b2</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://docs.oasis-open.org/wsn/t-1">
+        <xb:package>org.oasisopen.docs.wsn.t1</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://docs.oasis-open.org/wsrf/bf-2">
+        <xb:package>org.oasisopen.docs.wsrf.bf2</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://docs.oasis-open.org/wsrf/r-2">
+        <xb:package>org.oasisopen.docs.wsrf.r2</xb:package>
+    </xb:namespace>
+
+    <xb:namespace uri="http://ulex.gov/ulex/2.0">
+        <xb:package>gov.ulex.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/codes/2.0">
+        <xb:package>gov.ulex.codes.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/domainexchange/2.0">
+        <xb:package>gov.ulex.domainexchange.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/faults/2.0">
+        <xb:package>gov.ulex.faults.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/library/2.0">
+        <xb:package>gov.ulex.library.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/publishdiscover/2.0">
+        <xb:package>gov.ulex.publishdiscover.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/searchretrieve/2.0">
+        <xb:package>gov.ulex.searchretrieve.v20</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://ulex.gov/subscribenotify/2.0">
+        <xb:package>gov.ulex.subscribenotify.v20</xb:package>
+    </xb:namespace>
+    
+    <xb:namespace uri="http://www.w3.org/2005/08/addressing">
+        <xb:package>org.w3.v200508.addressing</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://www.w3.org/2001/04/xmlenc#">
+        <xb:package>org.w3.v200104.xmlenc</xb:package>
+    </xb:namespace>
+    <xb:namespace uri="http://www.w3.org/XML/1998/namespace">
+        <xb:package>org.w3.xml.v1998.namespace</xb:package>
+    </xb:namespace>
+	<xb:namespace uri="http://www.w3.org/2000/09/xmldsig#">
+        <xb:package>org.w3.v200009.xmldsig</xb:package>
+    </xb:namespace>
+    
+  <!-- If schema doesn't include targenamespace then use 
+	##any indicates all URIs. 
+    A <prefix> is used to prepend to top-level Java type names generated in this namespace. 
+    A <suffix> is used to append to top-level Java types names generated in this namespace.
+    The <prefix> and <suffix> are not used for inner Java type definitions.
+  -->
+    <xb:namespace uri="##any">
+        <xb:prefix>Xml</xb:prefix>
+        <xb:suffix>Bean</xb:suffix>
+    </xb:namespace>
+</xb:config>

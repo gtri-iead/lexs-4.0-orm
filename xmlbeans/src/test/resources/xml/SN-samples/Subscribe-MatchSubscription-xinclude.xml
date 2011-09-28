@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsnt:Subscribe 
+    xmlns:ulex="http://ulex.gov/ulex/2.0"
+    xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
+    xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
+    xmlns:ulexcodes="http://ulex.gov/codes/2.0"    
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:em="http://niem.gov/niem/domains/emergencyManagement/2.0"
+    xmlns:im="http://niem.gov/niem/domains/immigration/2.0"
+    xmlns:scr="http://niem.gov/niem/domains/screening/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexs="http://lexs.gov/lexs/4.0"
+    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+
+    xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+    xsi:schemaLocation="http://docs.oasis-open.org/wsn/b-2 ../../xsd/oasis-open.org/wsn/b-2/b-2.xsd">
+    <wsnt:ConsumerReference>
+        <wsa:Address>http://www.cjis.fbi.gov/OneDOJ/017</wsa:Address>
+    </wsnt:ConsumerReference>
+    <wsnt:Filter>
+        <ulexsn:MatchSubscription>
+            <ulex:SNMessageMetadata>
+                <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+                <ulex:ULEXImplementation>
+                    <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+                    <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+                </ulex:ULEXImplementation>
+                <ulex:MessageDateTime>2006-12-17T09:30:47.0Z</ulex:MessageDateTime>
+                <wsa:MessageID>http://www.cjis.fbi.gov/OneDOJ/413</wsa:MessageID>
+                <wsa:To>http://www.cjis.fbi.gov/N-DEx/NotificationService</wsa:To>
+                <wsa:ReplyTo>
+                    <wsa:Address>http://www.cjis.fbi.gov/OneDOJ/017</wsa:Address>
+                </wsa:ReplyTo>
+                <wsa:Action>http://docs.oasis-open.org/wsn/bw-2/NotificationProducer/SubscribeRequest</wsa:Action>
+                <!--====================== Message Origin ==========================-->
+                <ulex:MessageOriginMetadata>
+                    <lexs:SystemIdentifier>
+                        <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+                        <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                        <lexs:SystemID>SysF</lexs:SystemID>
+                    </lexs:SystemIdentifier>
+                    <lexs:SystemContact>
+                        <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                        <nc:PersonSurName>Jones</nc:PersonSurName>
+                        <nc:ContactTelephoneNumber>
+                            <nc:FullTelephoneNumber>
+                                <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                            </nc:FullTelephoneNumber>
+                        </nc:ContactTelephoneNumber>
+                    </lexs:SystemContact>
+                </ulex:MessageOriginMetadata>
+                <!--====================== Message Destination ==========================-->
+                <lexs:MessageDestinationIdentifier>
+                    <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+                    <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+                    <lexs:SystemID>SysE</lexs:SystemID>
+                </lexs:MessageDestinationIdentifier>
+            </ulex:SNMessageMetadata>
+            <ulex:SearchRequestMetadata>
+                <lexs:RequestedDataCategoryCode>Person</lexs:RequestedDataCategoryCode>
+                <ulex:MaxItemMatchesNumeric>10</ulex:MaxItemMatchesNumeric>
+                <lexs:SortOrderCode>Date</lexs:SortOrderCode>
+                <ulex:StructuredPayloadsRequestedCode>none</ulex:StructuredPayloadsRequestedCode>
+            </ulex:SearchRequestMetadata>
+            <lexs:UserAssertion>
+                <lexs:UserID>ABC123</lexs:UserID>
+                <nc:PersonGivenName>Bill</nc:PersonGivenName>
+                <nc:PersonSurName>Jones</nc:PersonSurName>
+                <nc:ContactTelephoneNumber>
+                    <nc:NANPTelephoneNumber>
+                        <nc:TelephoneAreaCodeID>111</nc:TelephoneAreaCodeID>
+                        <nc:TelephoneExchangeID>222</nc:TelephoneExchangeID>
+                        <nc:TelephoneLineID>3333</nc:TelephoneLineID>
+                    </nc:NANPTelephoneNumber>
+                </nc:ContactTelephoneNumber>
+                <nc:OrganizationName>ATF</nc:OrganizationName>
+            </lexs:UserAssertion>
+            <ulex:SubscriptionStructuredQuery>
+                <ulex:StructuredQuery>
+                    <!--=======================  1st search term  =======================-->
+                    <ulex:DigestQueryStatement>
+                        <lexs:DigestQueryField>
+                            <lexsdigest:EntityPerson>
+                                <lexsdigest:Person>
+                                    <nc:PersonName>
+                                        <nc:PersonSurName>Jones</nc:PersonSurName>
+                                    </nc:PersonName>
+                                </lexsdigest:Person>
+                            </lexsdigest:EntityPerson>
+                        </lexs:DigestQueryField>
+                        <ulex:QueryMatchCode>exact</ulex:QueryMatchCode>
+                    </ulex:DigestQueryStatement>
+                    <!--=======================  2nd search term  =======================-->
+                    <ulex:DigestQueryStatement>
+                        <lexs:DigestQueryField>
+                            <lexsdigest:EntityPerson>
+                                <lexsdigest:Person>
+                                    <nc:PersonName>
+                                        <nc:PersonGivenName>Tommy</nc:PersonGivenName>
+                                    </nc:PersonName>
+                                </lexsdigest:Person>
+                            </lexsdigest:EntityPerson>
+                        </lexs:DigestQueryField>
+                        <ulex:QueryMatchCode>exact</ulex:QueryMatchCode>
+                    </ulex:DigestQueryStatement>
+                </ulex:StructuredQuery>
+            </ulex:SubscriptionStructuredQuery>
+        </ulexsn:MatchSubscription>
+    </wsnt:Filter>
+    <wsnt:InitialTerminationTime>2009-12-01T09:30:47.0Z</wsnt:InitialTerminationTime>
+</wsnt:Subscribe>
