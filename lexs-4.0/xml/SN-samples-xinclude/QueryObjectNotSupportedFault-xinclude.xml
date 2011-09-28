@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ulexfaults:QueryObjectNotSupportedFault
+    xmlns:wsnt="http://docs.oasis-open.org/wsn/b-2"
+    xmlns:wsrf-bf="http://docs.oasis-open.org/wsrf/bf-2"
+    
+    xmlns:ulex="http://ulex.gov/ulex/2.0"
+    xmlns:ulexfaults="http://ulex.gov/faults/2.0"
+    xmlns:ulexsn="http://ulex.gov/subscribenotify/2.0"
+    xmlns:ulexcodes="http://ulex.gov/codes/2.0"
+    xmlns:ulexlib="http://ulex.gov/library/2.0"
+
+    xmlns:j="http://niem.gov/niem/domains/jxdm/4.1"
+    xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+    xmlns:s="http://niem.gov/niem/structures/2.0"
+    xmlns:lexs="http://lexs.gov/lexs/4.0"
+    xmlns:lexsdigest="http://lexs.gov/digest/4.0"
+
+    xmlns:wsa="http://www.w3.org/2005/08/addressing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ulex.gov/faults/2.0 ../../xsd/ulex.gov/ulex-faults/2.0/ulex-faults.xsd">    
+    <wsrf-bf:Timestamp>2009-12-15T12:13:13</wsrf-bf:Timestamp>
+    <wsrf-bf:ErrorCode dialect="http://ulex.gov/faults/2.0">QueryObjectNotSupportedFault</wsrf-bf:ErrorCode>
+    <wsrf-bf:Description>Unsupported Query Object fault (e.g. query was on vehicle and service provider doesn't handle vehicles).</wsrf-bf:Description>
+    <ulex:SNMessageMetadata>
+        <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>
+        <ulex:ULEXImplementation>
+            <ulex:ULEXImplementationVersionText>4.0</ulex:ULEXImplementationVersionText>
+            <ulex:ULEXImplementationName>LEXS</ulex:ULEXImplementationName>
+        </ulex:ULEXImplementation>
+        <ulex:MessageDateTime>2009-12-15T12:13:13</ulex:MessageDateTime>
+        <wsa:MessageID>http://www.cjis.fbi.gov/N-DEx/NotificationService/741</wsa:MessageID>
+        <!--====================== Message Origin ==========================-->
+        <ulex:MessageOriginMetadata>
+            <lexs:SystemIdentifier>
+                <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+                <nc:OrganizationName>Hypothetical Organization F</nc:OrganizationName>
+                <lexs:SystemID>SysF</lexs:SystemID>
+            </lexs:SystemIdentifier>
+            <lexs:SystemContact>
+                <nc:PersonGivenName>Bob</nc:PersonGivenName>
+                <nc:PersonSurName>Jones</nc:PersonSurName>
+                <nc:ContactTelephoneNumber>
+                    <nc:FullTelephoneNumber>
+                        <nc:TelephoneNumberFullID>404-555-1212</nc:TelephoneNumberFullID>
+                    </nc:FullTelephoneNumber>
+                </nc:ContactTelephoneNumber>
+            </lexs:SystemContact>
+        </ulex:MessageOriginMetadata>
+        <!--====================== Message Destination ==========================-->
+        <lexs:MessageDestinationIdentifier>
+            <!-- OriginatingAgencyID is optional here and was not included in the sample  -->
+            <nc:OrganizationName>Hypothetical Organization E</nc:OrganizationName>
+            <lexs:SystemID>SysE</lexs:SystemID>
+        </lexs:MessageDestinationIdentifier>
+    </ulex:SNMessageMetadata>
+</ulexfaults:QueryObjectNotSupportedFault>
