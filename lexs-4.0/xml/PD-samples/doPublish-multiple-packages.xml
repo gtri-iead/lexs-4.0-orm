@@ -4,7 +4,8 @@
     Original: 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for doPublish message containing multiple packages.
+    Description   : 
+        Sample XML instance for the publish message containing multiple packages.
 -->
 <ulexpd:doPublish 
     xmlns:new="http://somewhere.gov/new-community" 
@@ -278,7 +279,7 @@
             <!--=======================  Message Attachment containing Mug Shot, which is actually a very small mug shot of OJ Simpson  =======================-->
             <!-- Note that this attachment is used for the mug shot for Person A in the 1st package, and Person C in the 2nd package, since they are the same person -->
             <ulex:Attachment>
-                <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/OJmugshot.jpg</ulex:AttachmentURI>
+                <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/mugshot1.jpg</ulex:AttachmentURI>
                 <lexs:AttachmentContentBinary>
                     <nc:BinaryBase64Object>
                         /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a

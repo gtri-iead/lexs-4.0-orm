@@ -5,7 +5,7 @@
     LEXS version  : 4.0
     ULEX version : 2.0
     Description   :
-        Sample XML instance for the attachment search request message.
+        Sample XML instance for the domain action message.
 -->
 <ulexde:domainAction
     

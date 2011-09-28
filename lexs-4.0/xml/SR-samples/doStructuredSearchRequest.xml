@@ -77,7 +77,7 @@
             <lexs:RequestedDataCategoryCode>Person</lexs:RequestedDataCategoryCode>
             <ulex:MaxItemMatchesNumeric>10</ulex:MaxItemMatchesNumeric>
             <lexs:SortOrderCode>Date</lexs:SortOrderCode>
-            <ulex:StructuredPayloadsRequestedCode>none</ulex:StructuredPayloadsRequestedCode>
+            <ulex:StructuredPayloadsRequestedCode>all</ulex:StructuredPayloadsRequestedCode>
         </ulex:SearchRequestMetadata>
         <ulex:StructuredQuery>
             <!--=======================  1st search term  =======================-->

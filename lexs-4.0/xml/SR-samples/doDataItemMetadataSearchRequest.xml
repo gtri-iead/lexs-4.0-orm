@@ -77,7 +77,7 @@
             <lexs:RequestedDataCategoryCode>Person</lexs:RequestedDataCategoryCode>
             <ulex:MaxItemMatchesNumeric>10</ulex:MaxItemMatchesNumeric>
             <lexs:SortOrderCode>Date</lexs:SortOrderCode>
-            <ulex:StructuredPayloadsRequestedCode>none</ulex:StructuredPayloadsRequestedCode>
+            <ulex:StructuredPayloadsRequestedCode>all</ulex:StructuredPayloadsRequestedCode>
         </ulex:SearchRequestMetadata>
 <!--		<ulex:AttachmentSummaryConnectionQName>lexsdigest:CrimeSceneImageConnection</ulex:AttachmentSummaryConnectionQName>-->
 <!--		<ulex:AttachmentSummaryConnectionQName>lexsdigest:ItemImageConnection</ulex:AttachmentSummaryConnectionQName>-->
@@ -90,7 +90,7 @@
 <!--		<ulex:AttachmentSummaryConnectionQName>lexsdigest:CommunicationCaptureAttachmentConnection</ulex:AttachmentSummaryConnectionQName>-->
 <!--		<ulex:AttachmentSummaryConnectionQName>lexsdigest:SupportingDocumentationConnection</ulex:AttachmentSummaryConnectionQName>-->
 		<ulex:AttachmentRequiredIndicator>true</ulex:AttachmentRequiredIndicator>
-		<ulex:DataItemAfterDate>2006-12-17</ulex:DataItemAfterDate>
+		<ulex:DataItemAfterDate>2006-12-10</ulex:DataItemAfterDate>
 		<ulex:DataItemBeforeDate>2006-12-17</ulex:DataItemBeforeDate>
 		<ulex:DataItemGroupAggregationIdentifier>
 			<ulex:DataItemGroupID>ABC</ulex:DataItemGroupID>

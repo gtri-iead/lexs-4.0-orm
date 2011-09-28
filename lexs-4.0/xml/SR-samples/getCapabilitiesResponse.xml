@@ -21,9 +21,7 @@
     xmlns:lexsdigest="http://lexs.gov/digest/4.0"
     
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="
-        http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd 
-">
+    xsi:schemaLocation="http://ulex.gov/searchretrieve/2.0 ../../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd">
     <ulex:CapabilitiesResponseMessage>
         <ulex:SRMessageMetadata>
             <ulex:ULEXFrameworkVersionText>2.0</ulex:ULEXFrameworkVersionText>

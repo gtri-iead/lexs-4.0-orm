@@ -4,7 +4,8 @@
     Original: 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for doPublish message containing non digest aware structured payload.
+    Description   : 
+        Sample XML instance for the publish message containing non digest aware structured payload.
 -->
 <ulexpd:doPublish 
     xmlns:new="http://somewhere.gov/new-community" 

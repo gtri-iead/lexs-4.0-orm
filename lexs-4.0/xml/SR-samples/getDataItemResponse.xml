@@ -167,8 +167,8 @@
                         <nc:RoleOfPersonReference s:ref="Sub3"/>
                     </j:Subject>
                 </lexsdigest:EntityPerson>
-                <lexsdigest:EntityTelephoneNumber s:id="T1">
-                    <lexsdigest:TelephoneNumber>
+                <lexsdigest:EntityTelephoneNumber>
+                    <lexsdigest:TelephoneNumber s:id="T1">
                         <nc:FullTelephoneNumber>
                             <nc:TelephoneNumberFullID>4805105192</nc:TelephoneNumberFullID>
                         </nc:FullTelephoneNumber>
@@ -184,7 +184,7 @@
                 <!--=======================  Associations  =======================-->
                 <lexsdigest:Associations>
                     <j:AccompliceAssociation>
-                        <nc:PersonReference s:ref="Sub3R"/>
+                        <nc:PersonReference s:ref="Sub3"/>
                         <j:SubjectReference s:ref="Sub2R"/>
                     </j:AccompliceAssociation>
                     <lexsdigest:EntityTelephoneNumberAssociation>
@@ -202,7 +202,7 @@
                 </lexsdigest:Associations>
             </lexs:Digest>
             <!--======================= Data from another community ======================-->
-            <ulex:StructuredPayload>
+            <ulex:StructuredPayload  ulexlib:id="SP1">
                 <ulex:StructuredPayloadMetadata>
                     <!-- URI is an identifier that uniquely identifies the community (or program)  that defined the schema for this structured payload.  -->
                     <!-- This should be the namespace for the the structured payload. -->
@@ -213,8 +213,11 @@
                     <ulex:CommunityVersionText>1.0</ulex:CommunityVersionText>
                 </ulex:StructuredPayloadMetadata>
                 <ulex:StructuredPayloadContent>        
-                    <new:Person>
+                    <new:Person s:id="SP1P1">
                         <nc:PersonHairStyleText>pageboy</nc:PersonHairStyleText>
+                        <nc:PersonPhysicalFeature s:id="SP1Feature1">
+                            <nc:PhysicalFeatureDescriptionText>Tattoo details</nc:PhysicalFeatureDescriptionText>
+                        </nc:PersonPhysicalFeature>                        
                     </new:Person>
                 </ulex:StructuredPayloadContent>
             </ulex:StructuredPayload>
@@ -224,6 +227,18 @@
                 <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/TommyJonesMugshot1.jpg</ulex:AttachmentURI>
                 <ulex:AttachmentViewableIndicator>true</ulex:AttachmentViewableIndicator>
             </ulex:AttachmentSummary>
+            <!--======================= New block for linkages ======================-->
+            <ulex:Linkages>
+                <ulexlib:SameAsConnection>
+                    <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Sub2"/>
+                    <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1P1"/>
+                </ulexlib:SameAsConnection>
+                <lexsdigest:PersonSMTImageConnection>
+                    <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment2"/>
+                    <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Sub3"/>
+                    <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Feature1"/>
+                </lexsdigest:PersonSMTImageConnection>
+            </ulex:Linkages>            
             <!--=======================  Narrative  =======================-->
             <lexs:NarrativeText xsi:nil="false">Report of Investigation SUMMARY OF EVENT: Purchase of machine gun from Tommy Jones on June 14, 2006 NARRATIVE: On June 14, 2006, Agent Swanson, acting as an undercover buyer, purchased 1 9mm MAC 10 machinegun, SN 54-9365, from a JONES, Tommy at his place of occupation, Branton Tires in San Jose, California.  Purchase price was $500.00 cash.  Mr. Jones stated that he could obtain more weapons within the next two weeks.</lexs:NarrativeText>
         </ulex:DataItemPackage>

@@ -258,7 +258,7 @@
                 <ulex:StructuredPayloadContent>
                     <new:IncidentReport xmlns:new="http://somewhere.gov/new-community">
                         <new:Person s:id="SPPerson1">
-                            <nc:PersonHairStyleText>pageboy</nc:PersonHairStyleText>
+                            <nc:PersonHairStyleText s:id="SPPersonHairStyleText">pageboy</nc:PersonHairStyleText>
                         </new:Person>
                         <j:Incident s:id="SPIncident1">
                             <j:IncidentArrestMadeIndicator s:id="SPIncident1Indicator">true</j:IncidentArrestMadeIndicator>
@@ -311,9 +311,11 @@
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="ESub2PSN"/>
                         <ulex:QueryMatchText>exact</ulex:QueryMatchText>
                     </ulex:MatchDigestElementReference>
+                    <!-- this part of the response is valid only for the response to structured search 
+                    request with optional fields sample (doStructuredSearchRequest-with-optional-fields.xml) -->
                     <ulex:MatchStructuredPayloadElementReference>
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SPIncident1Indicator"/>
-                        <ulex:QueryMatchText>ends-with</ulex:QueryMatchText>
+                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SPPersonHairStyleText"/>
+                        <ulex:QueryMatchText>contains</ulex:QueryMatchText>
                     </ulex:MatchStructuredPayloadElementReference>
                 </ulex:MatchObjectDetails>                
             </ulex:MatchDetails>

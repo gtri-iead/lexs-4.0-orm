@@ -4,7 +4,8 @@
     Original: 7/19/2007
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for LEXS 4.0 and ULEX 2.0
+    Description   : 
+        Sample XML instance for the publish message with ICISM markings.
 -->
 <ulexpd:doPublish 
 
@@ -112,49 +113,71 @@
                 <!--======================= Structured Payload #1 ======================-->
                 <ulex:StructuredPayload ulexlib:id="SP1">
                     <ulex:StructuredPayloadMetadata>
-                        <ulex:CommunityURI>NDEX</ulex:CommunityURI>
-                        <ulex:CommunityVersionText>2.0</ulex:CommunityVersionText>
+                        <ulex:CommunityURI>http://fbi.gov/cjis/N-DEx/IncidentArrest/2.x</ulex:CommunityURI>
+                        <ulex:CommunityDescriptionText>N-DEx IncidentArrest</ulex:CommunityDescriptionText>
+                        <ulex:CommunityVersionText>2.x</ulex:CommunityVersionText>
                     </ulex:StructuredPayloadMetadata>
                     <ulex:StructuredPayloadContent>
-                        <new1:Report xmlns:new1="http://somewhere.gov/new-community1">
-                            <new1:Person s:id="SP1Person1">
-                                <new1:PersonAlternateName s:id="SP1AltName1">
-                                    <nc:PersonPrefixNameText>Dr.</nc:PersonPrefixNameText>
-                                    <nc:PersonPhysicalFeature s:id="SP1Feature1">
-                                        <!-- more fields -->
-                                    </nc:PersonPhysicalFeature>
-                                </new1:PersonAlternateName>
-                            </new1:Person>
-                            <!-- PayloadOnlyThing is some object that has no foundation in the Digest, so no reference to Digest -->
-                            <new1:PayloadOnlyThing s:id="SP1Thing1">
-                                <new1:Whatever1>xyz</new1:Whatever1>
-                            </new1:PayloadOnlyThing>
-                        </new1:Report>
+						<ndexia:ArrestReport 
+							xmlns:ndexia="http://fbi.gov/cjis/N-DEx/IncidentArrest/2.1" 
+							xmlns:mmucc_2="http://niem.gov/niem/mmucc_2/2.0" 
+							xmlns:fbi="http://niem.gov/niem/fbi/2.0" 
+							xmlns:ndexiacodes="http://fbi.gov/cjis/N-DEx/IncidentArrest/codes/2.1">
+							<!--============================== Person 1 =========================-->  
+							<ndexia:Person s:id="SP1Person1"> 
+							  <nc:PersonAlternateName s:id="SP1AltName1">
+								  <nc:PersonMaidenName>Doe</nc:PersonMaidenName>
+							  </nc:PersonAlternateName>
+							  <nc:PersonPhysicalFeature s:id="SP1Feature1">
+                                        <nc:PhysicalFeatureDescriptionText>Tattoo</nc:PhysicalFeatureDescriptionText>
+							  </nc:PersonPhysicalFeature>
+							  <nc:PersonResidentCode>R</nc:PersonResidentCode>
+							</ndexia:Person> 
+                            <!-- PayloadOnlyThing is some object that has no foundation in the Digest -->
+                            <ndexia:PayloadOnlyThing s:id="SP1Thing1">
+                                <ndexia:Whatever1>xyz</ndexia:Whatever1>
+                            </ndexia:PayloadOnlyThing>
+                        </ndexia:ArrestReport>
                     </ulex:StructuredPayloadContent>
                 </ulex:StructuredPayload>
                 <!--======================= Structured Payload #2 ======================-->
                 <ulex:StructuredPayload ulexlib:id="SP2">
                     <ulex:StructuredPayloadMetadata>
-                        <ulex:CommunityURI>RDEX</ulex:CommunityURI>
-                        <ulex:CommunityVersionText>2.4</ulex:CommunityVersionText>
+                        <ulex:CommunityURI>http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/2.x</ulex:CommunityURI>
+                        <ulex:CommunityDescriptionText>N-DEx IncarcerationBookingProbationParole</ulex:CommunityDescriptionText>
+                        <ulex:CommunityVersionText>2.x</ulex:CommunityVersionText>
                     </ulex:StructuredPayloadMetadata>
                     <ulex:StructuredPayloadContent>
-                        <new2:Report xmlns:new2="http://somewhere.gov/new-community2">
-                            <new2:Person s:id="SP2Person1">
-                                <new2:PersonSomething>Something</new2:PersonSomething>
-                            </new2:Person>
+                        <ndexibp2:WarrantInvestigationReport 
+							xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+							xmlns:ansi-nist="http://niem.gov/niem/ansi-nist/2.0" 
+							xmlns:j="http://niem.gov/niem/domains/jxdm/4.0" 
+							xmlns:fbi="http://niem.gov/niem/fbi/2.0" 
+							xmlns:ndexibp2="http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/2.1" 
+							xmlns:ndexibp2codes="http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/codes/2.1" 
+							xmlns:s="http://niem.gov/niem/structures/2.0" 
+							xmlns:scr="http://niem.gov/niem/domains/screening/2.0">
+							<ndexibp2:Person s:id="SP2Person1">
+								<nc:PersonEthnicityCode>N</nc:PersonEthnicityCode>
+								<j:PersonAugmentation>
+									<j:PersonRegisteredOffenderIndicator>false</j:PersonRegisteredOffenderIndicator>
+								</j:PersonAugmentation>
+								<ndexibp2:PersonAugmentation>
+									<ndexibp2:PersonForeignNationalIndicator>false</ndexibp2:PersonForeignNationalIndicator>
+								</ndexibp2:PersonAugmentation>
+							</ndexibp2:Person>
                             <!-- PayloadOnlyThing here builds upon PayloadOnlyThing in the first structured payload -->
-                            <new2:PayloadOnlyThing s:id="SP2Thing1">
-                                <new2:Whatever2>123</new2:Whatever2>
-                            </new2:PayloadOnlyThing>
-                        </new2:Report>
+                            <ndexibp2:PayloadOnlyThing s:id="SP2Thing1">
+                                <ndexibp2:Whatever2>123</ndexibp2:Whatever2>
+                            </ndexibp2:PayloadOnlyThing>
+                        </ndexibp2:WarrantInvestigationReport>
                     </ulex:StructuredPayloadContent>
                 </ulex:StructuredPayload>
-                <!--=======================  Package Attachment Link for Physical Feature  =======================-->
+                <!--=======================  Package Attachment Summary for Physical Feature  =======================-->
                 <ulex:AttachmentSummary ulexlib:id="PAttachment1">
-                    <!-- Attachment link for a specific Physical Feature, which really only makes sense if there are multiples, but keeping instance simple -->
-                    <ulex:AttachmentDescriptionText>Mugshot</ulex:AttachmentDescriptionText>
-                    <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/mugshot1.jpg</ulex:AttachmentURI>
+                    <!-- Attachment summary for a specific Physical Feature, which really only makes sense if there are multiples, but keeping instance simple -->
+                    <ulex:AttachmentDescriptionText>Tattoo</ulex:AttachmentDescriptionText>
+                    <ulex:AttachmentURI>http://www.gtri.org/LEXS/examples/tattoo1.jpg</ulex:AttachmentURI>
                     <ulex:AttachmentViewableIndicator>false</ulex:AttachmentViewableIndicator>
                 </ulex:AttachmentSummary>
                 <!--======================= New block for linkages ======================-->
@@ -162,8 +185,8 @@
                 <ulex:Linkages>
                     <!-- Linkage between a digest high level object and high level objects in 2 payloads.  container attribute is a validating reference. -->
                     <ulexlib:SameAsConnection>
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>  <!-- cardinality 0-1 -->
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Person1"/>  <!-- cardinality 1-n -->
+                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
+                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Person1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP2" ulexlib:nonValidatingObjectReference="SP2Person1"/>
                     </ulexlib:SameAsConnection>
                     <!-- Linkage between a digest lower level element and a payload lower level element.  container attribute is a validating reference. -->
@@ -177,23 +200,10 @@
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Thing1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP2" ulexlib:nonValidatingObjectReference="SP2Thing1"/>
                     </ulexlib:SameAsConnection>
-                    <!-- Linkage between an object in a payload with an attachment link in the LEXS message.  2 validating references and 1 non-validating. -->
+                    <!-- Linkage between an object in a diagest, payload with an attachment summary in the LEXS message. -->
                     <ulexlib:AttachmentSummaryConnection>
-                        <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>  <!-- cardinality 1 -->
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Feature1"/>  <!-- cardinality 0-1 (or 0-n?)-->
-                    </ulexlib:AttachmentSummaryConnection>
-                    <!-- Probably ought to move Digest to AttachmentSummary associations to the new Linkage block for consistency.  -->
-                    <!-- Could make existing EntityAttachmentSummaryAssociation elements follow same linkage mechanism as for Payload to AttachmentSummary, 
-                            Including consideration of making them point to objects inside of entities rather than the Entity elements themselves as they do now.  
-                            In which case the AttachmentSummaryConnection above might look like this instead.  -->
-                    <lexsdigest:PersonSMTImageConnection>  <!-- substitutable in LEXS for ulexlib:AttachmentSummaryConnection (lexs or lexsdigest namespace?) -->
-                        <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>  <!-- cardinality 1 !!! Change to N -->
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>  <!-- cardinality 0-1 -->
-                        <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Feature1"/>
-                    </lexsdigest:PersonSMTImageConnection>
-                    <ulexlib:AttachmentSummaryConnection>
-                        <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>  <!-- cardinality 1 !!! Change to N -->
-                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>  <!-- cardinality 0-1 -->
+                        <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
+                        <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Feature1"/>
                     </ulexlib:AttachmentSummaryConnection>
                 </ulex:Linkages>

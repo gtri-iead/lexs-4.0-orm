@@ -4,7 +4,8 @@
     Original: 11/5/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for LEXS 4.0 and ULEX 2.0 ( doPublishAcknoledgeRequest.xml )
+    Description   :
+        Sample XML instance for the publish acknowledged request message.
 -->
 <ulexpd:doPublishAcknowledgedRequest xmlns:ulex="http://ulex.gov/ulex/2.0" 
     xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"    
@@ -19,9 +20,7 @@
     xmlns:lexsdigest="http://lexs.gov/digest/4.0"
 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="
-        http://ulex.gov/publishdiscover/2.0 ../../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd 
-">
+    xsi:schemaLocation="http://ulex.gov/publishdiscover/2.0 ../../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd">
         
     <ulex:PublishMessage>
         <ulex:PDMessageMetadata>
@@ -34,7 +33,7 @@
             <wsa:MessageID>uuid:ab19b2f2-d64c-44c6-ab18-61dde2f25e61</wsa:MessageID>
             <lexs:DataSensitivityText>SBU</lexs:DataSensitivityText>
         </ulex:PDMessageMetadata>
-    <!--=======================  Data Submitter Metadata  =======================-->
+        <!--=======================  Data Submitter Metadata  =======================-->
         <ulex:DataSubmitterMetadata>
             <lexs:SystemIdentifier>
                 <nc:OrganizationName>Hypothetical Organization C</nc:OrganizationName>

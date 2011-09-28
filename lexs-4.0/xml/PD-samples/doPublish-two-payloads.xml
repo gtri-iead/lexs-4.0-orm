@@ -4,7 +4,8 @@
     Original: 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for LEXS 4.0 and ULEX 2.0 
+    Description   : 
+		Sample XML instance for the publish message with two structured payloads. 
 -->
 <ulexpd:doPublish 
     xmlns:new="http://somewhere.gov/new-community" 
@@ -24,9 +25,7 @@
     xmlns:lexsdigest="http://lexs.gov/digest/4.0"
 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="
-        http://ulex.gov/publishdiscover/2.0 ../../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd 
-">
+    xsi:schemaLocation="http://ulex.gov/publishdiscover/2.0 ../../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd">
     <ulex:PublishMessageContainer>
         <ulex:PublishMessage>
             <ulex:PDMessageMetadata>
@@ -123,44 +122,66 @@
                 <!--======================= Structured Payload #1 ======================-->
                 <ulex:StructuredPayload ulexlib:id="SP1">
                     <ulex:StructuredPayloadMetadata>
-                        <ulex:CommunityURI>http://somewhere.gov/new-community1</ulex:CommunityURI>
-                        <ulex:CommunityDescriptionText>New Community 1</ulex:CommunityDescriptionText>
-                        <ulex:CommunityVersionText>1.0</ulex:CommunityVersionText>
+                        <ulex:CommunityURI>http://fbi.gov/cjis/N-DEx/IncidentArrest/2.x</ulex:CommunityURI>
+                        <ulex:CommunityDescriptionText>N-DEx IncidentArrest</ulex:CommunityDescriptionText>
+                        <ulex:CommunityVersionText>2.x</ulex:CommunityVersionText>
                     </ulex:StructuredPayloadMetadata>
                     <ulex:StructuredPayloadContent>
-                        <new1:Report xmlns:new1="http://somewhere.gov/new-community1">
-                            <new1:Person s:id="SPPerson1">
-                                <new1:PersonAlternateName s:id="SP1AltName1">
-                                    <nc:PersonPrefixNameText>Dr.</nc:PersonPrefixNameText>
-                                </new1:PersonAlternateName>
-                            </new1:Person>
-                            <!-- IRC Address is an element for which there is no corresponding Digest element, so no reference to Digest -->
-                            <new1:IRCAddress s:id="IRC1">
-                                <new1:UserName>xyz</new1:UserName>
-                                <new1:System>abc</new1:System>
-                            </new1:IRCAddress>
-                        </new1:Report>
+						<ndexia:ArrestReport 
+							xmlns:ndexia="http://fbi.gov/cjis/N-DEx/IncidentArrest/2.1" 
+							xmlns:mmucc_2="http://niem.gov/niem/mmucc_2/2.0" 
+							xmlns:fbi="http://niem.gov/niem/fbi/2.0" 
+							xmlns:ndexiacodes="http://fbi.gov/cjis/N-DEx/IncidentArrest/codes/2.1">
+							<ndexia:Person s:id="SP1Person1"> 
+							  <nc:PersonAlternateName s:id="SP1AltName1">
+								  <nc:PersonMaidenName>Doe</nc:PersonMaidenName>
+							  </nc:PersonAlternateName>
+							  <nc:PersonPhysicalFeature s:id="SP1Feature1">
+                                    <nc:PhysicalFeatureDescriptionText>Tattoo</nc:PhysicalFeatureDescriptionText>
+							  </nc:PersonPhysicalFeature>
+							  <nc:PersonResidentCode>R</nc:PersonResidentCode>
+							</ndexia:Person> 
+                            <!-- IRC Address is an element for which there is no corresponding Digest element -->
+                            <ndexia:IRCAddress s:id="IRC1">
+                                <ndexia:UserName>xyz</ndexia:UserName>
+                                <ndexia:System>abc</ndexia:System>
+                            </ndexia:IRCAddress>
+                        </ndexia:ArrestReport>
                     </ulex:StructuredPayloadContent>
                 </ulex:StructuredPayload>
                 <!--======================= Structured Payload #2 ======================-->
                 <ulex:StructuredPayload ulexlib:id="SP2">
                     <ulex:StructuredPayloadMetadata>
-                        <ulex:CommunityURI>http://somewhere.gov/new-community2</ulex:CommunityURI>
-                        <ulex:CommunityDescriptionText>New Community 2</ulex:CommunityDescriptionText>
-                        <ulex:CommunityVersionText>1.0</ulex:CommunityVersionText>
+                        <ulex:CommunityURI>http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/2.x</ulex:CommunityURI>
+                        <ulex:CommunityDescriptionText>N-DEx IncarcerationBookingProbationParole</ulex:CommunityDescriptionText>
+                        <ulex:CommunityVersionText>2.x</ulex:CommunityVersionText>
                     </ulex:StructuredPayloadMetadata>
                     <ulex:StructuredPayloadContent>
-                        <new2:Report xmlns:new2="http://somewhere.gov/new-community2">
-                            <new2:Person s:id="SPPerson2">
-                                <new2:PersonAlternateName s:id="SPPersonName2">
-                                    <new2:PersonPrefixNameHonoraryIndicator>true</new2:PersonPrefixNameHonoraryIndicator>
-                                </new2:PersonAlternateName>
-                                <new2:HackerName>The Doctor</new2:HackerName>
-                            </new2:Person>
-                            <new2:IRCAddress s:id="SPIRCAddr1">
-                                <new2:FirstUseDate>2000-01-01</new2:FirstUseDate>
-                            </new2:IRCAddress>
-                        </new2:Report>
+                        <ndexibp2:WarrantInvestigationReport 
+							xmlns:nc="http://niem.gov/niem/niem-core/2.0" 
+							xmlns:ansi-nist="http://niem.gov/niem/ansi-nist/2.0" 
+							xmlns:j="http://niem.gov/niem/domains/jxdm/4.0" 
+							xmlns:fbi="http://niem.gov/niem/fbi/2.0" 
+							xmlns:ndexibp2="http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/2.1" 
+							xmlns:ndexibp2codes="http://fbi.gov/cjis/N-DEx/IncarcerationBookingProbationParole/codes/2.1" 
+							xmlns:s="http://niem.gov/niem/structures/2.0" 
+							xmlns:scr="http://niem.gov/niem/domains/screening/2.0">
+							<ndexibp2:Person s:id="SPPerson2">
+							  <nc:PersonAlternateName s:id="SPPersonName2">
+								  <nc:PersonMaidenName>Doe</nc:PersonMaidenName>
+							  </nc:PersonAlternateName>							
+								<nc:PersonEthnicityCode>N</nc:PersonEthnicityCode>
+								<j:PersonAugmentation>
+									<j:PersonRegisteredOffenderIndicator>false</j:PersonRegisteredOffenderIndicator>
+								</j:PersonAugmentation>
+								<ndexibp2:PersonAugmentation>
+									<ndexibp2:PersonForeignNationalIndicator>false</ndexibp2:PersonForeignNationalIndicator>
+								</ndexibp2:PersonAugmentation>
+							</ndexibp2:Person>
+                            <ndexibp2:IRCAddress s:id="SPIRCAddr1">
+                                <ndexibp2:FirstUseDate>2000-01-01</ndexibp2:FirstUseDate>
+                            </ndexibp2:IRCAddress>
+                        </ndexibp2:WarrantInvestigationReport>
                     </ulex:StructuredPayloadContent>
                 </ulex:StructuredPayload>
                 <!--=======================  Link objects from the structured payload to the digest  =======================-->

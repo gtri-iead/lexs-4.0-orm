@@ -4,207 +4,195 @@
     Namespace     : xmlns:ulex="http://ulex.gov/codes/2.0"
     Description   : ULEX Codes
 -->
-<xsd:schema
-    targetNamespace="http://ulex.gov/codes/2.0"
-    version="TBD"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:ulexcodes="http://ulex.gov/codes/2.0">
-
-    <xsd:simpleType name="AdvisoryCategoryCodeSimpleType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a code that identifies a kind of ULEX warning.  Note that some warnings might become errors and should be reported as such.  For example, if an unsupported element is provided in a search query and that is the only element provided, the query cannot be processed and the result should be an error; versus an unsupported element that can be ignored with the result based on remaining elements.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="FuzzyMatchNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Fuzzy Match Not Supported</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="WildcardNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Wildcards Not Supported (service provider does not support wildcard queries in unstructured searches)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="LogicalOperatorsNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Logical Operators Not Supported (service provider does not support logical AND/OR queries in unstructured searches)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="PhrasesNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Phrases Not Supported (service provider does not support exact phrase queries in unstructured searches)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="QueryObjectNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Unsupported Query Object (e.g. query was on vehicle and service provider doesn't handle vehicles)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="QueryFieldNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Unsupported Query Field (e.g. query was on SSN and service provider doesn't include SSN)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="QueryOperatorNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Unsupported Query Operator (e.g. query included a wildcard and service provider only does exact)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="QuantityMismatch">
-                <xsd:annotation>
-                    <xsd:documentation>Quantity Mismatch (user asked for maximum # of hits, service provider supplied different #)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="PointerInformationOnly">
-                <xsd:annotation>
-                    <xsd:documentation>Pointer Information Only (service provider can only return contact information for follow-up, but no data)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="MultipleValuesNotSupported">
-                <xsd:annotation>
-                    <xsd:documentation>Multiple Values Not Supported (search query included multiple values for a search field, but service provider only supports single values)</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="OtherWarning">
-                <xsd:annotation>
-                    <xsd:documentation>Other Warning (other issues that don't fall into above categories)  </xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="DataItemPublishInstructionCodeSimpleType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a code that indicates whether to insert or delete a Data Item.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="Insert">
-                <xsd:annotation>
-                    <xsd:documentation>Insert Data Item</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="Delete">
-                <xsd:annotation>
-                    <xsd:documentation>Delete Data Item</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="QueryMatchCodeSimpleType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a code that identifies a kind of match the query requests for a query field.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="fuzzy">
-                <xsd:annotation>
-                    <xsd:documentation>fuzzy match</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="exact">
-                <xsd:annotation>
-                    <xsd:documentation>exact match</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="gt">
-                <xsd:annotation>
-                    <xsd:documentation>greater than</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="ge">
-                <xsd:annotation>
-                    <xsd:documentation>greater or equal to</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="lt">
-                <xsd:annotation>
-                    <xsd:documentation>less than</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="le">
-                <xsd:annotation>
-                    <xsd:documentation>less than or equal to</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="wildcard">
-                <xsd:annotation>
-                    <xsd:documentation>wildcard match</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="RenderingMethodCodeSimpleType">
-        <xsd:annotation>
-            <xsd:documentation>A data type for a code that identifies a rendering method.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="Narrative">
-                <xsd:annotation>
-                    <xsd:documentation>Attachment was prerendered into unstructured narrative text</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="Other">
-                <xsd:annotation>
-                    <xsd:documentation>Other transformation</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="RenderedBinary">
-                <xsd:annotation>
-                    <xsd:documentation>Attachment was prerendered into a binary</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="XSLT10">
-                <xsd:annotation>
-                    <xsd:documentation>XSLT 1.0 Transformation</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="XSLT20">
-                <xsd:annotation>
-                    <xsd:documentation>XSLT 2.0 Transformation</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="ResultCodeSimpleType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a code that identifies a response status.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="Success">
-                <xsd:annotation>
-                    <xsd:documentation>Execution of the request was successful</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="Warning">
-                <xsd:annotation>
-                    <xsd:documentation>Execution of the request produced warnings</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="StructuredPayloadsRequestedCodeSimpleType">
-        <xsd:annotation>
-            <xsd:appinfo>SRONLY</xsd:appinfo>
-            <xsd:documentation>A data type for a code that indicates whether responses should include all available structured payloads or no structured payloads.  "All" indicates that the requesting system would like to receive any structured payloads that the service provider can return.  "None" indicates that the requesting system does not want any structured payloads.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:restriction base="xsd:token">
-            <xsd:enumeration value="all">
-                <xsd:annotation>
-                    <xsd:documentation>all payloads should be returned</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-            <xsd:enumeration value="none">
-                <xsd:annotation>
-                    <xsd:documentation>no payloads should be returned</xsd:documentation>
-                </xsd:annotation>
-            </xsd:enumeration>
-        </xsd:restriction>
-    </xsd:simpleType>
-
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:ulexcodes="http://ulex.gov/codes/2.0"
+            targetNamespace="http://ulex.gov/codes/2.0"
+            version="2.0.PDSRDE.">
+   <xsd:simpleType name="AdvisoryCategoryCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that identifies a kind of ULEX warning.  Note that some warnings might become errors and should be reported as such.  For example, if an unsupported element is provided in a search query and that is the only element provided, the query cannot be processed and the result should be an error; versus an unsupported element that can be ignored with the result based on remaining elements.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="FuzzyMatchNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Fuzzy Match Not Supported</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="WildcardNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Wildcards Not Supported (service provider does not support wildcard queries in unstructured searches)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="LogicalOperatorsNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Logical Operators Not Supported (service provider does not support logical AND/OR queries in unstructured searches)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="PhrasesNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Phrases Not Supported (service provider does not support exact phrase queries in unstructured searches)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="QueryObjectNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Unsupported Query Object (e.g. query was on vehicle and service provider doesn't handle vehicles)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="QueryFieldNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Unsupported Query Field (e.g. query was on SSN and service provider doesn't include SSN)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="QueryOperatorNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Unsupported Query Operator (e.g. query included a wildcard and service provider only does exact)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="QuantityMismatch">
+            <xsd:annotation>
+               <xsd:documentation>Quantity Mismatch (user asked for maximum # of hits, service provider supplied different #)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="PointerInformationOnly">
+            <xsd:annotation>
+               <xsd:documentation>Pointer Information Only (service provider can only return contact information for follow-up, but no data)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="MultipleValuesNotSupported">
+            <xsd:annotation>
+               <xsd:documentation>Multiple Values Not Supported (search query included multiple values for a search field, but service provider only supports single values)</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="OtherWarning">
+            <xsd:annotation>
+               <xsd:documentation>Other Warning (other issues that don't fall into above categories)  </xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="DataItemPublishInstructionCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that indicates whether to insert or delete a Data Item.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="Insert">
+            <xsd:annotation>
+               <xsd:documentation>Insert Data Item</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="Delete">
+            <xsd:annotation>
+               <xsd:documentation>Delete Data Item</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="QueryMatchCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that identifies a kind of match the query requests for a query field.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="fuzzy">
+            <xsd:annotation>
+               <xsd:documentation>fuzzy match</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="exact">
+            <xsd:annotation>
+               <xsd:documentation>exact match</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="gt">
+            <xsd:annotation>
+               <xsd:documentation>greater than</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="ge">
+            <xsd:annotation>
+               <xsd:documentation>greater or equal to</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="lt">
+            <xsd:annotation>
+               <xsd:documentation>less than</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="le">
+            <xsd:annotation>
+               <xsd:documentation>less than or equal to</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="wildcard">
+            <xsd:annotation>
+               <xsd:documentation>wildcard match</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="RenderingMethodCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that identifies a rendering method.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="Narrative">
+            <xsd:annotation>
+               <xsd:documentation>Attachment was prerendered into unstructured narrative text</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="Other">
+            <xsd:annotation>
+               <xsd:documentation>Other transformation</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="RenderedBinary">
+            <xsd:annotation>
+               <xsd:documentation>Attachment was prerendered into a binary</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="XSLT10">
+            <xsd:annotation>
+               <xsd:documentation>XSLT 1.0 Transformation</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="XSLT20">
+            <xsd:annotation>
+               <xsd:documentation>XSLT 2.0 Transformation</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="ResultCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that identifies a response status.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="Success">
+            <xsd:annotation>
+               <xsd:documentation>Execution of the request was successful</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="Warning">
+            <xsd:annotation>
+               <xsd:documentation>Execution of the request produced warnings</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType name="StructuredPayloadsRequestedCodeSimpleType">
+      <xsd:annotation>
+         <xsd:documentation>A data type for a code that indicates whether responses should include all available structured payloads or no structured payloads.  "All" indicates that the requesting system would like to receive any structured payloads that the service provider can return.  "None" indicates that the requesting system does not want any structured payloads.</xsd:documentation>
+      </xsd:annotation>
+      <xsd:restriction base="xsd:token">
+         <xsd:enumeration value="all">
+            <xsd:annotation>
+               <xsd:documentation>all payloads should be returned</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+         <xsd:enumeration value="none">
+            <xsd:annotation>
+               <xsd:documentation>no payloads should be returned</xsd:documentation>
+            </xsd:annotation>
+         </xsd:enumeration>
+      </xsd:restriction>
+   </xsd:simpleType>
 </xsd:schema>
