@@ -9,7 +9,7 @@
             xmlns:ulex="http://ulex.gov/ulex/2.0"
             xmlns:ulexfaults="http://ulex.gov/faults/2.0"
             targetNamespace="http://ulex.gov/faults/2.0"
-            version="2.0.PDSRDE.SR7_2011-09-28">
+            version="2.0.PDSRDE.">
    <xsd:import namespace="http://ulex.gov/ulex/2.0" schemaLocation="../../ulex/2.0/ulex.xsd"/>
    <xsd:import namespace="http://docs.oasis-open.org/wsrf/bf-2"
                schemaLocation="../../../oasis-open.org/wsrf/bf-2/bf-2.xsd"/>

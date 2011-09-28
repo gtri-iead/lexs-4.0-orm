@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-icism.xml 28465 2011-09-28 14:58:24Z ys34 $
+    Document: $Id: doPublish-icism.xml 28109 2011-09-01 14:43:59Z ys34 $
     Original: 7/19/2007
     LEXS version  : 4.0
     ULEX version : 2.0
@@ -200,7 +200,7 @@
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP1" ulexlib:nonValidatingObjectReference="SP1Thing1"/>
                         <ulexlib:StructuredPayloadObjectReference ulexlib:structuredPayloadReference="SP2" ulexlib:nonValidatingObjectReference="SP2Thing1"/>
                     </ulexlib:SameAsConnection>
-                    <!-- Linkage between an object in a digest, payload with an attachment summary in the LEXS message. -->
+                    <!-- Linkage between an object in a diagest, payload with an attachment summary in the LEXS message. -->
                     <ulexlib:AttachmentSummaryConnection>
                         <ulexlib:AttachmentSummaryReference ulexlib:validatingObjectReference="PAttachment1"/>
                         <ulexlib:DigestObjectReference ulexlib:validatingObjectReference="Person1"/>

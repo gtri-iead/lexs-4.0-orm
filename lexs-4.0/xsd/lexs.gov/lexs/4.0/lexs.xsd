@@ -15,7 +15,7 @@
             xmlns:s="http://niem.gov/niem/structures/2.0"
             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="http://lexs.gov/lexs/4.0"
-            version="4.0.PDSRDE.SR7_2011-09-28"
+            version="4.0.PDSRDE."
             elementFormDefault="qualified"
             attributeFormDefault="unqualified">
    <xsd:annotation>

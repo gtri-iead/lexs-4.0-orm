@@ -9,7 +9,7 @@
             xmlns:s="http://niem.gov/niem/structures/2.0"
             xmlns:lexscodes="http://lexs.gov/codes/4.0"
             targetNamespace="http://lexs.gov/codes/4.0"
-            version="4.0.PDSRDE.SR7_2011-09-28">
+            version="4.0.PDSRDE.">
    <xsd:annotation>
       <xsd:documentation>LEXS code lists.</xsd:documentation>
       <xsd:appinfo>

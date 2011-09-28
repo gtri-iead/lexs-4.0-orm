@@ -7,7 +7,7 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:ulexcodes="http://ulex.gov/codes/2.0"
             targetNamespace="http://ulex.gov/codes/2.0"
-            version="2.0.PDSRDE.SR7_2011-09-28">
+            version="2.0.PDSRDE.">
    <xsd:simpleType name="AdvisoryCategoryCodeSimpleType">
       <xsd:annotation>
          <xsd:documentation>A data type for a code that identifies a kind of ULEX warning.  Note that some warnings might become errors and should be reported as such.  For example, if an unsupported element is provided in a search query and that is the only element provided, the query cannot be processed and the result should be an error; versus an unsupported element that can be ignored with the result based on remaining elements.</xsd:documentation>
