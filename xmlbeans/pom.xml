@@ -10,7 +10,7 @@
 
     <name>LEXS 4.0 SI 15: XMLBeans Bindings</name>
 
-    <properties>>
+    <properties>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
     </properties>
 
