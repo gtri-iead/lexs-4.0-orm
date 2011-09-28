@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-with-community.xml 28109 2011-09-01 14:43:59Z ys34 $
+    Document: $Id: doPublish-with-community.xml 28465 2011-09-28 14:58:24Z ys34 $
     Original: 11/9/2009
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for doPublish message containing structured payload with data from another community and linked to the digest.
+    Description   : 
+        Sample XML instance for the publish message containing structured payload with data from another community and linked to the digest.
 -->
 <ulexpd:doPublish 
     xmlns:new="http://somewhere.gov/new-community" 

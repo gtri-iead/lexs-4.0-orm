@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-identities-with-primary.xml 21254 2011-06-03 16:58:21Z ys34 $
+    Document: $Id: doPublish-identities-with-primary.xml 28465 2011-09-28 14:58:24Z ys34 $
     Original: 6/10/2010
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for LEXS 4.0 illustrating use of multiple identities for the same person, with one indicated as the primary (real) one.
+    Description   : 
+            Sample XML instance for the publish message illustrating use of multiple identities for the same person, with one indicated as the primary (real) one.
             Total of 3 identities, one of which is known to the the "real" one.  Person was arrested and provided information indicating he was the person 
             represented here as the second identity.  The primary and second identities are known to belong to the same person.  The third identity may
             also be for the same person.

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-    Document: $Id: doPublish-identities-without-primary.xml 21254 2011-06-03 16:58:21Z ys34 $
+    Document: $Id: doPublish-identities-without-primary.xml 28465 2011-09-28 14:58:24Z ys34 $
     Original: 6/10/2010
     LEXS version  : 4.0
     ULEX version : 2.0
-    Description   : Sample XML instance for LEXS 4.0 illustrating use of multiple identities for the same person, when it is unknown which is the primary (real) 
+    Description   : 
+            Sample XML instance for the publish message illustrating use of multiple identities for the same person, when it is unknown which is the primary (real) 
             one.  Total of 3 identities, two of which is known to the the same person.  Person was arrested and provided information indicating he was the person 
             represented here as the second identity.  The first and second identities are known to belong to the same person.  The third identity may also be for 
             the same person.
@@ -159,7 +160,7 @@
                             <intel:IdentityReference s:ref="Identity3"/>
                             <intel:PotentialIdentityMatchDescriptionText>Everything except name matches.</intel:PotentialIdentityMatchDescriptionText>
                         </intel:PotentialIdentityMatchAssociation>
-                        <!--    Arrestee to Arrest Association     -->
+                        <!--  Arrestee to Arrest Association     -->
                         <nc:ActivityInvolvedPersonAssociation>
                             <nc:ActivityReference s:ref="Arrest1"/>
                             <nc:PersonReference s:ref="Identity2"/>

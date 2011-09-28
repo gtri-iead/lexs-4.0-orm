@@ -11,7 +11,7 @@
             targetNamespace="http://ulex.gov/searchretrieve/2.0"
             elementFormDefault="qualified"
             attributeFormDefault="unqualified"
-            version="2.0.PDSRDE.">
+            version="2.0.PDSRDE.SR7_2011-09-28">
    <xsd:import namespace="http://ulex.gov/ulex/2.0" schemaLocation="../../ulex/2.0/ulex.xsd"/>
    <xsd:import namespace="http://lexs.gov/lexs/4.0"
                schemaLocation="../../../lexs.gov/lexs/4.0/lexs.xsd"/>
