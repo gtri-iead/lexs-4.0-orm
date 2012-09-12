@@ -34,15 +34,39 @@
             <sequential>
                 <echo>Creating java file for [@{file}]...</echo>
                 <!--<basename file="@{file}" property="FILE_BASENAME" suffix=".xml" />-->
+                <!-- Search for the windows "\" file separator in the file path to the test 
+                       resources and replace it with the Linux "/"
+                       We need to do this becuase "\" indicates a special character in Java
+                       and the string passed in as a property is handed straight to Java, so
+                       if we do not change it java will blow up on the file path. -->
                 <propertyregex override="true"
+                               property="ESCAPED_TEST_RESOURCES"  input="${test.resources.dir}${file.separator}lexs-4.0-samples${file.separator}xml"
+                               regexp="\\" replace="/"/>
+                               
+			   <!-- Search for the windows "\" file separator in the test file that is being generated and replace it with the Linux "/"
+                       We need to do this becuase "\" indicates a special character in Java
+                       and the string passed in as a property is handed straight to Java, so
+                       if we do not change it java will blow up on the file path. -->
+				<propertyregex override="true"
+                               property="ESCAPED_FILE"  input="@{file}"
+                               regexp="\\" replace="/"/>
+
+			    <propertyregex override="true"
+                               property="FILE_BASENAME"  input="${ESCAPED_FILE}"
+                               regexp="${ESCAPED_TEST_RESOURCES}" replace=""/>
+   
+                <!--<propertyregex override="true"
                                property="FILE_BASENAME"  input="@{file}"
-                               regexp="${test.resources.dir}/lexs-4.0-samples/xml" replace=""/>
+                               regexp="${test.resources.dir}/lexs-4.0-samples/xml" replace=""/>-->
                 <propertyregex override="true"
                                property="FILE_BASENAME"  input="${FILE_BASENAME}"
                                regexp="-| " replace="_"/>
                 <propertyregex override="true"
                                property="FILE_BASENAME"  input="${FILE_BASENAME}"
                                regexp="[^A-Za-z0-9_]" replace=""/>
+                               
+
+                               
                 <echo>Creating file [${gen.test.sources.dir}/xmltests/gov/lexs/jaxb/tests/TestLEXSSample_${FILE_BASENAME}.java]...</echo>
                 <echo file="${gen.test.sources.dir}/xmltests/gov/lexs/jaxb/tests/TestLEXSSample_${FILE_BASENAME}.java" append="true">
 package gov.lexs.jaxb.tests;
@@ -55,13 +79,14 @@ extends AbstractLEXSSampleInstanceTest {
 
     @Test
     public void testInstance() throws Exception {
-        File file = new File("@{file}");
+        File file = new File("${ESCAPED_FILE}");
         this.validateXmlFile(file);
     }//end testInstance()
 
 }/* end TestLEXSSample_${FILE_BASENAME} */
 
                 </echo>
+             
                 <sleep milliseconds="5"/>
             </sequential>
         </for>
