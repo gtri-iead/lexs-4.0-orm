@@ -41,7 +41,7 @@
                        if we do not change it java will blow up on the file path. -->
                 <propertyregex override="true"
                                property="ESCAPED_TEST_RESOURCES"  input="${test.resources.dir}${file.separator}lexs-4.0-samples${file.separator}xml"
-                               regexp="\\" replace="/"/>
+                               regexp="\\" replace="/" defaultValue="${test.resources.dir}${file.separator}lexs-4.0-samples${file.separator}xml"/>
                                
 			   <!-- Search for the windows "\" file separator in the test file that is being generated and replace it with the Linux "/"
                        We need to do this becuase "\" indicates a special character in Java
@@ -49,7 +49,7 @@
                        if we do not change it java will blow up on the file path. -->
 				<propertyregex override="true"
                                property="ESCAPED_FILE"  input="@{file}"
-                               regexp="\\" replace="/"/>
+                               regexp="\\" replace="/" defaultValue="@{file}"/>
 
 			    <propertyregex override="true"
                                property="FILE_BASENAME"  input="${ESCAPED_FILE}"
