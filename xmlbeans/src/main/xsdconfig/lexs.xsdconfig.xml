@@ -117,10 +117,10 @@
     </xb:namespace>
     <xb:namespace uri="http://docs.oasis-open.org/wsrf/bf-2">
         <xb:package>org.oasisopen.docs.wsrf.bf2</xb:package>
-    </xb:namespace>
-    <xb:namespace uri="http://docs.oasis-open.org/wsrf/r-2">
+    </xb:namespace>   
+<!--    <xb:namespace uri="http://docs.oasis-open.org/wsrf/r-2">
         <xb:package>org.oasisopen.docs.wsrf.r2</xb:package>
-    </xb:namespace>
+    </xb:namespace>-->
 
     <xb:namespace uri="http://ulex.gov/ulex/2.0">
         <xb:package>gov.ulex.v20</xb:package>
