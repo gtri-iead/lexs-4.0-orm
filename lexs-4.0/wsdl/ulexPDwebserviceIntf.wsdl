@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Document: $Id: ulexPDwebserviceIntf.wsdl 32879 2012-08-28 07:43:57Z ys34 $
+	Description   : Types, Messages, Services, Ports, and Bindings template definitions for LEXS 4.0 Publish/Discover Web Service
+-->
+<wsdl:definitions
+    targetNamespace="http://ulex.gov/publishdiscover/2.0/ws"
+    xmlns:tns="http://ulex.gov/publishdiscover/2.0/ws"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:ulexpd="http://ulex.gov/publishdiscover/2.0"
+    xmlns:ulexfaults="http://ulex.gov/faults/2.0"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+    
+    <wsdl:types>
+         <!--
+        Note: in published WSDL following line present
+                <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                However to enable @SchemaValidation feature on the endpoint we
+                have to remove xmlns:xsd declaration.
+        -->
+        <xsd:schema>
+            <xsd:import
+                namespace="http://ulex.gov/publishdiscover/2.0"
+                schemaLocation="../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd" />
+            <xsd:import
+                namespace="http://ulex.gov/faults/2.0"
+                schemaLocation="../xsd/ulex.gov/ulex-faults/2.0/ulex-faults.xsd" />
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="doPublishMsg">
+        <wsdl:part name="parameters" element="ulexpd:doPublish" />
+    </wsdl:message>
+    
+    <wsdl:message name="doPublishAcknowledgedRequestMsg">
+        <wsdl:part name="parameters" element="ulexpd:doPublishAcknowledgedRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="doPublishAcknowledgedResponseMsg">
+        <wsdl:part name="parameters" element="ulexpd:doPublishAcknowledgedResponse" />
+    </wsdl:message>
+    
+    <wsdl:message name="businessRuleNotMetFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:BusinessRuleNotMetFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="invalidRequestFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:InvalidRequestFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="networkFailureFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:NetworkFailureFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="otherErrorFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:OtherErrorFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="timeoutFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:TimeoutFault"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="PDWebServicePortType">
+    
+        <wsdl:operation name="doPublish">
+            <wsdl:input name="doPublish" message="tns:doPublishMsg" />
+        </wsdl:operation>
+        
+        <wsdl:operation name="doPublishAcknowledged">
+            <wsdl:input name="doPublishAcknowledgedRequest" message="tns:doPublishAcknowledgedRequestMsg" />
+            <wsdl:output name="doPublishAcknowledgedResponse" message="tns:doPublishAcknowledgedResponseMsg" />
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+    </wsdl:portType>
+    
+    <wsdl:binding 
+        name="PDWebServiceSoapBinding"
+        type="tns:PDWebServicePortType">
+        
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        
+        <wsdl:operation name="doPublish">
+            <soap:operation soapAction="http://ulex.gov/publishdiscover/2.0/doPublish"/>
+            <wsdl:input name="doPublish">
+                <soap:body use="literal" />
+            </wsdl:input>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doPublishAcknowledged">
+            <soap:operation soapAction="http://ulex.gov/publishdiscover/2.0/doPublishAcknowledged"/>
+            <wsdl:input name="doPublishAcknowledgedRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="doPublishAcknowledgedResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    
+</wsdl:definitions>

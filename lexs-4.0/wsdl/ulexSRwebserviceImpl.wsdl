@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: ulexSRwebserviceImpl.wsdl 32879 2012-08-28 07:43:57Z ys34 $
+    Description   : Service Endpoint template definition for LEXS 4.0 Search/Retrieve Web Service
+-->
+<wsdl:definitions
+    targetNamespace="http://ulex.gov/searchretrieve/2.0/ws" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:tns="http://ulex.gov/searchretrieve/2.0/ws" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+        
+    <wsdl:import 
+        namespace="http://ulex.gov/searchretrieve/2.0/ws" 
+        location="ulexSRwebserviceIntf.wsdl"/>
+    
+    <wsdl:service name="SRWebService">
+        <wsdl:port name="SRWebServicePort" binding="tns:SRWebServiceSoapBinding">
+            <soap:address location="${TBD}"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

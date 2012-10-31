@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: ulexPDwebserviceImpl.wsdl 32879 2012-08-28 07:43:57Z ys34 $
+    Description   : Service Endpoint template definition for LEXS 4.0 Publish/Discover Web Service
+-->
+<wsdl:definitions
+    targetNamespace="http://ulex.gov/publishdiscover/2.0/ws" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:tns="http://ulex.gov/publishdiscover/2.0/ws" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+        
+    <wsdl:import 
+        namespace="http://ulex.gov/publishdiscover/2.0/ws" 
+        location="ulexPDwebserviceIntf.wsdl"/>
+    
+    <wsdl:service name="PDWebService">
+        <wsdl:port name="PDWebServicePort" binding="tns:PDWebServiceSoapBinding">
+            <soap:address location="${TBD}"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

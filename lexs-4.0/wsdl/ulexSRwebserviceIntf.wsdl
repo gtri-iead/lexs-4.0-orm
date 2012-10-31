@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document: $Id: ulexSRwebserviceIntf.wsdl 32879 2012-08-28 07:43:57Z ys34 $
+    Description   : Types, Messages, Services, Ports, and Bindings template definitions for LEXS 4.0 Search/Retrieve Web Service
+-->
+<wsdl:definitions
+    targetNamespace="http://ulex.gov/searchretrieve/2.0/ws" 
+    xmlns:tns="http://ulex.gov/searchretrieve/2.0/ws"     
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:ulexsr="http://ulex.gov/searchretrieve/2.0"
+    xmlns:ulexfaults="http://ulex.gov/faults/2.0"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+    
+    <wsdl:types>
+		 <!--
+        Note: in published WSDL following line present
+                <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                However to enable @SchemaValidation feature on the endpoint we
+                have to remove xmlns:xsd declaration.
+        -->
+        <xsd:schema>
+            <xsd:import 
+                namespace="http://ulex.gov/searchretrieve/2.0" 
+                schemaLocation="../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd"/>
+            <xsd:import
+                namespace="http://ulex.gov/faults/2.0"
+                schemaLocation="../xsd/ulex.gov/ulex-faults/2.0/ulex-faults.xsd" />
+        </xsd:schema> 
+    </wsdl:types>   
+    
+    <wsdl:message name="doAttachmentSearchRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:doAttachmentSearchRequest"/>
+    </wsdl:message>    
+    
+    <wsdl:message name="doDataItemMetadataSearchRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:doDataItemMetadataSearchRequest"/>
+    </wsdl:message>    
+
+    <wsdl:message name="doSearchResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:doSearchResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doStructuredSearchRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:doStructuredSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="doTextSearchRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:doTextSearchRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getAttachmentRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAttachmentResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getAttachmentResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getAvailabilityRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getAvailabilityRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getAvailabilityResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getAvailabilityResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getCapabilitiesRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getCapabilitiesResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getCapabilitiesResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataItemRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataItemResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="getDataItemWithAttachmentsRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataItemWithAttachmentsRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataItemWithAttachmentsResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataItemWithAttachmentsResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataOwnersRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getDataOwnersResponseMsg">
+        <wsdl:part name="parameters" element="ulexsr:getDataOwnersResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="getRenderedDataItemRequestMsg">
+        <wsdl:part name="parameters" element="ulexsr:getRenderedDataItemRequest"/>
+    </wsdl:message>
+
+	<!-- Fault Messages -->
+    <wsdl:message name="businessRuleNotMetFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:BusinessRuleNotMetFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="fuzzyMatchNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:FuzzyMatchNotSupportedFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="invalidAttachmentRequestedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:InvalidAttachmentRequestedFault"/>
+    </wsdl:message>
+		
+    <wsdl:message name="invalidDataItemRequestedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:InvalidDataItemRequestedFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="invalidRequestFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:InvalidRequestFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="logicalOperatorsNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:LogicalOperatorsNotSupportedFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="multipleValuesNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:MultipleValuesNotSupportedFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="networkFailureFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:NetworkFailureFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="nextPreviousNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:NextPreviousNotSupportedFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="otherErrorFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:OtherErrorFault"/>
+    </wsdl:message>
+	
+    <wsdl:message name="phrasesNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:PhrasesNotSupportedFault"/>
+    </wsdl:message>
+
+    <wsdl:message name="queryFieldNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:QueryFieldNotSupportedFault"/>
+    </wsdl:message>
+
+    <wsdl:message name="queryObjectNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:QueryObjectNotSupportedFault"/>
+    </wsdl:message>
+
+    <wsdl:message name="queryOperatorNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:QueryOperatorNotSupportedFault"/>
+    </wsdl:message>
+
+    <wsdl:message name="structuredSearchNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:StructuredSearchNotSupportedFault"/>
+    </wsdl:message>				
+
+    <wsdl:message name="unstructuredSearchNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:UnstructuredSearchNotSupportedFault"/>
+    </wsdl:message>				
+
+    <wsdl:message name="timeoutFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:TimeoutFault"/>
+    </wsdl:message>
+
+    <wsdl:message name="wildcardNotSupportedFaultMsg">
+        <wsdl:part name="parameters" element="ulexfaults:WildcardNotSupportedFault"/>
+    </wsdl:message>	
+	
+    
+    <wsdl:portType name="SRWebServicePortType">
+        
+        <wsdl:operation name="doAttachmentSearch">
+            <wsdl:input name="doAttachmentSearchRequest" message="tns:doAttachmentSearchRequestMsg"/>
+            <wsdl:output name="doAttachmentSearchResponse" message="tns:doSearchResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="nextPreviousNotSupportedFault" message="tns:nextPreviousNotSupportedFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>        
+
+        <wsdl:operation name="doDataItemMetadataSearch">
+            <wsdl:input name="doDataItemMetadataSearchRequest" message="tns:doDataItemMetadataSearchRequestMsg"/>
+            <wsdl:output name="doDataItemMetadataSearchResponse" message="tns:doSearchResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="nextPreviousNotSupportedFault" message="tns:nextPreviousNotSupportedFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>                
+        
+        <wsdl:operation name="doStructuredSearch">
+            <wsdl:input name="doStructuredSearchRequest" message="tns:doStructuredSearchRequestMsg"/>
+            <wsdl:output name="doStructuredSearchResponse" message="tns:doSearchResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="fuzzyMatchNotSupportedFault" message="tns:fuzzyMatchNotSupportedFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="multipleValuesNotSupportedFault" message="tns:multipleValuesNotSupportedFaultMsg"/>            
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="nextPreviousNotSupportedFault" message="tns:nextPreviousNotSupportedFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="queryFieldNotSupportedFault" message="tns:queryFieldNotSupportedFaultMsg"/>
+            <wsdl:fault name="queryObjectNotSupportedFault" message="tns:queryObjectNotSupportedFaultMsg"/>
+            <wsdl:fault name="queryOperatorNotSupportedFault" message="tns:queryOperatorNotSupportedFaultMsg"/>
+            <wsdl:fault name="structuredSearchNotSupportedFault" message="tns:structuredSearchNotSupportedFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+            <wsdl:fault name="wildcardNotSupportedFault" message="tns:wildcardNotSupportedFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <wsdl:input name="doTextSearchRequest" message="tns:doTextSearchRequestMsg"/>
+            <wsdl:output name="doTextSearchResponse" message="tns:doSearchResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="logicalOperatorsNotSupportedFault" message="tns:logicalOperatorsNotSupportedFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="nextPreviousNotSupportedFault" message="tns:nextPreviousNotSupportedFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="phrasesNotSupportedFault" message="tns:phrasesNotSupportedFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+            <wsdl:fault name="unstructuredSearchNotSupportedFault" message="tns:unstructuredSearchNotSupportedFaultMsg"/>
+            <wsdl:fault name="wildcardNotSupportedFault" message="tns:wildcardNotSupportedFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <wsdl:input name="getDataItemRequest" message="tns:getDataItemRequestMsg"/>
+            <wsdl:output name="getDataItemResponse" message="tns:getDataItemResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidDataItemRequestedFault" message="tns:invalidDataItemRequestedFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItemWithAttachments">
+            <wsdl:input name="getDataItemWithAttachmentsRequest" message="tns:getDataItemWithAttachmentsRequestMsg"/>
+            <wsdl:output name="getDataItemWithAttachmentsResponse" message="tns:getDataItemWithAttachmentsResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidDataItemRequestedFault" message="tns:invalidDataItemRequestedFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>        
+        
+        <wsdl:operation name="getRenderedDataItem">
+            <wsdl:input name="getRenderedDataItemRequest" message="tns:getRenderedDataItemRequestMsg"/>
+            <wsdl:output name="getRenderedDataItemResponse" message="tns:getAttachmentResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidDataItemRequestedFault" message="tns:invalidDataItemRequestedFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>                
+        
+        <wsdl:operation name="getAttachment">
+            <wsdl:input name="getAttachmentRequest" message="tns:getAttachmentRequestMsg"/>
+            <wsdl:output name="getAttachmentResponse" message="tns:getAttachmentResponseMsg"/>
+            <wsdl:fault name="businessRuleNotMetFault" message="tns:businessRuleNotMetFaultMsg"/>
+            <wsdl:fault name="invalidAttachmentRequestedFault" message="tns:invalidAttachmentRequestedFaultMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <wsdl:input name="getCapabilitiesRequest" message="tns:getCapabilitiesRequestMsg"/>
+            <wsdl:output name="getCapabilitiesResponse" message="tns:getCapabilitiesResponseMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <wsdl:input name="getDataOwnersRequest" message="tns:getDataOwnersRequestMsg"/>
+            <wsdl:output name="getDataOwnersResponse" message="tns:getDataOwnersResponseMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <wsdl:input name="getAvailabilityRequest" message="tns:getAvailabilityRequestMsg"/>
+            <wsdl:output name="getAvailabilityResponse" message="tns:getAvailabilityResponseMsg"/>
+            <wsdl:fault name="invalidRequestFault" message="tns:invalidRequestFaultMsg"/>
+            <wsdl:fault name="networkFailureFault" message="tns:networkFailureFaultMsg"/>
+            <wsdl:fault name="otherErrorFault" message="tns:otherErrorFaultMsg"/>
+            <wsdl:fault name="timeoutFault" message="tns:timeoutFaultMsg"/>
+        </wsdl:operation>
+        
+    </wsdl:portType>
+    
+    
+    <wsdl:binding 
+        name="SRWebServiceSoapBinding" 
+        type="tns:SRWebServicePortType">
+        
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        
+        <wsdl:operation name="doAttachmentSearch">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/doAttachmentSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="nextPreviousNotSupportedFault">
+                <soap:fault name="nextPreviousNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="doDataItemMetadataSearch">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/doDataItemMetadataSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="nextPreviousNotSupportedFault">
+                <soap:fault name="nextPreviousNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doStructuredSearch">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/doStructuredSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="fuzzyMatchNotSupportedFault">
+                <soap:fault name="fuzzyMatchNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="multipleValuesNotSupportedFault">
+                <soap:fault name="multipleValuesNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="nextPreviousNotSupportedFault">
+                <soap:fault name="nextPreviousNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="queryFieldNotSupportedFault">
+                <soap:fault name="queryFieldNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="queryObjectNotSupportedFault">
+                <soap:fault name="queryObjectNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="queryOperatorNotSupportedFault">
+                <soap:fault name="queryOperatorNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="structuredSearchNotSupportedFault">
+                <soap:fault name="structuredSearchNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="wildcardNotSupportedFault">
+                <soap:fault name="wildcardNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="doTextSearch">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/doTextSearch"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="logicalOperatorsNotSupportedFault">
+                <soap:fault name="logicalOperatorsNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="nextPreviousNotSupportedFault">
+                <soap:fault name="nextPreviousNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="phrasesNotSupportedFault">
+                <soap:fault name="phrasesNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="unstructuredSearchNotSupportedFault">
+                <soap:fault name="unstructuredSearchNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="wildcardNotSupportedFault">
+                <soap:fault name="wildcardNotSupportedFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataItem">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getDataItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataItemRequestedFault">
+                <soap:fault name="invalidDataItemRequestedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+		
+        <wsdl:operation name="getDataItemWithAttachments">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getDataItemWithAttachments"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataItemRequestedFault">
+                <soap:fault name="invalidDataItemRequestedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>        
+        
+        <wsdl:operation name="getRenderedDataItem">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getRenderedDataItem"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidDataItemRequestedFault">
+                <soap:fault name="invalidDataItemRequestedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>        
+        
+        <wsdl:operation name="getAttachment">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getAttachment"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="businessRuleNotMetFault">
+                <soap:fault name="businessRuleNotMetFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidAttachmentRequestedFault">
+                <soap:fault name="invalidAttachmentRequestedFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getCapabilities">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getCapabilities"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getDataOwners">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getDataOwners"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="getAvailability">
+            <soap:operation soapAction="http://ulex.gov/searchretrieve/2.0/getAvailability"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="invalidRequestFault">
+                <soap:fault name="invalidRequestFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="networkFailureFault">
+                <soap:fault name="networkFailureFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="otherErrorFault">
+                <soap:fault name="otherErrorFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="timeoutFault">
+                <soap:fault name="timeoutFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    
+</wsdl:definitions>
