@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JAXB 2 Customization File
+    This file is passed to XJC along with schemas to fix problems in schema
+    generation.  In particular, this file will help you get around the 'rest'
+    properties that JAXB likes to generate when there are naming conflicts.
+    
+    More Help Here: https://jaxb.dev.java.net/tutorial/
+    Help for JAXB bindings is spotty at best, and you need to make sure that
+    when you find help on the web it's not for JAXB 1, but for JAXB 2.
+-->
+<jxb:bindings 
+   version="2.1"
+   xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+   xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+   jxb:extensionBindingPrefixes="xjc inheritence"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb   bindingschema_2_0.xsd">
+
+    <jxb:globalBindings
+        fixedAttributeAsConstantProperty="false"
+        typesafeEnumBase="xsd:NCName"
+        choiceContentProperty="false"
+        typesafeEnumMemberName="generateError"
+        enableFailFastCheck="false"
+        generateIsSetMethod="true"
+        underscoreBinding="asCharInWord"
+        typesafeEnumMaxMembers="1000"
+        generateElementProperty="true">
+    </jxb:globalBindings>
+
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/lexs/4.0/lexs.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Lexs" suffix="Element" />
+                <jxb:typeName prefix="Lexs"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/lexs-codes/4.0/lexs-codes.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.codes"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="LexsCodes" suffix="Element" />
+                <jxb:typeName prefix="LexsCodes"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/lexs-digest/4.0/lexs-digest.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.digest"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="LexsDigest" suffix="Element" />
+                <jxb:typeName prefix="LexsDigest"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='Metadata']">
+            <jxb:property name="LexsMetadata"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='PersonAugmentation']">
+            <jxb:property name="LexsPersonAugmentation"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='HashValueRepresentationAbstract']">
+            <jxb:property name="HashValueRepresentation"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!-- NIEM -->
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/appinfo/2.0/appinfo.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.appinfo.v2_0"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="AppInfo20" suffix="Element" />
+                <jxb:typeName prefix="AppInfo20"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/appinfo/2.1/appinfo.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.appinfo.v2_1"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="AppInfo21" suffix="Element" />
+                <jxb:typeName prefix="AppInfo21"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/atf/2.0/atf.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.atf"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="ATF" suffix="Element" />
+                <jxb:typeName prefix="ATF"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/census/2.0/census.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.census"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Census" suffix="Element" />
+                <jxb:typeName prefix="Census"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/dea/2.1/dea.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.dea"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Dea" suffix="Element" />
+                <jxb:typeName prefix="Dea"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/emergencyManagement/2.1/emergencyManagement.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.emergencymanagement"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="EmergencyMgmt" suffix="Element" />
+                <jxb:typeName prefix="EmergencyMgmt"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/familyServices/2.1/familyServices.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.familyservices"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="FamSvcs" suffix="Element" />
+                <jxb:typeName prefix="FamSvcs"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/immigration/2.1/immigration.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.immigration"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Immigration" suffix="Element" />
+                <jxb:typeName prefix="Immigration"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/intelligence/2.1/intelligence.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.intelligence"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Intel" suffix="Element" />
+                <jxb:typeName prefix="Intel"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/jxdm/4.1/jxdm.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.jxdm"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Justice" suffix="Element" />
+                <jxb:typeName prefix="Justice"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='PersonAugmentation']">
+            <jxb:property name="JusticePersonAugmentation"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/maritime/2.1/maritime.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.maritime"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Maritime" suffix="Element" />
+                <jxb:typeName prefix="Maritime"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/domains/screening/2.1/screening.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.domains.screening"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Screening" suffix="Element" />
+                <jxb:typeName prefix="Screening"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/fbi/2.0/fbi.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.fbi"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Fbi" suffix="Element" />
+                <jxb:typeName prefix="Fbi"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/fips_10-4/2.0/fips_10-4.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.fips_10_4"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Fips10_4" suffix="Element" />
+                <jxb:typeName prefix="Fips10_4"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/hazmat/2.1/hazmat.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.hazmat"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Hazmat" suffix="Element" />
+                <jxb:typeName prefix="Hazmat"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/icism/2.0/IC-ISM-v2.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.icism.v2"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="ICISM" suffix="Element" />
+                <jxb:typeName prefix="ICISM"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/icism/2.0/icism-metadata.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.icism"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="NiemICISM" suffix="Element" />
+                <jxb:typeName prefix="NiemICISM"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/iso_4217/2.0/iso_4217.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.iso_4217"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Iso4217" suffix="Element" />
+                <jxb:typeName prefix="Iso4217"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/iso_639-3/2.0/iso_639-3.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.iso_639_3"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Iso_639_3" suffix="Element" />
+                <jxb:typeName prefix="Iso_639_3"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/niem-core/2.0/niem-core.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.core"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="NiemCore" suffix="Element" />
+                <jxb:typeName prefix="NiemCore"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/nonauthoritative-code/2.0/nonauthoritative-code.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.nonauthoritative_code"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="NonAuth" suffix="Element" />
+                <jxb:typeName prefix="NonAuth"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/proxy/xsd/2.0/xsd.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.proxy.xsd"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Niem" suffix="Element" />
+                <jxb:typeName prefix="Niem"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/structures/2.0/structures.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.structures"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Structures" suffix="Element" />
+                <jxb:typeName prefix="Structures"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/twpdes/2.0/twpdes.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.twpdes"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Twpdes" suffix="Element" />
+                <jxb:typeName prefix="Twpdes"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/lexs.gov/niem/unece_rec20-misc/2.0/unece_rec20-misc.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.niem.unece_rec20_misc"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Unece" suffix="Element" />
+                <jxb:typeName prefix="Unece"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    
+    <!-- OASIS -->
+    <jxb:bindings schemaLocation="../xsd/oasis-open.org/security/saml/v2.0/saml-schema-assertion-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.oasis.security.saml.assertion.v2_0"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="SamlAssertion" suffix="Element" />
+                <jxb:typeName prefix="SamlAssertion"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+<!--    <jxb:bindings schemaLocation="../xsd/oasis-open.org/security/saml/v2.0/saml-schema-metadata-2.0.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.oasis.security.saml.metadata.v2_0"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="SamlMetadata" suffix="Element" />
+                <jxb:typeName prefix="SamlMetadata"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>-->
+    <jxb:bindings schemaLocation="../xsd/oasis-open.org/wsn/b-2/b-2.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.oasis.wsn.b_2"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="WSNotificationB2" suffix="Element" />
+                <jxb:typeName prefix="WSNotificationB2"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/oasis-open.org/wsn/t-1/t-1.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.oasis.wsn.t_1"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="WSNotificationT1" suffix="Element" />
+                <jxb:typeName prefix="WSNotificationT1"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/oasis-open.org/wsrf/bf-2/bf-2.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.oasis.wsrf.bf_2"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="WSRF_BF2" suffix="Element" />
+                <jxb:typeName prefix="WSRF_BF2"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+    <!-- ULEX -->
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex/2.0/ulex.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Ulex" suffix="Element" />
+                <jxb:typeName prefix="Ulex"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='UserAttentionToAbstract']">
+            <jxb:property name="UserAttentionTo"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SNMessageMetadataExtensionAbstract']">
+            <jxb:property name="SNMessageMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SubscriptionQueryAbstract']">
+            <jxb:property name="SubscriptionQuery"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='UserAssertionAbstract']">
+            <jxb:property name="UserAssertion"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='PackageMetadataExtensionAbstract']">
+            <jxb:property name="PackageMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='MessageDestinationIdentifierAbstract']">
+            <jxb:property name="MessageDestinationIdentifier"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='MessageItemAbstract']">
+            <jxb:property name="MessageItem"/>
+        </jxb:bindings>
+<!--        <jxb:bindings node=".//xsd:element[@name='MessageMetadataAbstract']">
+            <jxb:property name="MessageMetadata"/>
+        </jxb:bindings>-->
+        <jxb:bindings node=".//xsd:element[@name='DataItemContactAbstract']">
+            <jxb:property name="DataItemContact"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataItemStatusAbstract']">
+            <jxb:property name="DataItemStatus"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DisseminationCriteriaAbstract']">
+            <jxb:property name="DisseminationCriteria"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='AttachmentContentAbstract']">
+            <jxb:property name="AttachmentContent"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='AttachmentExtensionAbstract']">
+            <jxb:property name="AttachmentExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='CapabilitiesExtensionAbstract']">
+            <jxb:property name="CapabilitiesExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='RequestedDataAbstract']">
+            <jxb:property name="RequestedData"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataOwnerIdentifierAbstract']">
+            <jxb:property name="DataOwnerIdentifier"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SortOrderAbstract']">
+            <jxb:property name="SortOrder"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='StructuredPayloadsRequestedAbstract']">
+            <jxb:property name="StructuredPayloadsRequested"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SearchRequestMetadataExtensionAbstract']">
+            <jxb:property name="SearchRequestMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataOwnerContactAbstract']">
+            <jxb:property name="DataOwnerContact"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataOwnerMetadataExtensionAbstract']">
+            <jxb:property name="DataOwnerMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SystemIdentifierAbstract']">
+            <jxb:property name="SystemIdentifier"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SystemContactAbstract']">
+            <jxb:property name="SystemContact"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SystemMetadataExtensionAbstract']">
+            <jxb:property name="SystemMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DigestQueryFieldAbstract']">
+            <jxb:property name="DigestQueryField"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='PublishMessageAcknowledgmentExtensionAbstract']">
+            <jxb:property name="PublishMessageAcknowledgmentExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='StructuredPayloadContentAbstract']">
+            <jxb:property name="StructuredPayloadContent"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='AttachmentHashValueAbstract']">
+            <jxb:property name="AttachmentHashValue"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='StructuredQueryExtensionAbstract']">
+            <jxb:property name="StructuredQueryExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SearchResponseMetadataExtensionAbstract']">
+            <jxb:property name="SearchResponseMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='PDMessageMetadataExtensionAbstract']">
+            <jxb:property name="PDMessageMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DEMessageMetadataExtensionAbstract']">
+            <jxb:property name="DEMessageMetadataExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataSensitivityAbstract']">
+            <jxb:property name="DataSensitivity"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DigestAbstract']">
+            <jxb:property name="Digest"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='DataOwnerInformationExtensionAbstract']">
+            <jxb:property name="DataOwnerInformationExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='NarrativeAbstract']">
+            <jxb:property name="Narrative"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='AttachmentSummaryExtensionAbstract']">
+            <jxb:property name="AttachmentSummaryExtension"/>
+        </jxb:bindings>
+        <jxb:bindings node=".//xsd:element[@name='SRMessageMetadataExtensionAbstract']">
+            <jxb:property name="SRMessageMetadataExtension"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-codes/2.0/ulex-codes.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.codes"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexCodes" suffix="Element" />
+                <jxb:typeName prefix="UlexCodes"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+<!--    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-domain-exchange/2.0/ulex-domain-exchange.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.de"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexDE" suffix="Element" />
+                <jxb:typeName prefix="UlexDE"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>-->
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-faults/2.0/ulex-faults.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.faults"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexFaults" suffix="Element" />
+                <jxb:typeName prefix="UlexFaults"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-library/2.0/ulex-library.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.lib"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexLib" suffix="Element" />
+                <jxb:typeName prefix="UlexLib"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='AttachmentSummaryConnectionAbstract']">
+            <jxb:property name="AttachmentSummaryConnection"/>
+        </jxb:bindings>
+    </jxb:bindings>
+<!--    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-publish-discover/2.0/ulex-publish-discover.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.pd"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexPD" suffix="Element" />
+                <jxb:typeName prefix="UlexPD"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>-->
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-search-retrieve/2.0/ulex-search-retrieve.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.sr"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexSR" suffix="Element" />
+                <jxb:typeName prefix="UlexSR"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/ulex.gov/ulex-subscribe-notify/2.0/ulex-subscribe-notify.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.ulex.sn"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="UlexSN" suffix="Element" />
+                <jxb:typeName prefix="UlexSN"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+        <jxb:bindings node=".//xsd:element[@name='SubscriptionAbstract']">
+            <jxb:property name="Subscription"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!-- w3.org -->
+    <jxb:bindings schemaLocation="../xsd/w3.org/ws-addr.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.w3.ws.addr"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="WsAddr" suffix="Element" />
+                <jxb:typeName prefix="WsAddr"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/w3.org/xenc-schema.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.w3.xmlenc"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="XmlEnc" suffix="Element" />
+                <jxb:typeName prefix="XmlEnc"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/w3.org/xml.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.w3.xml"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="Xml" suffix="Element" />
+                <jxb:typeName prefix="Xml"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="../xsd/w3.org/xmldsig-core-schema.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="gov.lexs.v4_0.jaxb.w3.xmldsig"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="XmlDSig" suffix="Element" />
+                <jxb:typeName prefix="XmlDSig"  />
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+    </jxb:bindings>
+
+
+</jxb:bindings>

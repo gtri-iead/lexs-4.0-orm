@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings 
+    wsdlLocation="../wsdl/ulexSNNCwebserviceImpl.wsdl"
+    xmlns="http://java.sun.com/xml/ns/jaxws" 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+    <package name="gov.lexs.v4_0.ws.ulex.sn.nc"/>        
+<!--    <bindings node="wsdl:definitions">
+        <package name="gov.lexs.v4_0.ws.ulex.sr"/>
+    </bindings>    -->
+    <!-- default settings -->
+    <enableWrapperStyle>true</enableWrapperStyle>
+    <enableAsyncMapping>false</enableAsyncMapping>
+</bindings>

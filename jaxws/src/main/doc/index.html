@@ -1,0 +1,238 @@
+<html>
+    <head>
+        <title>LEXS 4.0 JAXB Bindings Project</title>
+        <link rel="StyleSheet" type="text/css" media="all" href="resources/styles.css" />
+    </head>
+    <body>
+        <div class="header">
+            <h2>LEXS 4.0 JAXB Bindings</h2>
+            <div class="subheader">
+                <div>Brad Lee, Research Scientist at GTRI</div>
+                <div>December 6, 2010</div>
+            </div>
+        </div>
+
+        <ol class="legend">
+            <li><div class="topic1Header">Introduction</div>
+                <ol>
+                    <li><div class="topic2Header"><a href="#about">About This Project</a></div></li>
+                    <li><div class="topic2Header"><a href="#whatIsJAXB">What is JAXB?</a></div></li>
+                    <li><div class="topic2Header"><a href="#whyJAXB">Why JAXB?</a></div></li>
+                    <li><div class="topic2Header"><a href="#packageContents">Package Contents</a></div></li>
+                    <li><div class="topic2Header"><a href="#gettingHelp">Getting Help</a></div></li>
+                </ol>
+            </li>
+            <li><div class="topic1Header">Using this Project</div>
+                <ol>
+                    <li><div class="topic2Header"><a href="#aboutJarFile">About the Jar File</a></div></li>
+                    <li><div class="topic2Header"><a href="#JAXBUtils">JAXBUtils</a></div></li>
+                    <li><div class="topic2Header"><a href="#SchemaProvider">Schema Provider</a></div></li>
+                    <li><div class="topic2Header"><a href="#Gotchas">Gotchas</a></div></li>
+                </ol>
+            </li>
+        </ol>
+
+        <div class="section">
+            <div class="header"><a name="about">About this Project</a></div>
+            <div class="content">
+                This project is intended to provide a LEXS 4.0 implementer with pre-built
+                JAXB Objects.  Building JAXB Bindings with NIEM and
+                LEXS is difficult, and this project aims to reduce that complexity.<br/>
+                The intended audience for this project are programmers who wish 
+                to use Java objects in their web services.
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="whatIsJAXB">What is JAXB?</a></div>
+            <div class="content">
+                JAXB is an acronym for "Java Architecture for XML Binding," and
+                is the ORXM (object to XML mapping) standard that comes standard
+                in the current JDK (1.6).  The project's goal is to allow Java
+                developers to map Java classes to XML representations, so that
+                Java programmers can more easily create XML structures from Java
+                code (more at <a href="http://en.wikipedia.org/wiki/JAXB">Wikipedia</a>).
+                JAXB is particularly useful when constructing XML in Java, as it
+                allows for compile time validation of XML documents.  In other
+                words, it makes it difficult to construct XML Schema invalid
+                structures.<br/>
+                It is the author's opinion that JAXB is far less useful in web
+                service endpoints meant to <em>consume</em> XML, and recommends the
+                reader use XSLT, XPath and Java XML APIs (such as dom4j, jdom
+                or StAX) for consuming XML.  These technologies make processing
+                XML far easier.  JAXB's real purpose is to provide compile-time
+                XML validation, and that it is useful only when <em>constructing</em> XML
+                documents (such as in a web service client that is submitting
+                XML data or a server returning LEXS data).
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="whyJAXB">Why JAXB?</a></div>
+            <div class="content">
+                The LEXS program office has chosen to make JAXB the primary ORXM
+                technology based on real world usage, and requests from the public.
+                JAXB RI 2.1 ships inside of the Sun (now Oracle) JDK by default,
+                so most people already have access to the JAXB.  There is a plan 
+                to support other binding technologies such as XML Beans and JiBX, 
+                to the extent possible.
+                Check the <a href="http://www.lexs.gov">lexs.gov</a> website to find
+                these and other helpful projects/tools.
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="packageContents">Package Contents</a></div>
+            <div class="content">
+                Here is the contents of this binary package, and a short
+                description on each piece.  If you have any additional questions,
+                please visit the forums at <a href="http://www.lexs.gov/">lexs.gov</a>.
+                <ul class="artifactList">
+                    <li>
+                        <span class="artifact"><a href="bindings.jxb">bindings.jxb</a></span>:
+                        The JAXB Bindings file that was provided to the xjc
+                        command to produce the JAXB generated objects from XML Schema.  
+                    </li>
+                    <li>
+                        <span class="artifact"><a href="schemas">schemas</a></span>:
+                        This is the LEXS 4.0 Schemas that were compiled into java
+                        objects.  These are copied untouched from the LEXS 4.0
+                        distribution in the 'xsd' directory.
+                    </li>
+                    <li>
+                        <span class="artifact"><a href="javadoc/index.html">javadoc</a></span>:
+                        Full javadoc for the JAXB generated objects, as well as the
+                        GTRI Helper classes.  Useful for referring to when you
+                        need help understanding the 600+ objects or helper classes.
+                    </li>
+                    <li>
+                        <span class="artifact"><a href="lib">lib</a></span>:
+                        The current JAXB binaries and their dependencies
+                        (as of 12/2010).  The included jar file contains JAXB
+                        objects that were built off of the JAXB 2.2.2 binaries,
+                        so you will need to endorse your JDK with these newer
+                        JAXB binaries.  For a quick how to on endorsing, see:
+                        <a href="http://weblogs.java.net/blog/ramapulavarthi/archive/2007/01/problems_using.html">Rama Pulavarthi's Weblog</a>.
+                    </li>
+                    <li>
+                        <span class="artifact"><a href="${project.build.finalName}.jar">${project.build.finalName}.jar</a></span>:
+                        This is the pre-built JAXB classes and GTRI helper 
+                        classes in a jar file you can drop right into your
+                        project.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="gettingHelp">Getting Help</a></div>
+            <div class="content">
+              If you have any questions about this JAXB distribution including
+              how to use it, customize it, etc.  Please post a forum question
+              on <a href="http://www.lexs.gov/">lexs.gov</a>.  
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="aboutJarFile">About the Jar File</a></div>
+            <div class="content">
+                This project is mainly about the included Java Jar file, which
+                contains the pre-built JAXB classes.  It is meant for you to
+                include directly in your project, without having to pre-build
+                the JAXB bindings in your own project.  By including the Jar
+                file in your project, you can begin to create Java-first web
+                services using the JAXWS spec, as detailed in most web tutorials
+                for JAXWS (like <a href="http://download.oracle.com/docs/cd/E17802_01/webservices/webservices/docs/2.0/tutorial/doc/JAXWS3.html">this one</a> or <a href="http://www.ibm.com/developerworks/webservices/tutorials/ws-jax/">this one</a>).  
+                The Jar file also includes some helper classes
+                written by GTRI that are aimed at making the LEXS 4.0 schemas
+                easier to deal with in Java code.  They are explained in detail
+                in the sections "JAXBUtils" and "SchemaProvider."
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="JAXBUtils">JAXBUtils</a></div>
+            <div class="content">
+                This class abstracts out the minor difficulties in configuring a
+                JAXBContext, for obtaining a Marshaller and Unmarshaller.  It also
+                contains the important methods of the Unmarshaller
+                and Marshaller interfaces, so that you can just call those methods
+                directly, if you wish.  It also provides methods that make it
+                trivial to obtain implementations of these interfaces, so that you can perform more
+                direct manipulation (such as per-thread based or per-request based
+                usage).  The JAXBUtils class is thread-safe, so you can call the
+                marshal/unmarshal methods without fear of problems.  However,
+                their implementation is based on a single marshaller/unmarshaller,
+                so it is not ideal for large, multi-process production environments.
+                See the 
+                <a href="javadoc/index.html?gov/lexs/v4_0/JAXBUtils.html">JAXBUtils Javadoc</a> 
+                or the 
+                <a href="http://download.oracle.com/javase/6/docs/api/?javax/xml/bind/package-summary.html">javax.xml.bind Javadoc</a> 
+                for any other questions.
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="SchemaProvider">Schema Provider</a></div>
+            <div class="content">
+                This class makes it easy to obtain access to an implementation
+                of <a href="http://download.oracle.com/javase/6/docs/api/index.html?javax/xml/validation/Schema.html">javax.xml.valdiation.Schema</a> 
+                which validates LEXS 4.0.  Just call the method
+                <code>SchemaProvider.createLexs40Schema()</code> and the Schema
+                object is ready for use.  Please keep in mind that the Schema 
+                object is NOT thread-safe, so use implementations of it with care in a multithreaded environment.
+                Refer to the <a href="javadoc/index.html?gov/lexs/v4_0/SchemaProvider.html">Schema Provider</a> 
+                API documentation for further information.
+            </div>
+        </div>
+        <div class="section">
+            <div class="header"><a name="Gotchas">Gotchas</a></div>
+            <div class="content">
+              This project, like all others, has some "Gotchas" that you need
+              to be aware of when you are using it.  None of these issues are 
+              necessarily show stoppers, but can be major headaches if you aren't
+              aware of how they work.
+              <div>
+                <ul class="gotchaList">
+                  <li>
+                    <span class="gotcha">Abstract Elements as Substitution Group Heads</span>: 
+                    JAXB (currently) does not handle abstract 
+                    elements with no type effectively.  Since it has no type, JAXB cannot 
+                    generate a Java Class for it, and instead decides that any
+                    type (java class) referring to this abstract thing should 
+                    be rendered with Java Type <code>JAXBElement&lt;?&gt;</code>.
+                    This is effectively equivalent to 'java.lang.Object' when 
+                    using java compile-time typing.  This effectively means you can 
+                    put any of the generated objects in this place, not just the 
+                    schema-restricted java objects. <br/>
+                    If you check the javadoc for a particular setter method,
+                    then you can see that only certain classes are relevant.  If
+                    you use a Marshaller that has validation enabled, then it 
+                    should error if you do something incorrectly.  Please see the 
+                    <a href="javadoc/index.html?gov/lexs/v4_0/jaxb/niem/core/NiemCoreActivityType.html">NiemCoreActivityType.setActivityDateRepresentation() method javadoc</a>
+                    for an example of how this is generated. 
+                  </li>
+                  <li>
+                    <span class="gotcha">JAXB 'generateElementProperty'</span>: 
+                    JAXB can generate the type inforamtion for properties in 2 different ways, one more
+                    natural to XML, and one more natural to Java.  It essentially
+                    boils down to wrapping every Type declaration with a 
+                    <a href="http://download.oracle.com/javase/6/docs/api/index.html?javax/xml/bind/JAXBElement.html">JAXBElement</a> 
+                    generic or not.  To be more true
+                    to XML, this artifact wraps all things with JAXBElement so as
+                    not to be 'lossy' and generate invalid XML.  Read 
+                    <a href="http://download.oracle.com/docs/cd/E17802_01/webservices/webservices/reference/tutorials/wsit/doc/DataBinding5.html">sun/oracle's documentation</a>
+                    for more information.  You can always use the bindings file
+                    to regenerate the java classes if you wish to change this
+                    parameter.
+                  </li>
+                  <li>
+                    <span class="gotcha">NIEM Code Lists</span>: JAXB can generate
+                    code lists in multiple ways, either by just setting a 'String'  
+                    type to them or by generating a Java enum.  NIEM code lists
+                    are so large that they cannot generate Java enums, so this
+                    binary has assumed that you are just going to provide your own
+                    typing for code list values, and permits any string.  When
+                    using a validating Marshaller, the code lists should still be
+                    checked to have appropriate values or not.
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+
+    </body>
+</html>
