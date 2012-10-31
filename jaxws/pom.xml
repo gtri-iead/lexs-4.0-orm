@@ -1,0 +1,488 @@
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lexs-4.0-orxm-jaxws</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>gov.lexs.v4</groupId>
+        <artifactId>lexs-4.0-orxm-parent</artifactId>
+        <version>4.0.0</version>
+    </parent>    
+
+    <name>LEXS 4.0 ORXM 5: JAXWS Bindings</name>
+
+    <properties>
+        <jaxb.version>2.2.4</jaxb.version>
+        <jaxws.version>2.2.6</jaxws.version>
+        <base.url.value>http://localhost:8080/${pom.artifactId}/wsdl</base.url.value>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>./src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>./src/main/xsd</directory>
+                <filtering>false</filtering>
+                <targetPath>gov/lexs/v4_0/schemas</targetPath>
+            </resource>
+            <resource>
+                <directory>./src/main/wsdl</directory>
+                <filtering>false</filtering>
+                <targetPath>gov/lexs/v4_0/wsdl</targetPath>
+            </resource>            
+        </resources>
+
+        <plugins>
+
+            <!-- Performs additional file deletion on clean phase. -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/resources/gov/lexs/v4_0</directory>
+                            <includes>
+                                <include>jaxb</include>
+                                <include>schemas</include>
+                                <include>wsdl</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>src/test/resources/lexs-4.0-samples</directory>
+                            <includes>
+                                <include>xml</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>                        
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <!-- Generates Javadoc Information -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>generate-javadoc</id>
+                        <phase>package</phase>
+                        <goals><goal>javadoc</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Some house-keeping scripts -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <!-- Copies xsd/xml to this project for processing -->
+                    <execution>
+                        <id>copy-lexs-artifacts</id>
+                        <phase>validate</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <echo>Copying LEXS schemas and sample instances...</echo>
+                                <copy todir="src/main/xsd">
+                                    <fileset dir="../lexs-4.0/xsd/" />
+                                </copy>
+                                <copy todir="src/main/wsdl">
+                                    <fileset dir="../lexs-4.0/wsdl/" />
+                                </copy>
+                                
+                                <copy todir="src/test/resources/lexs-4.0-samples/xml">
+                                    <fileset dir="../lexs-4.0/xml/">
+                                        <include name="**/PD-samples/*"/>
+                                        <include name="**/SN-samples/*"/>
+                                        <include name="**/SR-samples/*"/>
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>                   
+
+ 
+                    <!-- Creates schema index file-->
+                    <execution>
+                        <id>schema-index-create</id>
+                        <phase>validate</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <property name="cp" refid="maven.plugin.classpath" />
+                                <echo message="Definining AntContrib tasks from: ${cp}" />
+                                <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath"/>
+
+                                <!-- This writes the schema index file -->
+                                <echo>Writing schema index to ${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index...</echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index">
+# This file is auto-generated.  See pom.xml -> maven-antrun-plugin -> copy-schemas
+# Project Version: ${project.groupId}:${project.artifactId}:${project.version}
+# Updated ${maven.build.timestamp}
+                                    
+                                </echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+                                    
+                                </echo>
+                                <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+
+                                </echo>
+
+
+                                <for param="file">
+                                    <path>
+                                        <fileset dir="${project.basedir}/src/main/xsd/">
+                                            <include name="**/*.xsd" />
+                                        </fileset>
+                                    </path>
+                                    <sequential>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+@{file}
+                                        </echo>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index" append="true">
+        
+                                        </echo>
+                                    </sequential>
+                                </for>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index"
+                                         token="${project.basedir}${file.separator}src${file.separator}main${file.separator}xsd${file.separator}"
+                                         value="gov/lexs/v4_0/schemas/"/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/schemas/xsd.index"
+                                         token="${file.separator}" value="/"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    
+                    <!-- Builds the jaxb.index file, so JAXB can load all the write files -->
+                    <execution>
+                        <id>build-jaxb.index</id>
+                        <phase>process-sources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target>
+                                <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath"/>
+                                
+                                <!-- This writes the jaxb.index file -->
+                                <echo>Writing jaxb.index to ${project.basedir}...</echo>
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index">-->
+<!--# This file is auto-generated.  See pom.xml -> maven-antrun-plugin -> copy-schemas-->
+<!--# Project Version: ${project.groupId}:${project.artifactId}:${project.version}-->
+<!--# Updated ${maven.build.timestamp}-->
+
+                                <!--</echo>-->
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">-->
+
+                                <!--</echo>-->
+                                <!--<echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">-->
+
+                                <!--</echo>-->
+
+
+                                <for param="file">
+                                    <path>
+                                        <fileset dir="${project.basedir}/target/generated/gov/lexs/v4_0/jaxb">
+                                            <include name="**/ObjectFactory.java" />
+                                        </fileset>
+                                    </path>
+                                    <sequential>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">
+@{file}
+                                        </echo>
+                                        <echo file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index" append="true">
+
+                                        </echo>
+                                    </sequential>
+                                </for>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token="${project.basedir}${file.separator}target${file.separator}generated${file.separator}xjc${file.separator}gov${file.separator}lexs${file.separator}v4_0${file.separator}jaxb${file.separator}"
+                                         value=""/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token=".java" value=""/>
+
+                                <replace file="${project.basedir}/src/main/resources/gov/lexs/v4_0/jaxb/jaxb.index"
+                                         token="${file.separator}" value="."/>
+                                
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <!-- Creates test files for XML instances found in src/test/resources/lexs-4.0-samples/xml/* directories -->
+                    <execution>
+                        <id>generate-xml-instance-tests</id>
+                        <phase>generate-test-sources</phase>
+                        <goals><goal>run</goal></goals>
+                        <configuration>
+                            <target><ant antfile="${basedir}/src/main/ant/build.xml" target="processXMLFiles" inheritRefs="true" inheritAll="true" /></target>
+                        </configuration>
+                    </execution>
+                    
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>1.0b3</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>ant</groupId>
+                                <artifactId>ant</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Appends generated test sources -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-test-sources/xmltests</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--http://jax-ws-commons.java.net/jaxws-maven-plugin/usage.html-->
+            <!--http://jax-ws-commons.java.net/jaxws-maven-plugin/wsimport-mojo.html-->
+            <!--http://jax-ws.java.net/2.2.5/docs/ReleaseNotes.html-->
+            <plugin>
+                <groupId>org.jvnet.jax-ws-commons</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>2.2</version>
+<!--                <version>${jaxws.version}</version>-->
+                <configuration>
+                    <bindingDirectory>${basedir}/src/main/jaxb</bindingDirectory>
+                    <extension>true</extension>
+                    <keep>true</keep>
+                    <sourceDestDir>${basedir}/target/generated</sourceDestDir>
+                    <destDir>${project.build.outputDirectory}</destDir>
+                    <wsdlDirectory>${basedir}/src/main/wsdl</wsdlDirectory>
+                    <xnocompile>false</xnocompile>
+                    <verbose>true</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>lexsPDwebservice</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>ws-pd-bindings.jxb</bindingFile>
+                                <bindingFile>pd-bindings.jxb</bindingFile>
+                            </bindingFiles>
+                            <wsdlFiles>
+                                <wsdlFile>ulexPDwebserviceImpl.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>${base.url.value}/ulexPDwebserviceImpl.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/.staleFlagPD</staleFile>
+                        </configuration>                        
+                    </execution>
+                    <execution>
+                        <id>lexsSRwebservice</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>ws-sr-bindings.jxb</bindingFile>
+                                <bindingFile>sr-bindings.jxb</bindingFile>
+                            </bindingFiles>
+                            <wsdlFiles>
+                                <wsdlFile>ulexSRwebserviceImpl.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>${base.url.value}/ulexSRwebserviceImpl.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/.staleFlagSR</staleFile>
+                        </configuration>                        
+                    </execution>   
+                    <execution>
+                        <id>lexsSNNPwebservice</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>ws-snnp-bindings.jxb</bindingFile>
+                                <bindingFile>sn-bindings.jxb</bindingFile>
+                            </bindingFiles>
+                            <wsdlFiles>
+                                <wsdlFile>ulexSNNPwebserviceImpl.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>${base.url.value}/ulexSNNPwebserviceImpl.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/.staleFlagSNNP</staleFile>
+                        </configuration>                        
+                    </execution>                     
+                    <execution>
+                        <id>lexsSNNCwebservice</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>ws-snnc-bindings.jxb</bindingFile>
+                                <bindingFile>sn-bindings.jxb</bindingFile>
+                            </bindingFiles>
+                            <wsdlFiles>
+                                <wsdlFile>ulexSNNCwebserviceImpl.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>${base.url.value}/ulexSNNCwebserviceImpl.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/.staleFlagSNNC</staleFile>
+                        </configuration>                        
+                    </execution>                     
+                    <execution>
+                        <id>lexsSNSMwebservice</id>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <bindingFiles>
+                                <bindingFile>ws-snsm-bindings.jxb</bindingFile>
+                                <bindingFile>sn-bindings.jxb</bindingFile>
+                            </bindingFiles>
+                            <wsdlFiles>
+                                <wsdlFile>ulexSNSMwebserviceImpl.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>${base.url.value}/ulexSNSMwebserviceImpl.wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/.staleFlagSNSM</staleFile>
+                        </configuration>                        
+                    </execution>
+                </executions>
+                
+                <!-- if you want to use a specific version of JAX-WS, you can do so like this -->
+<!--                <dependencies>
+                    <dependency>
+                        <groupId>com.sun.xml.ws</groupId>
+                        <artifactId>jaxws-tools</artifactId>
+                        <version>2.1.7</version>
+                        <exclusions>
+                        <exclusion>
+                            <groupId>org.jvnet.staxex</groupId>
+                            <artifactId>stax-ex</artifactId>
+                        </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.staxex</groupId>
+                        <artifactId>stax-ex</artifactId>
+                        <version>1.2</version>
+                        <exclusions>
+                        <exclusion>
+                            <groupId>javax.xml.stream</groupId>
+                            <artifactId>stax-api</artifactId>
+                        </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>-->
+            </plugin>
+
+            <!-- Creates javadoc assembly for deployment  -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/distribution.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-executable</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attached</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${jaxws.version}</version>
+        </dependency>
+    
+        <!--
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${jaxb.version}</version>
+        </dependency>
+        -->
+
+        <!-- =============================================================== -->
+        <!-- Test Dependencies -->
+        <!-- =============================================================== -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.javaparser</groupId>
+            <artifactId>javaparser</artifactId>
+            <version>1.0.8</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>javaparser</id>
+            <name>JavaParser Repository</name>
+            <url>http://javaparser.googlecode.com/svn/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
